@@ -1,0 +1,261 @@
+---
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About | Phillip Hirsch" description="About Phillip Hirsch">
+  <div class="stack gap-20">
+    <main class="wrapper about">
+      <Hero title="About Me" align="start" />
+
+      <section>
+        <h2 class="section-title">Summary</h2>
+        <div class="content">
+          <p class="summary-text">
+            Full Stack Software Engineer with expertise in scalable web & mobile
+            applications, AI-driven solutions, and cloud-based architectures.
+            Strong background in React, Python, GraphQL, and AWS (Lambda, S3,
+            DynamoDB). Passionate about solving complex engineering challenges,
+            improving accessibility, and integrating machine learning
+            technologies for real-world applications.
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">Education</h2>
+        <div class="content">
+          <div class="education-item">
+            <div class="education-header">
+              <h3>Master of Science in Computer Science</h3>
+              <p class="date">December 2022</p>
+            </div>
+            <p class="institution">University of North Carolina at Charlotte</p>
+            <p class="focus">Concentration: Software, Systems, and Networks</p>
+          </div>
+
+          <div class="education-item">
+            <div class="education-header">
+              <h3>Bachelor of Science in Computer Science</h3>
+              <p class="date">May 2021</p>
+            </div>
+            <p class="institution">University of North Carolina at Charlotte</p>
+            <p class="focus">Concentration: Software Engineering</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">Skills</h2>
+        <div class="content">
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3>Languages</h3>
+              <p>JavaScript, TypeScript, Python, Java, SQL, NoSQL</p>
+            </div>
+            <div class="skill-category">
+              <h3>Front-End</h3>
+              <p>React, React Native, Remix, Next.js</p>
+            </div>
+            <div class="skill-category">
+              <h3>Back-End & APIs</h3>
+              <p>Node.js, Express.js, RESTful APIs, GraphQL</p>
+            </div>
+            <div class="skill-category">
+              <h3>Cloud & DevOps</h3>
+              <p>AWS (Lambda, S3, DynamoDB), Docker</p>
+            </div>
+            <div class="skill-category">
+              <h3>Testing & Security</h3>
+              <p>
+                Jest, Cypress, Authentication security, OWASP principles, Secure
+                API development
+              </p>
+            </div>
+            <div class="skill-category">
+              <h3>AI & Machine Learning</h3>
+              <p>PyTorch, fastai, Deep Learning, OCR, Computer Vision</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .section-title {
+    font-size: var(--text-2xl);
+    color: var(--gray-0);
+    border-bottom: 2px solid var(--accent-regular);
+    padding-bottom: 0.5rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Summary Section */
+  .summary-text {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--gray-200);
+    background: var(--gradient-subtle);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Education Section */
+  .education-item {
+    background: var(--gradient-subtle);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-800);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .education-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .education-item h3 {
+    font-size: var(--text-lg);
+    color: var(--gray-0);
+    margin: 0;
+  }
+
+  .date {
+    font-size: var(--text-md);
+    color: var(--accent-regular);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .institution {
+    font-size: var(--text-md);
+    color: var(--gray-300);
+    margin: 0.5rem 0 0.25rem 0;
+  }
+
+  .focus {
+    font-size: var(--text-sm);
+    color: var(--gray-400);
+    font-style: italic;
+  }
+
+  /* Skills Section */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .skill-category {
+    background: var(--gradient-subtle);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-800);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .skill-category:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .skill-category h3 {
+    font-size: var(--text-md);
+    color: var(--accent-regular);
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+  }
+
+  .skill-category p {
+    color: var(--gray-300);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (min-width: 50em) {
+    .about {
+      gap: 5rem;
+    }
+
+    .section-title {
+      font-size: var(--text-3xl);
+    }
+
+    .summary-text {
+      font-size: var(--text-xl);
+      padding: 2.5rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .education-item h3 {
+      font-size: var(--text-xl);
+    }
+
+    .skill-category {
+      padding: 2rem;
+    }
+
+    .skill-category h3 {
+      font-size: var(--text-lg);
+    }
+
+    .skill-category p {
+      font-size: var(--text-md);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .education-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .date {
+      align-self: flex-start;
+    }
+  }
+</style>

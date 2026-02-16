@@ -1,0 +1,17 @@
+{
+  "name": "dev-portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bunx --bun astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.17.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.1"
+  }
+}
