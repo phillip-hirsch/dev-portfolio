@@ -149,7 +149,8 @@ const isCurrentPage = (href: string) => {
           menu.offsetHeight;
           menu.classList.remove("is-closing");
           menu.classList.add("is-open");
-        } else {
+        } else if (menu.classList.contains("is-open")) {
+          // Only animate closed if the menu is actually visible.
           menu.classList.remove("is-open");
           menu.classList.add("is-closing");
           menu.addEventListener(
@@ -160,6 +161,10 @@ const isCurrentPage = (href: string) => {
             },
             { once: true },
           );
+        } else {
+          // Menu is already hidden — just ensure a clean state with no stale classes.
+          menu.classList.remove("is-open", "is-closing");
+          menu.hidden = true;
         }
       };
 
