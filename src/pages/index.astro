@@ -5,7 +5,9 @@ import Skills from "../components/Skills.astro";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+
 import { pageTransition } from "../utils/animations";
+import portrait from "../../public/assets/portrait.jpg";
 ---
 
 <BaseLayout>
@@ -23,7 +25,8 @@ import { pageTransition } from "../utils/animations";
           width="480"
           height="620"
           loading="eager"
-          src="/assets/portrait.jpg"
+          fetchpriority="high"
+          src={portrait}
         />
       </header>
 
