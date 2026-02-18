@@ -30,6 +30,9 @@ const { title, description } = Astro.props;
       // Add “loaded” class once the document has completely loaded.
       addEventListener("load", () =>
         document.documentElement.classList.add("loaded"),
+      ); // Re-add "loaded" class after view transitions (load event doesn't re-fire).
+      document.addEventListener("astro:page-load", () =>
+        document.documentElement.classList.add("loaded"),
       );
     </script>
 
@@ -116,6 +119,51 @@ const { title, description } = Astro.props;
           background: none;
           background-blend-mode: none;
           --bg-gradient-size: none;
+        }
+      }
+    </style>
+    <style is:global>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeOutUp {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeOutDown {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(12px);
         }
       }
     </style>

@@ -1,10 +1,11 @@
 ---
 import Hero from "../components/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTransition } from "../utils/animations";
 ---
 
 <BaseLayout title="About | Phillip Hirsch" description="About Phillip Hirsch">
-  <div class="stack gap-20">
+  <div class="stack gap-20" transition:animate={pageTransition}>
     <main class="wrapper about">
       <Hero title="About Me" align="start" />
 

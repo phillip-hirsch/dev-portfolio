@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -26,6 +27,7 @@ const {
   href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
   rel="stylesheet"
 />
+<ClientRouter />
 <script is:inline>
   // This code is inlined in the head to make dark mode instant & blocking.
   const getThemePreference = () => {
@@ -36,8 +38,29 @@ const {
       ? "dark"
       : "light";
   };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
+
+  const setTheme = () => {
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
+  };
+
+  // Set theme on initial load
+  setTheme();
+
+  // Apply theme BEFORE the swap to prevent flash
+  document.addEventListener("astro:before-swap", (event) => {
+    // Check if the new document would have a different theme
+    const isDark = getThemePreference() === "dark";
+
+    if (isDark) {
+      event.newDocument.documentElement.classList.add("theme-dark");
+    } else {
+      event.newDocument.documentElement.classList.remove("theme-dark");
+    }
+  });
+
+  // Reapply theme on page load (handles both initial load and after swap)
+  document.addEventListener("astro:page-load", setTheme);
 
   if (typeof localStorage !== "undefined") {
     // Watch the document element and persist user preference when it changes.

@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import Icon from "../components/Icon.astro";
+import { pageTransition } from "../utils/animations";
 ---
 
 <BaseLayout
   title="Resume | Phillip Hirsch"
   description="View and download Phillip Hirsch's resume"
 >
-  <div class="stack gap-20">
+  <div class="stack gap-20" transition:animate={pageTransition}>
     <div class="wrapper">
       <Hero title="Resume" align="center" />
 
