@@ -142,11 +142,31 @@ const isCurrentPage = (href: string) => {
       /** Set whether the menu is currently expanded or collapsed. */
       const setExpanded = (expand: boolean) => {
         btn.setAttribute("aria-expanded", expand ? "true" : "false");
-        menu.hidden = !expand;
+
+        if (expand) {
+          menu.hidden = false;
+          // Force a reflow so the opening animation plays from the start.
+          menu.offsetHeight;
+          menu.classList.remove("is-closing");
+          menu.classList.add("is-open");
+        } else {
+          menu.classList.remove("is-open");
+          menu.classList.add("is-closing");
+          menu.addEventListener(
+            "animationend",
+            () => {
+              menu.classList.remove("is-closing");
+              menu.hidden = true;
+            },
+            { once: true },
+          );
+        }
       };
 
       // Toggle menu visibility when the menu button is clicked.
-      btn.addEventListener("click", () => setExpanded(menu.hidden));
+      btn.addEventListener("click", () =>
+        setExpanded(menu.hidden || menu.classList.contains("is-closing")),
+      );
 
       // Hide menu button for large screens.
       const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
@@ -222,6 +242,38 @@ const isCurrentPage = (href: string) => {
     position: absolute;
     left: 0;
     right: 0;
+    transform-origin: top center;
+    overflow: hidden;
+  }
+
+  .menu-content.is-open {
+    animation: menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .menu-content.is-closing {
+    animation: menuSlideUp 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+
+  @keyframes menuSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scaleY(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+  }
+
+  @keyframes menuSlideUp {
+    from {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-8px) scaleY(0.96);
+    }
   }
 
   .nav-items {
@@ -305,6 +357,11 @@ const isCurrentPage = (href: string) => {
 
     .menu-content {
       display: contents;
+      /* Reset mobile animation state on desktop — display:contents has no box to animate */
+      animation: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      overflow: visible;
     }
 
     .nav-items {
