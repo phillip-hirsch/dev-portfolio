@@ -46,6 +46,10 @@
 }
 
 @media (max-width: 768px) {
+  .wrapper {
+    overflow-x: hidden;
+  }
+
   .download-mobile {
     display: block;
     width: fit-content;
