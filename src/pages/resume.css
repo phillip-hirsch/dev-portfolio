@@ -46,10 +46,6 @@
 }
 
 @media (max-width: 768px) {
-  .wrapper {
-    overflow-x: hidden;
-  }
-
   .download-mobile {
     display: block;
     width: fit-content;
@@ -60,18 +56,6 @@
   }
 
   .pdf-container {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-  }
-
-  .pdf-viewer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 800px;
-    transform: scale(0.5);
-    transform-origin: top left;
+    display: none;
   }
 }
