@@ -47,6 +47,10 @@
   transform: translateY(-2px);
 }
 
+.download-mobile {
+  display: none;
+}
+
 .pdf-container {
   margin: 3rem 0;
   border: 1px solid var(--gray-800);
@@ -78,7 +82,28 @@
 }
 
 @media (max-width: 768px) {
+  .download-mobile {
+    display: block;
+    width: fit-content;
+    margin: 1.5rem auto 0;
+    background: var(--gradient-accent);
+    border-color: transparent;
+    color: var(--gray-999);
+  }
+
+  .pdf-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+
   .pdf-viewer {
-    height: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 800px;
+    transform: scale(0.5);
+    transform-origin: top left;
   }
 }
