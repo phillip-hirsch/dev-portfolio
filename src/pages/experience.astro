@@ -2,62 +2,87 @@
 import Hero from "../components/Hero/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageTransition } from "../utils/animations";
-import "./experience.css";
 ---
 
 <BaseLayout
   title="Work Experience | Phillip Hirsch"
   description="Professional work experience and key achievements of Phillip Hirsch"
 >
-  <div class="stack gap-20" transition:animate={pageTransition}>
-    <div class="wrapper stack gap-8">
+  <div class="flex flex-col gap-20" transition:animate={pageTransition}>
+    <main class="max-w-250 mx-auto py-8 px-6 flex flex-col gap-8">
       <Hero title="Experience" align="start" />
 
-      <section class="experience-section">
-        <div class="experience-item">
-          <div class="experience-header">
+      <section class="flex flex-col gap-12 mt-8">
+        <div
+          class="bg-(image:--gradient-subtle) border border-gray-800 rounded-2xl p-8 lg:p-10 shadow-sm"
+        >
+          <div
+            class="flex flex-col gap-4 mb-6 flex-wrap lg:flex-row lg:justify-between lg:items-start"
+          >
             <div>
-              <h2>Software Engineer (Contract)</h2>
-              <h3>Ally Financial via Brooksource</h3>
+              <h2 class="text-xl lg:text-2xl text-gray-0 mb-2">
+                Software Engineer (Contract)
+              </h2>
+              <h3 class="text-lg lg:text-xl text-accent-regular font-medium">
+                Ally Financial via Brooksource
+              </h3>
             </div>
-            <div class="experience-meta">
-              <p class="date">March 2023 - Present</p>
-              <p class="location">Charlotte, NC</p>
+            <div class="text-left lg:text-right">
+              <p class="text-md text-gray-200 font-medium mb-1">
+                March 2023 - Present
+              </p>
+              <p class="text-sm text-gray-400">Charlotte, NC</p>
             </div>
           </div>
-          <ul class="achievements">
-            <li>
+          <ul class="list-none p-0 m-0 flex flex-col gap-4">
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Optimized Ally's mobile banking app, cutting load times by 15% and
               improving rendering efficiency by 30% through state management
               optimization and component refactoring.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Developed & maintained reusable UI components in React, React
               Native, and TypeScript, improving developer productivity across 5+
               enterprise applications.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Implemented API integrations with Contentful, automating content
               delivery and reducing manual updates by 40%, increasing
               operational efficiency.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Refactored legacy codebase, improving maintainability and reducing
               technical debt for long-term scalability.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Strengthened authentication security and ensured adherence to
               secure coding best practices.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Improved accessibility compliance (WCAG 2.1), enhancing
               inclusivity and user experience.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Mentored junior engineers, reducing onboarding time by 20% and
               fostering a culture of collaboration.
             </li>
-            <li>
+            <li
+              class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+            >
               Optimized API interactions, improving data-fetching strategies and
               implementing efficient caching mechanisms to enhance
               responsiveness.
@@ -65,6 +90,6 @@ import "./experience.css";
           </ul>
         </div>
       </section>
-    </div>
+    </main>
   </div>
 </BaseLayout>

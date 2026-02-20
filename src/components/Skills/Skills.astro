@@ -1,39 +1,45 @@
 ---
 import Icon from "../Icon/Icon.astro";
-import "./Skills.css";
 ---
 
-<section class="box skills">
-  <div class="stack gap-2 lg:gap-4">
+<section
+  class="flex flex-col gap-12 border border-gray-800 rounded-xl p-6 bg-gray-999/40 shadow-sm lg:grid lg:grid-cols-3 lg:gap-8 lg:rounded-3xl lg:p-10 2xl:gap-20 *:min-w-0"
+>
+  <div class="flex flex-col gap-2 lg:gap-4">
     <Icon
       icon="terminal-window"
-      color="var(--accent-regular)"
+      color="var(--color-accent-regular)"
       size="2.5rem"
       gradient
     />
-    <h2>Full Stack Development</h2>
-    <p>
+    <h2 class="text-lg 2xl:text-2xl wrap-break-word">Full Stack Development</h2>
+    <p class="text-gray-400">
       Strong frontend expertise in React, React Native, and TypeScript with
       backend proficiency in Node.js and GraphQL.
     </p>
   </div>
-  <div class="stack gap-2 lg:gap-4">
-    <Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Performance Engineering</h2>
-    <p>
+  <div class="flex flex-col gap-2 lg:gap-4">
+    <Icon
+      icon="trophy"
+      color="var(--color-accent-regular)"
+      size="2.5rem"
+      gradient
+    />
+    <h2 class="text-lg 2xl:text-2xl wrap-break-word">Performance Engineering</h2>
+    <p class="text-gray-400">
       Specialized in optimization, state management, and delivering
       high-performance user experiences.
     </p>
   </div>
-  <div class="stack gap-2 lg:gap-4">
+  <div class="flex flex-col gap-2 lg:gap-4">
     <Icon
       icon="strategy"
-      color="var(--accent-regular)"
+      color="var(--color-accent-regular)"
       size="2.5rem"
       gradient
     />
-    <h2>Accessibility Compliance</h2>
-    <p>
+    <h2 class="text-lg 2xl:text-2xl wrap-break-word">Accessibility Compliance</h2>
+    <p class="text-gray-400">
       Ensuring WCAG 2.1 standards and creating inclusive, user-friendly
       interfaces for all users.
     </p>

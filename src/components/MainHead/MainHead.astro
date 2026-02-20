@@ -41,7 +41,7 @@ const {
 
   const setTheme = () => {
     const isDark = getThemePreference() === "dark";
-    document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
   };
 
   // Set theme on initial load
@@ -53,9 +53,9 @@ const {
     const isDark = getThemePreference() === "dark";
 
     if (isDark) {
-      event.newDocument.documentElement.classList.add("theme-dark");
+      event.newDocument.documentElement.classList.add("dark");
     } else {
-      event.newDocument.documentElement.classList.remove("theme-dark");
+      event.newDocument.documentElement.classList.remove("dark");
     }
   });
 
@@ -65,7 +65,7 @@ const {
   if (typeof localStorage !== "undefined") {
     // Watch the document element and persist user preference when it changes.
     const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("theme-dark");
+      const isDark = document.documentElement.classList.contains("dark");
       localStorage.setItem("theme", isDark ? "dark" : "light");
     });
     observer.observe(document.documentElement, {

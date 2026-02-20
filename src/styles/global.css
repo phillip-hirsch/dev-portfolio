@@ -1,55 +1,44 @@
-/* Global variables */
-:root {
-	/* Colors — Light: slate-neutral grays, teal/cyan accents */
-	--gray-0: #0a0f14;
-	--gray-50: #111827;
-	--gray-100: #1e2d3d;
-	--gray-200: #2e4057;
-	--gray-300: #4a6278;
-	--gray-400: #647d96;
-	--gray-500: #8499af;
-	--gray-600: #a4b4c4;
-	--gray-700: #c4cfdb;
-	--gray-800: #e1e7ef;
-	--gray-900: #f0f4f8;
-	--gray-999-basis: 210, 33%, 99%;
-	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
-	--gray-999: #f8fafc;
+@import "tailwindcss";
 
-	--accent-light: #38bdf8;
-	--accent-regular: #0284c7;
-	--accent-dark: #0c4a6e;
-	--accent-overlay: hsla(199, 89%, 48%, 0.2);
-	--accent-subtle-overlay: var(--accent-overlay);
-	--accent-text-over: var(--gray-999);
+/* Class-based dark mode: applies dark: variants when .dark is on any ancestor */
+@custom-variant dark (&:where(.dark, .dark *));
 
-	--link-color: var(--accent-regular);
+@theme {
+	/* Custom breakpoints — aligned with existing site usage */
+	--breakpoint-lg: 50em; /* 800px  — main responsive breakpoint */
+	--breakpoint-xl: 60em; /* 960px  — nav socials visibility */
+	--breakpoint-2xl: 70em; /* 1120px — skills enhanced layout */
 
-	/* Gradients */
-	--gradient-stop-1: var(--accent-light);
-	--gradient-stop-2: var(--accent-regular);
-	--gradient-stop-3: var(--accent-dark);
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 150%);
-	--gradient-accent: linear-gradient(
-		150deg,
-		var(--gradient-stop-1),
-		var(--gradient-stop-2),
-		var(--gradient-stop-3)
-	);
-	--gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
+	/* Colors — light mode defaults, overridden in .dark via @layer base */
+	--color-gray-0: #0a0f14;
+	--color-gray-50: #111827;
+	--color-gray-100: #1e2d3d;
+	--color-gray-200: #2e4057;
+	--color-gray-300: #4a6278;
+	--color-gray-400: #647d96;
+	--color-gray-500: #8499af;
+	--color-gray-600: #a4b4c4;
+	--color-gray-700: #c4cfdb;
+	--color-gray-800: #e1e7ef;
+	--color-gray-900: #f0f4f8;
+	--color-gray-999: #f8fafc;
 
-	/* Shadows */
-	--shadow-sm:
-		0px 6px 3px rgba(10, 15, 20, 0.01), 0px 4px 2px rgba(10, 15, 20, 0.01),
-		0px 2px 2px rgba(10, 15, 20, 0.02), 0px 0px 1px rgba(10, 15, 20, 0.03);
-	--shadow-md:
-		0px 28px 11px rgba(10, 15, 20, 0.01), 0px 16px 10px rgba(10, 15, 20, 0.03),
-		0px 7px 7px rgba(10, 15, 20, 0.05), 0px 2px 4px rgba(10, 15, 20, 0.06);
-	--shadow-lg:
-		0px 62px 25px rgba(10, 15, 20, 0.01), 0px 35px 21px rgba(10, 15, 20, 0.05),
-		0px 16px 16px rgba(10, 15, 20, 0.1), 0px 4px 9px rgba(10, 15, 20, 0.12);
+	--color-accent-light: #38bdf8;
+	--color-accent-regular: #0284c7;
+	--color-accent-dark: #0c4a6e;
+	--color-accent-overlay: hsla(199, 89%, 48%, 0.2);
+	--color-accent-subtle-overlay: hsla(199, 89%, 48%, 0.2);
+	--color-accent-text-over: #f8fafc; /* = gray-999 in light */
 
-	/* Text Sizes */
+	/* Typography */
+	--font-body:
+		"Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	--font-brand:
+		Rubik, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+	/* Text scale — overrides Tailwind defaults intentionally */
 	--text-sm: 0.875rem;
 	--text-base: 1rem;
 	--text-md: 1.125rem;
@@ -60,195 +49,225 @@
 	--text-4xl: 3.5rem;
 	--text-5xl: 4.5rem;
 
-	/* Fonts */
-	--font-system:
-		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-		"Open Sans", "Helvetica Neue", sans-serif;
-	--font-body: "Public Sans", var(--font-system);
-	--font-brand: Rubik, var(--font-system);
-
-	/* Transitions */
-	--theme-transition: 0.2s ease-in-out;
-}
-
-:root.theme-dark {
-	/* Colors — Dark: deep navy/slate grays, teal/cyan accents */
-	--gray-0: #e8f4fd;
-	--gray-50: #d0e8f7;
-	--gray-100: #b0d4ed;
-	--gray-200: #8ab8da;
-	--gray-300: #6499be;
-	--gray-400: #4a7da3;
-	--gray-500: #346285;
-	--gray-600: #244966;
-	--gray-700: #17334d;
-	--gray-800: #0e2035;
-	--gray-900: #081525;
-	--gray-999-basis: 214, 60%, 6%;
-	--gray-999: #040d18;
-
-	--accent-light: #0c4a6e;
-	--accent-regular: #0ea5e9;
-	--accent-dark: #7dd3fc;
-	--accent-overlay: hsla(199, 89%, 48%, 0.2);
-	--accent-subtle-overlay: hsla(199, 75%, 25%, 0.35);
-	--accent-text-over: var(--gray-0);
-
-	--link-color: var(--accent-dark);
-
-	--gradient-stop-1: #075985;
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
-	--gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
-
+	/* Shadows — override Tailwind defaults */
 	--shadow-sm:
-		0px 6px 3px rgba(4, 13, 24, 0.03), 0px 4px 2px rgba(4, 13, 24, 0.03),
-		0px 2px 2px rgba(4, 13, 24, 0.05), 0px 0px 1px rgba(4, 13, 24, 0.08);
+		0px 6px 3px rgba(10, 15, 20, 0.01), 0px 4px 2px rgba(10, 15, 20, 0.01),
+		0px 2px 2px rgba(10, 15, 20, 0.02), 0px 0px 1px rgba(10, 15, 20, 0.03);
 	--shadow-md:
-		0px 28px 11px rgba(4, 13, 24, 0.04), 0px 16px 10px rgba(4, 13, 24, 0.08),
-		0px 7px 7px rgba(4, 13, 24, 0.12), 0px 2px 4px rgba(4, 13, 24, 0.15);
+		0px 28px 11px rgba(10, 15, 20, 0.01),
+		0px 16px 10px rgba(10, 15, 20, 0.03), 0px 7px 7px rgba(10, 15, 20, 0.05),
+		0px 2px 4px rgba(10, 15, 20, 0.06);
 	--shadow-lg:
-		0px 62px 25px rgba(4, 13, 24, 0.04), 0px 35px 21px rgba(4, 13, 24, 0.1),
-		0px 16px 16px rgba(4, 13, 24, 0.18), 0px 4px 9px rgba(4, 13, 24, 0.22);
+		0px 62px 25px rgba(10, 15, 20, 0.01),
+		0px 35px 21px rgba(10, 15, 20, 0.05),
+		0px 16px 16px rgba(10, 15, 20, 0.1), 0px 4px 9px rgba(10, 15, 20, 0.12);
+
+	/* Nav menu animations */
+	--animate-menu-slide-down: menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1)
+		forwards;
+	--animate-menu-slide-up: menuSlideUp 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
-html {
-	min-height: 100%;
-}
+@layer base {
+	/* Dark mode color overrides */
+	.dark {
+		--color-gray-0: #e8f4fd;
+		--color-gray-50: #d0e8f7;
+		--color-gray-100: #b0d4ed;
+		--color-gray-200: #8ab8da;
+		--color-gray-300: #6499be;
+		--color-gray-400: #4a7da3;
+		--color-gray-500: #346285;
+		--color-gray-600: #244966;
+		--color-gray-700: #17334d;
+		--color-gray-800: #0e2035;
+		--color-gray-900: #081525;
+		--color-gray-999: #040d18;
 
-body {
-	min-height: 100%;
-	overflow-x: hidden;
-}
+		--color-accent-light: #0c4a6e;
+		--color-accent-regular: #0ea5e9;
+		--color-accent-dark: #7dd3fc;
+		--color-accent-overlay: hsla(199, 89%, 48%, 0.2);
+		--color-accent-subtle-overlay: hsla(199, 75%, 25%, 0.35);
+		--color-accent-text-over: #e8f4fd; /* = gray-0 in dark */
 
-body {
-	background-color: var(--gray-999);
-	color: var(--gray-200);
-	font-family: var(--font-body);
-	-webkit-font-smoothing: antialiased;
-	line-height: 1.5;
-}
-
-*,
-*::after,
-*::before {
-	box-sizing: border-box;
-	margin: 0;
-}
-
-img {
-	max-width: 100%;
-	height: auto;
-}
-
-a {
-	color: var(--link-color);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-	line-height: 1.1;
-	font-family: var(--font-brand);
-	font-weight: 600;
-	color: var(--gray-100);
-}
-
-h1 {
-	font-size: var(--text-5xl);
-}
-
-h2 {
-	font-size: var(--text-4xl);
-}
-
-h3 {
-	font-size: var(--text-3xl);
-}
-
-h4 {
-	font-size: var(--text-2xl);
-}
-
-h5 {
-	font-size: var(--text-xl);
-}
-
-/* Utilities */
-
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-}
-
-.wrapper {
-	width: 100%;
-	max-width: 83rem;
-	margin-inline: auto;
-	padding-inline: 1.5rem;
-}
-
-.stack {
-	display: flex;
-	flex-direction: column;
-}
-
-.gap-2 {
-	gap: 0.5rem;
-}
-.gap-4 {
-	gap: 1rem;
-}
-.gap-8 {
-	gap: 2rem;
-}
-.gap-10 {
-	gap: 2.5rem;
-}
-.gap-15 {
-	gap: 3.75rem;
-}
-.gap-20 {
-	gap: 5rem;
-}
-.gap-30 {
-	gap: 7.5rem;
-}
-.gap-48 {
-	gap: 12rem;
-}
-
-@media (min-width: 50em) {
-	.lg\:gap-2 {
-		gap: 0.5rem;
+		--shadow-sm:
+			0px 6px 3px rgba(4, 13, 24, 0.03), 0px 4px 2px rgba(4, 13, 24, 0.03),
+			0px 2px 2px rgba(4, 13, 24, 0.05), 0px 0px 1px rgba(4, 13, 24, 0.08);
+		--shadow-md:
+			0px 28px 11px rgba(4, 13, 24, 0.04),
+			0px 16px 10px rgba(4, 13, 24, 0.08), 0px 7px 7px rgba(4, 13, 24, 0.12),
+			0px 2px 4px rgba(4, 13, 24, 0.15);
+		--shadow-lg:
+			0px 62px 25px rgba(4, 13, 24, 0.04),
+			0px 35px 21px rgba(4, 13, 24, 0.1),
+			0px 16px 16px rgba(4, 13, 24, 0.18), 0px 4px 9px rgba(4, 13, 24, 0.22);
 	}
-	.lg\:gap-4 {
-		gap: 1rem;
+
+	/* Theme-aware gradient variables (used via arbitrary Tailwind values) */
+	:root {
+		--gradient-subtle: linear-gradient(
+			150deg,
+			var(--color-gray-900) 19%,
+			var(--color-gray-999) 150%
+		);
+		--gradient-accent: linear-gradient(
+			150deg,
+			var(--color-accent-light),
+			var(--color-accent-regular),
+			var(--color-accent-dark)
+		);
+		--gradient-stroke: linear-gradient(
+			180deg,
+			var(--color-gray-900),
+			var(--color-gray-700)
+		);
 	}
-	.lg\:gap-8 {
-		gap: 2rem;
+
+	.dark {
+		--gradient-subtle: linear-gradient(
+			150deg,
+			var(--color-gray-900) 19%,
+			var(--color-gray-999) 81%
+		);
+		--gradient-stroke: linear-gradient(
+			180deg,
+			var(--color-gray-600),
+			var(--color-gray-800)
+		);
 	}
-	.lg\:gap-10 {
-		gap: 2.5rem;
+
+	/* Base HTML styles */
+	html {
+		min-height: 100%;
 	}
-	.lg\:gap-15 {
-		gap: 3.75rem;
+
+	body {
+		min-height: 100%;
+		overflow-x: hidden;
+		background-color: var(--color-gray-999);
+		color: var(--color-gray-200);
+		font-family: var(--font-body);
+		-webkit-font-smoothing: antialiased;
+		line-height: 1.5;
 	}
-	.lg\:gap-20 {
-		gap: 5rem;
+
+	*,
+	*::after,
+	*::before {
+		box-sizing: border-box;
+		margin: 0;
 	}
-	.lg\:gap-30 {
-		gap: 7.5rem;
+
+	img {
+		max-width: 100%;
+		height: auto;
 	}
-	.lg\:gap-48 {
-		gap: 12rem;
+
+	a {
+		color: var(--color-accent-regular);
+	}
+
+	.dark a {
+		color: var(--color-accent-dark);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		line-height: 1.1;
+		font-family: var(--font-brand);
+		font-weight: 600;
+		color: var(--color-gray-100);
+	}
+
+	h1 {
+		font-size: var(--text-5xl);
+	}
+
+	h2 {
+		font-size: var(--text-4xl);
+	}
+
+	h3 {
+		font-size: var(--text-3xl);
+	}
+
+	h4 {
+		font-size: var(--text-2xl);
+	}
+
+	h5 {
+		font-size: var(--text-xl);
+	}
+}
+
+/* Page transition keyframes (used by src/utils/animations.ts) */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeOutUp {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-12px);
+	}
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeOutDown {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+}
+
+/* Nav menu keyframes */
+@keyframes menuSlideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-8px) scaleY(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scaleY(1);
+	}
+}
+
+@keyframes menuSlideUp {
+	from {
+		opacity: 1;
+		transform: translateY(0) scaleY(1);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-8px) scaleY(0.96);
 	}
 }

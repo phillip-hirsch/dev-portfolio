@@ -2,18 +2,25 @@
 import Hero from "../components/Hero/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageTransition } from "../utils/animations";
-import "./about.css";
 ---
 
 <BaseLayout title="About | Phillip Hirsch" description="About Phillip Hirsch">
-  <div class="stack gap-20" transition:animate={pageTransition}>
-    <main class="wrapper about">
+  <div class="flex flex-col gap-20" transition:animate={pageTransition}>
+    <main
+      class="max-w-[1000px] mx-auto py-8 px-6 flex flex-col gap-16 lg:gap-20"
+    >
       <Hero title="About Me" align="start" />
 
-      <section>
-        <h2 class="section-title">Summary</h2>
-        <div class="content">
-          <p class="summary-text">
+      <section class="flex flex-col gap-6">
+        <h2
+          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+        >
+          Summary
+        </h2>
+        <div class="flex flex-col gap-6">
+          <p
+            class="text-lg lg:text-xl leading-[1.8] text-gray-200 bg-[image:var(--gradient-subtle)] p-8 lg:p-10 rounded-2xl border border-gray-800 shadow-sm"
+          >
             Full Stack Software Engineer with expertise in building scalable web
             and mobile applications and cloud-based architectures. Strong
             background in React, React Native, TypeScript, Node.js, and GraphQL,
@@ -24,58 +31,126 @@ import "./about.css";
           </p>
         </div>
       </section>
-      <section>
-        <h2 class="section-title">Education</h2>
-        <div class="content">
-          <div class="education-item">
-            <div class="education-header">
-              <h3>Master of Science in Computer Science</h3>
-              <p class="date">December 2022</p>
+
+      <section class="flex flex-col gap-6">
+        <h2
+          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+        >
+          Education
+        </h2>
+        <div class="flex flex-col gap-6">
+          <div
+            class="bg-[image:var(--gradient-subtle)] p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div
+              class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
+            >
+              <h3 class="text-lg lg:text-xl text-gray-0 m-0">
+                Master of Science in Computer Science
+              </h3>
+              <p class="text-md text-accent-regular font-medium whitespace-nowrap">
+                December 2022
+              </p>
             </div>
-            <p class="institution">University of North Carolina at Charlotte</p>
-            <p class="focus">Concentration: Software, Systems, and Networks</p>
+            <p class="text-md text-gray-300 mt-2 mb-1">
+              University of North Carolina at Charlotte
+            </p>
+            <p class="text-sm text-gray-400 italic">
+              Concentration: Software, Systems, and Networks
+            </p>
           </div>
 
-          <div class="education-item">
-            <div class="education-header">
-              <h3>Bachelor of Science in Computer Science</h3>
-              <p class="date">May 2021</p>
+          <div
+            class="bg-[image:var(--gradient-subtle)] p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div
+              class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
+            >
+              <h3 class="text-lg lg:text-xl text-gray-0 m-0">
+                Bachelor of Science in Computer Science
+              </h3>
+              <p class="text-md text-accent-regular font-medium whitespace-nowrap">
+                May 2021
+              </p>
             </div>
-            <p class="institution">University of North Carolina at Charlotte</p>
-            <p class="focus">Concentration: Software Engineering</p>
+            <p class="text-md text-gray-300 mt-2 mb-1">
+              University of North Carolina at Charlotte
+            </p>
+            <p class="text-sm text-gray-400 italic">
+              Concentration: Software Engineering
+            </p>
           </div>
         </div>
       </section>
-      <section>
-        <h2 class="section-title">Skills</h2>
-        <div class="content">
-          <div class="skills-grid">
-            <div class="skill-category">
-              <h3>Languages</h3>
-              <p>JavaScript, TypeScript, Python, Java, SQL, NoSQL</p>
+
+      <section class="flex flex-col gap-6">
+        <h2
+          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+        >
+          Skills
+        </h2>
+        <div class="flex flex-col gap-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                Languages
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+                JavaScript, TypeScript, Python, Java, SQL, NoSQL
+              </p>
             </div>
-            <div class="skill-category">
-              <h3>Front-End</h3>
-              <p>React, React Native, Remix, Astro, Next.js</p>
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                Front-End
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+                React, React Native, Remix, Astro, Next.js
+              </p>
             </div>
-            <div class="skill-category">
-              <h3>Back-End & APIs</h3>
-              <p>Node.js, Express.js, NestJS, GraphQL, Bun, RESTful APIs</p>
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                Back-End & APIs
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+                Node.js, Express.js, NestJS, GraphQL, Bun, RESTful APIs
+              </p>
             </div>
-            <div class="skill-category">
-              <h3>Cloud & DevOps</h3>
-              <p>AWS, Docker, GitHub Actions</p>
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                Cloud & DevOps
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+                AWS, Docker, GitHub Actions
+              </p>
             </div>
-            <div class="skill-category">
-              <h3>Testing & Security</h3>
-              <p>
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                Testing & Security
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
                 Jest, Cypress, Authentication security, OWASP principles, Secure
                 API development
               </p>
             </div>
-            <div class="skill-category">
-              <h3>AI Tooling</h3>
-              <p>GitHub Copilot, Claude Code, Claude, ChatGPT</p>
+            <div
+              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+                AI Tooling
+              </h3>
+              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+                GitHub Copilot, Claude Code, Claude, ChatGPT
+              </p>
             </div>
           </div>
         </div>

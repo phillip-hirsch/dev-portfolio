@@ -1,7 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { iconPaths } from "./IconPaths";
-import "./Icon.css";
 
 interface Props {
   icon: keyof typeof iconPaths;
@@ -28,6 +27,7 @@ const gradientId =
   aria-hidden="true"
   stroke={gradient ? `url(#${gradientId})` : color}
   fill={gradient ? `url(#${gradientId})` : color}
+  class="align-middle w-(--size,1em) h-(--size,1em)"
   {...attrs}
 >
   <g set:html={iconPath} />
@@ -41,9 +41,9 @@ const gradientId =
         y2="202"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="var(--gradient-stop-1)" />
-        <stop offset=".5" stop-color="var(--gradient-stop-2)" />
-        <stop offset="1" stop-color="var(--gradient-stop-3)" />
+        <stop stop-color="var(--color-accent-light)" />
+        <stop offset=".5" stop-color="var(--color-accent-regular)" />
+        <stop offset="1" stop-color="var(--color-accent-dark)" />
       </linearGradient>
     )
   }
