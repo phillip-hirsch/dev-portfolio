@@ -6,9 +6,7 @@ import { pageTransition } from "../utils/animations";
 
 <BaseLayout title="About | Phillip Hirsch" description="About Phillip Hirsch">
   <div class="flex flex-col gap-20" transition:animate={pageTransition}>
-    <main
-      class="max-w-[1000px] mx-auto py-8 px-6 flex flex-col gap-16 lg:gap-20"
-    >
+    <main class="max-w-250 mx-auto py-8 px-6 flex flex-col gap-16 lg:gap-20">
       <Hero title="About Me" align="start" />
 
       <section class="flex flex-col gap-6">
@@ -19,7 +17,7 @@ import { pageTransition } from "../utils/animations";
         </h2>
         <div class="flex flex-col gap-6">
           <p
-            class="text-lg lg:text-xl leading-[1.8] text-gray-200 bg-[image:var(--gradient-subtle)] p-8 lg:p-10 rounded-2xl border border-gray-800 shadow-sm"
+            class="text-lg lg:text-xl leading-[1.8] text-gray-200 bg-(image:--gradient-subtle) p-8 lg:p-10 rounded-2xl border border-gray-800 shadow-sm"
           >
             Full Stack Software Engineer with expertise in building scalable web
             and mobile applications and cloud-based architectures. Strong
@@ -40,7 +38,7 @@ import { pageTransition } from "../utils/animations";
         </h2>
         <div class="flex flex-col gap-6">
           <div
-            class="bg-[image:var(--gradient-subtle)] p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
           >
             <div
               class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
@@ -48,7 +46,9 @@ import { pageTransition } from "../utils/animations";
               <h3 class="text-lg lg:text-xl text-gray-0 m-0">
                 Master of Science in Computer Science
               </h3>
-              <p class="text-md text-accent-regular font-medium whitespace-nowrap">
+              <p
+                class="text-md text-accent-regular font-medium whitespace-nowrap"
+              >
                 December 2022
               </p>
             </div>
@@ -61,7 +61,7 @@ import { pageTransition } from "../utils/animations";
           </div>
 
           <div
-            class="bg-[image:var(--gradient-subtle)] p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
           >
             <div
               class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
@@ -69,7 +69,9 @@ import { pageTransition } from "../utils/animations";
               <h3 class="text-lg lg:text-xl text-gray-0 m-0">
                 Bachelor of Science in Computer Science
               </h3>
-              <p class="text-md text-accent-regular font-medium whitespace-nowrap">
+              <p
+                class="text-md text-accent-regular font-medium whitespace-nowrap"
+              >
                 May 2021
               </p>
             </div>
@@ -92,9 +94,11 @@ import { pageTransition } from "../utils/animations";
         <div class="flex flex-col gap-6">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 Languages
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
@@ -102,9 +106,11 @@ import { pageTransition } from "../utils/animations";
               </p>
             </div>
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 Front-End
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
@@ -112,9 +118,11 @@ import { pageTransition } from "../utils/animations";
               </p>
             </div>
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 Back-End & APIs
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
@@ -122,9 +130,11 @@ import { pageTransition } from "../utils/animations";
               </p>
             </div>
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 Cloud & DevOps
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
@@ -132,9 +142,11 @@ import { pageTransition } from "../utils/animations";
               </p>
             </div>
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 Testing & Security
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
@@ -143,9 +155,11 @@ import { pageTransition } from "../utils/animations";
               </p>
             </div>
             <div
-              class="bg-[image:var(--gradient-subtle)] p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h3 class="text-md lg:text-lg text-accent-regular mb-3 font-semibold">
+              <h3
+                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+              >
                 AI Tooling
               </h3>
               <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">

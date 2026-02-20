@@ -39,7 +39,7 @@ const isCurrentPage = (href: string) => {
 ---
 
 <nav
-  class="z-[9999] relative font-brand font-medium mb-14 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-20 lg:py-10 lg:gap-4"
+  class="z-9999 relative font-brand font-medium mb-14 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-20 lg:py-10 lg:gap-4"
 >
   <div class="flex justify-between gap-2 p-6 lg:p-0">
     <a
@@ -57,7 +57,7 @@ const isCurrentPage = (href: string) => {
     <menu-button>
       <template>
         <button
-          class="relative flex border-0 rounded-full p-2 text-2xl text-gray-300 bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] shadow-md before:absolute before:inset-[-1px] before:content-[''] before:bg-[image:var(--gradient-stroke)] before:rounded-full before:-z-10 aria-expanded:text-gray-0 aria-expanded:bg-[linear-gradient(180deg,var(--color-gray-600),transparent),radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)]"
+          class="relative flex border-0 rounded-full p-2 text-2xl text-gray-300 bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] shadow-md before:absolute before:-inset-px before:content-[''] before:bg-(image:--gradient-stroke) before:rounded-full before:-z-10 aria-expanded:text-gray-0 aria-expanded:bg-[linear-gradient(180deg,var(--color-gray-600),transparent),radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)]"
           aria-expanded="false"
         >
           <span class="sr-only">Menu</span>
@@ -68,7 +68,7 @@ const isCurrentPage = (href: string) => {
   </div>
   <noscript>
     <ul
-      class="m-0 flex flex-col gap-4 text-md leading-tight list-none p-8 bg-gray-999 border-b border-gray-800 lg:relative lg:flex-row lg:text-sm lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] lg:shadow-md lg:before:absolute lg:before:inset-[-1px] lg:before:content-[''] lg:before:bg-[image:var(--gradient-stroke)] lg:before:rounded-full lg:before:-z-10"
+      class="m-0 flex flex-col gap-4 text-md leading-tight list-none p-8 bg-gray-999 border-b border-gray-800 lg:relative lg:flex-row lg:text-sm lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] lg:shadow-md lg:before:absolute lg:before:-inset-px lg:before:content-[''] lg:before:bg-(image:--gradient-stroke) lg:before:rounded-full lg:before:-z-10"
     >
       {
         textLinks.map(({ label, href }) => (
@@ -89,7 +89,9 @@ const isCurrentPage = (href: string) => {
     <div
       class="flex justify-between gap-3 py-6 px-8 bg-gray-999 rounded-b-xl shadow-lg lg:justify-self-end lg:items-center lg:p-0 lg:bg-transparent lg:shadow-none"
     >
-      <div class="flex flex-wrap gap-2.5 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+      <div
+        class="flex flex-wrap gap-2.5 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0"
+      >
         {
           iconLinks.map(({ href, icon, label }) => (
             <a
@@ -106,7 +108,7 @@ const isCurrentPage = (href: string) => {
   </noscript>
   <div id="menu-content" hidden>
     <ul
-      class="m-0 flex flex-col gap-4 text-md leading-tight list-none p-8 bg-gray-999 border-b border-gray-800 lg:relative lg:flex-row lg:text-sm lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] lg:shadow-md lg:before:absolute lg:before:inset-[-1px] lg:before:content-[''] lg:before:bg-[image:var(--gradient-stroke)] lg:before:rounded-full lg:before:-z-10"
+      class="m-0 flex flex-col gap-4 text-md leading-tight list-none p-8 bg-gray-999 border-b border-gray-800 lg:relative lg:flex-row lg:text-sm lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] lg:shadow-md lg:before:absolute lg:before:-inset-px lg:before:content-[''] lg:before:bg-(image:--gradient-stroke) lg:before:rounded-full lg:before:-z-10"
     >
       {
         textLinks.map(({ label, href }) => (
@@ -125,7 +127,9 @@ const isCurrentPage = (href: string) => {
     <div
       class="flex justify-between gap-3 py-6 px-8 bg-gray-999 rounded-b-xl shadow-lg lg:justify-self-end lg:items-center lg:p-0 lg:bg-transparent lg:shadow-none"
     >
-      <div class="flex flex-wrap gap-2.5 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+      <div
+        class="flex flex-wrap gap-2.5 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0"
+      >
         {
           iconLinks.map(({ href, icon, label }) => (
             <a
