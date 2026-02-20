@@ -29,6 +29,22 @@
   .skills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* Prevent grid cells from overflowing their 1fr allocation */
+  .skills > * {
+    min-width: 0;
+  }
+
+  .skills h2 {
+    font-size: var(--text-lg);
+    overflow-wrap: break-word;
+  }
+}
+
+@media (min-width: 70em) {
+  .skills {
     gap: 5rem;
   }
 

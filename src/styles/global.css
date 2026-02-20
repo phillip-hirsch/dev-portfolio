@@ -111,7 +111,10 @@
 		0px 16px 16px rgba(4, 13, 24, 0.18), 0px 4px 9px rgba(4, 13, 24, 0.22);
 }
 
-html,
+html {
+	min-height: 100%;
+}
+
 body {
 	min-height: 100%;
 	overflow-x: hidden;
