@@ -4,7 +4,7 @@ import Hero from "../components/Hero/Hero.astro";
 import Skills from "../components/Skills/Skills.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageTransition } from "../utils/animations";
-import portrait from "../../public/assets/portrait.jpg";
+import portrait from "../images/portrait.jpg";
 ---
 
 <BaseLayout>
@@ -20,6 +20,7 @@ import portrait from "../../public/assets/portrait.jpg";
           title="Hello, my name is Phillip Hirsch"
           tagline="Software Engineer based in Charlotte, North Carolina"
           align="start"
+          showDownloadLink
         />
 
         <Image

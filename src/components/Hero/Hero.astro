@@ -3,9 +3,10 @@ interface Props {
   title: string;
   tagline?: string;
   align?: "start" | "center";
+  showDownloadLink?: boolean;
 }
 
-const { align = "center", tagline, title } = Astro.props;
+const { align = "center", tagline, title, showDownloadLink } = Astro.props;
 const isStart = align === "start";
 ---
 
@@ -23,6 +24,17 @@ const isStart = align === "start";
         <p class={`max-w-[37ch] mx-auto ${isStart ? "lg:mx-0" : ""}`}>
           {tagline}
         </p>
+      )
+    }
+    {
+      showDownloadLink && (
+        <a
+          href="/assets/Resume_Full_Stack_Software_Engineer.pdf"
+          download
+          class={`max-w-[37ch] mx-auto ${isStart ? "lg:mx-0" : ""} no-underline text-accent-regular transition-colors duration-200 hover:text-accent-dark hover:underline`}
+        >
+          Click here to download my resume.
+        </a>
       )
     }
   </div>

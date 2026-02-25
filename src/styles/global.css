@@ -122,6 +122,26 @@
 			var(--color-gray-900),
 			var(--color-gray-700)
 		);
+
+		/* Background image layers (light mode) */
+		--_placeholder-bg: linear-gradient(transparent, transparent);
+		--bg-image-main: radial-gradient(
+			ellipse 120% 60% at 50% -10%,
+			hsla(199, 85%, 72%, 0.55) 0%,
+			hsla(210, 60%, 88%, 0.25) 50%,
+			transparent 80%
+		);
+		--bg-image-main-curves: radial-gradient(
+			ellipse 100% 40% at 50% 0%,
+			hsla(199, 90%, 55%, 0.18) 0%,
+			transparent 70%
+		);
+		--bg-image-subtle-1: var(--_placeholder-bg);
+		--bg-image-subtle-2: var(--_placeholder-bg);
+		--bg-image-footer: var(--_placeholder-bg);
+		--bg-svg-blend-mode: screen;
+		--bg-blend-mode: multiply;
+		--bg-gradient-size: 100%;
 	}
 
 	.dark {
@@ -134,6 +154,59 @@
 			180deg,
 			var(--color-gray-600),
 			var(--color-gray-800)
+		);
+
+		/* Dark mode: deep navy-to-teal radial glow at the top */
+		--bg-image-main: radial-gradient(
+			ellipse 120% 60% at 50% -10%,
+			hsla(199, 85%, 22%, 0.85) 0%,
+			hsla(214, 70%, 10%, 0.5) 55%,
+			transparent 80%
+		);
+		--bg-image-main-curves: radial-gradient(
+			ellipse 100% 40% at 50% 0%,
+			hsla(199, 90%, 35%, 0.25) 0%,
+			transparent 70%
+		);
+		--bg-svg-blend-mode: screen;
+		--bg-blend-mode: screen;
+	}
+
+	/* Lazy-loaded backgrounds (below the fold) — light */
+	:root.loaded {
+		--bg-image-subtle-1: radial-gradient(
+			ellipse 80% 50% at 20% 50%,
+			hsla(199, 70%, 75%, 0.18) 0%,
+			transparent 70%
+		);
+		--bg-image-subtle-2: radial-gradient(
+			ellipse 80% 50% at 80% 60%,
+			hsla(187, 65%, 72%, 0.15) 0%,
+			transparent 70%
+		);
+		--bg-image-footer: radial-gradient(
+			ellipse 120% 50% at 50% 120%,
+			hsla(199, 75%, 65%, 0.3) 0%,
+			transparent 70%
+		);
+	}
+
+	/* Lazy-loaded backgrounds (below the fold) — dark */
+	:root.loaded.dark {
+		--bg-image-subtle-1: radial-gradient(
+			ellipse 80% 50% at 20% 50%,
+			hsla(199, 70%, 18%, 0.5) 0%,
+			transparent 70%
+		);
+		--bg-image-subtle-2: radial-gradient(
+			ellipse 80% 50% at 80% 60%,
+			hsla(187, 60%, 15%, 0.45) 0%,
+			transparent 70%
+		);
+		--bg-image-footer: radial-gradient(
+			ellipse 120% 50% at 50% 120%,
+			hsla(199, 75%, 14%, 0.7) 0%,
+			transparent 70%
 		);
 	}
 
@@ -201,6 +274,36 @@
 
 	h5 {
 		font-size: var(--text-xl);
+	}
+
+	/* Multi-layer page backgrounds */
+	.backgrounds {
+		min-height: 100%;
+		isolation: isolate;
+		background:
+			url("/assets/backgrounds/noise.png") top center/220px repeat,
+			var(--bg-image-footer) bottom center / var(--bg-gradient-size) no-repeat,
+			var(--bg-image-subtle-2) center center / var(--bg-gradient-size) no-repeat,
+			var(--bg-image-subtle-1) center center / var(--bg-gradient-size) no-repeat,
+			var(--bg-image-main-curves) top center / var(--bg-gradient-size) no-repeat,
+			var(--bg-image-main) top center / var(--bg-gradient-size) no-repeat,
+			var(--color-gray-999);
+		background-blend-mode:
+			overlay,
+			var(--bg-blend-mode),
+			normal,
+			normal,
+			var(--bg-svg-blend-mode),
+			normal,
+			normal;
+	}
+
+	@media (forced-colors: active) {
+		.backgrounds {
+			background: none;
+			background-blend-mode: none;
+			--bg-gradient-size: none;
+		}
 	}
 }
 

@@ -5,7 +5,7 @@
 import Footer from "../components/Footer/Footer.astro";
 // Component Imports
 import MainHead from "../components/MainHead/MainHead.astro";
-import Nav from "../components/Nav/Nav.astro";
+import Nav from "../components/Nav/Nav.tsx";
 
 interface Props {
   title?: string | undefined;
@@ -21,7 +21,7 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <div class="flex flex-col min-h-full backgrounds">
-      <Nav />
+      <Nav client:load />
       <slot />
       <Footer />
     </div>
@@ -35,125 +35,5 @@ const { title, description } = Astro.props;
         document.documentElement.classList.add("loaded"),
       );
     </script>
-
-    <style>
-      :root {
-        --_placeholder-bg: linear-gradient(transparent, transparent);
-
-        /* Light mode: soft sky-blue radial glow at the top */
-        --bg-image-main: radial-gradient(
-          ellipse 120% 60% at 50% -10%,
-          hsla(199, 85%, 72%, 0.55) 0%,
-          hsla(210, 60%, 88%, 0.25) 50%,
-          transparent 80%
-        );
-        /* Thin teal arc the SVG curves used to draw */
-        --bg-image-main-curves: radial-gradient(
-          ellipse 100% 40% at 50% 0%,
-          hsla(199, 90%, 55%, 0.18) 0%,
-          transparent 70%
-        );
-        --bg-image-subtle-1: var(--_placeholder-bg);
-        --bg-image-subtle-2: var(--_placeholder-bg);
-        --bg-image-footer: var(--_placeholder-bg);
-        --bg-svg-blend-mode: screen;
-        --bg-blend-mode: multiply;
-        --bg-gradient-size: 100%;
-      }
-
-      .dark {
-        /* Dark mode: deep navy-to-teal radial glow at the top */
-        --bg-image-main: radial-gradient(
-          ellipse 120% 60% at 50% -10%,
-          hsla(199, 85%, 22%, 0.85) 0%,
-          hsla(214, 70%, 10%, 0.5) 55%,
-          transparent 80%
-        );
-        --bg-image-main-curves: radial-gradient(
-          ellipse 100% 40% at 50% 0%,
-          hsla(199, 90%, 35%, 0.25) 0%,
-          transparent 70%
-        );
-        --bg-svg-blend-mode: screen;
-        --bg-blend-mode: screen;
-      }
-
-      /* These backgrounds are displayed below the fold, so we lazy load them
-         once the `.loaded` class has been set. */
-      :root.loaded {
-        /* Light: very faint teal washes mid-page and at the footer */
-        --bg-image-subtle-1: radial-gradient(
-          ellipse 80% 50% at 20% 50%,
-          hsla(199, 70%, 75%, 0.18) 0%,
-          transparent 70%
-        );
-        --bg-image-subtle-2: radial-gradient(
-          ellipse 80% 50% at 80% 60%,
-          hsla(187, 65%, 72%, 0.15) 0%,
-          transparent 70%
-        );
-        --bg-image-footer: radial-gradient(
-          ellipse 120% 50% at 50% 120%,
-          hsla(199, 75%, 65%, 0.3) 0%,
-          transparent 70%
-        );
-      }
-
-      :root.loaded.dark {
-        /* Dark: deep teal glows mid-page and footer */
-        --bg-image-subtle-1: radial-gradient(
-          ellipse 80% 50% at 20% 50%,
-          hsla(199, 70%, 18%, 0.5) 0%,
-          transparent 70%
-        );
-        --bg-image-subtle-2: radial-gradient(
-          ellipse 80% 50% at 80% 60%,
-          hsla(187, 60%, 15%, 0.45) 0%,
-          transparent 70%
-        );
-        --bg-image-footer: radial-gradient(
-          ellipse 120% 50% at 50% 120%,
-          hsla(199, 75%, 14%, 0.7) 0%,
-          transparent 70%
-        );
-      }
-
-      .backgrounds {
-        min-height: 100%;
-        isolation: isolate;
-        background:
-          /*noise*/
-          url("/assets/backgrounds/noise.png") top center/220px repeat,
-          /*footer*/ var(--bg-image-footer) bottom center /
-            var(--bg-gradient-size) no-repeat,
-          /*subtle-2*/ var(--bg-image-subtle-2) center center /
-            var(--bg-gradient-size) no-repeat,
-          /*subtle-1*/ var(--bg-image-subtle-1) center center /
-            var(--bg-gradient-size) no-repeat,
-          /*header-curves*/ var(--bg-image-main-curves) top center /
-            var(--bg-gradient-size) no-repeat,
-          /*header*/ var(--bg-image-main) top center / var(--bg-gradient-size)
-            no-repeat,
-          /*base*/ var(--color-gray-999);
-        background-blend-mode:
-          /*noise*/
-          overlay,
-          /*footer*/ var(--bg-blend-mode),
-          /*subtle-2*/ normal,
-          /*subtle-1*/ normal,
-          /*header-curves*/ var(--bg-svg-blend-mode),
-          /*header*/ normal,
-          /*base*/ normal;
-      }
-
-      @media (forced-colors: active) {
-        /* Deactivate custom backgrounds for high contrast users. */
-        .backgrounds {
-          background: none;
-          background-blend-mode: none;
-          --bg-gradient-size: none;
-        }
-      }
-    </style>
   </body>
 </html>
