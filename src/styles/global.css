@@ -281,7 +281,7 @@
 		min-height: 100%;
 		isolation: isolate;
 		background:
-			url("../images/backgrounds/noise.png") top center/220px repeat,
+			url("../images/backgrounds/noise.webp") top center/220px repeat,
 			var(--bg-image-footer) bottom center / var(--bg-gradient-size) no-repeat,
 			var(--bg-image-subtle-2) center center / var(--bg-gradient-size) no-repeat,
 			var(--bg-image-subtle-1) center center / var(--bg-gradient-size) no-repeat,
