@@ -1,8 +1,14 @@
 ---
 import Hero from "../components/Hero/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTransition } from "../utils/animations";
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-  <Hero title="Page Not Found" tagline="Not found" />
+  <main class="flex flex-col gap-20" transition:animate={pageTransition}>
+    <Hero
+      title="404 — Page Not Found"
+      tagline="Sorry, the page you're looking for doesn't exist or has been moved."
+    />
+  </main>
 </BaseLayout>

@@ -5,170 +5,170 @@ import { pageTransition } from "../utils/animations";
 ---
 
 <BaseLayout title="About | Phillip Hirsch" description="About Phillip Hirsch">
-  <div class="flex flex-col gap-20" transition:animate={pageTransition}>
-    <main class="max-w-250 mx-auto py-8 px-6 flex flex-col gap-16 lg:gap-20">
-      <Hero title="About Me" align="start" />
+  <main
+    class="max-w-250 mx-auto py-8 px-6 flex flex-col gap-16 lg:gap-20"
+    transition:animate={pageTransition}
+  >
+    <Hero title="About Me" align="start" />
 
-      <section class="flex flex-col gap-6">
-        <h2
-          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+    <section class="flex flex-col gap-6">
+      <h2
+        class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+      >
+        Summary
+      </h2>
+      <div class="flex flex-col gap-6">
+        <p
+          class="text-lg lg:text-xl leading-[1.8] text-gray-200 bg-(image:--gradient-subtle) p-8 lg:p-10 rounded-2xl border border-gray-800 shadow-sm"
         >
-          Summary
-        </h2>
-        <div class="flex flex-col gap-6">
-          <p
-            class="text-lg lg:text-xl leading-[1.8] text-gray-200 bg-(image:--gradient-subtle) p-8 lg:p-10 rounded-2xl border border-gray-800 shadow-sm"
+          Full Stack Software Engineer with expertise in building scalable web
+          and mobile applications and cloud-based architectures. Strong
+          background in React, React Native, TypeScript, Node.js, and GraphQL,
+          with hands-on experience delivering features across 5+ enterprise
+          applications. Passionate about solving complex engineering challenges,
+          improving accessibility, and writing clean, maintainable code.
+        </p>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-6">
+      <h2
+        class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+      >
+        Education
+      </h2>
+      <div class="flex flex-col gap-6">
+        <div
+          class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div
+            class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
           >
-            Full Stack Software Engineer with expertise in building scalable web
-            and mobile applications and cloud-based architectures. Strong
-            background in React, React Native, TypeScript, Node.js, and GraphQL,
-            with hands-on experience delivering features across 5+ enterprise
-            applications. Passionate about solving complex engineering
-            challenges, improving accessibility, and writing clean, maintainable
-            code.
+            <h3 class="text-lg lg:text-xl text-gray-0 m-0">
+              Master of Science in Computer Science
+            </h3>
+            <p
+              class="text-md text-accent-regular font-medium whitespace-nowrap"
+            >
+              December 2022
+            </p>
+          </div>
+          <p class="text-md text-gray-300 mt-2 mb-1">
+            University of North Carolina at Charlotte
+          </p>
+          <p class="text-sm text-gray-400 italic">
+            Concentration: Software, Systems, and Networks
           </p>
         </div>
-      </section>
 
-      <section class="flex flex-col gap-6">
-        <h2
-          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+        <div
+          class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
         >
-          Education
-        </h2>
-        <div class="flex flex-col gap-6">
           <div
-            class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
           >
-            <div
-              class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
+            <h3 class="text-lg lg:text-xl text-gray-0 m-0">
+              Bachelor of Science in Computer Science
+            </h3>
+            <p
+              class="text-md text-accent-regular font-medium whitespace-nowrap"
             >
-              <h3 class="text-lg lg:text-xl text-gray-0 m-0">
-                Master of Science in Computer Science
-              </h3>
-              <p
-                class="text-md text-accent-regular font-medium whitespace-nowrap"
-              >
-                December 2022
-              </p>
-            </div>
-            <p class="text-md text-gray-300 mt-2 mb-1">
-              University of North Carolina at Charlotte
-            </p>
-            <p class="text-sm text-gray-400 italic">
-              Concentration: Software, Systems, and Networks
+              May 2021
             </p>
           </div>
+          <p class="text-md text-gray-300 mt-2 mb-1">
+            University of North Carolina at Charlotte
+          </p>
+          <p class="text-sm text-gray-400 italic">
+            Concentration: Software Engineering
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="flex flex-col gap-6">
+      <h2
+        class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
+      >
+        Skills
+      </h2>
+      <div class="flex flex-col gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           <div
-            class="bg-(image:--gradient-subtle) p-6 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
           >
-            <div
-              class="flex flex-col gap-2 mb-2 lg:flex-row lg:justify-between lg:items-start lg:gap-4"
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
             >
-              <h3 class="text-lg lg:text-xl text-gray-0 m-0">
-                Bachelor of Science in Computer Science
-              </h3>
-              <p
-                class="text-md text-accent-regular font-medium whitespace-nowrap"
-              >
-                May 2021
-              </p>
-            </div>
-            <p class="text-md text-gray-300 mt-2 mb-1">
-              University of North Carolina at Charlotte
+              Languages
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              JavaScript, TypeScript, Python, Java, SQL, NoSQL
             </p>
-            <p class="text-sm text-gray-400 italic">
-              Concentration: Software Engineering
+          </div>
+          <div
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+            >
+              Front-End
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              React, React Native, Remix, Astro, Next.js
+            </p>
+          </div>
+          <div
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+            >
+              Back-End & APIs
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              Node.js, Express.js, NestJS, GraphQL, Bun, RESTful APIs
+            </p>
+          </div>
+          <div
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+            >
+              Cloud & DevOps
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              AWS, Docker, GitHub Actions
+            </p>
+          </div>
+          <div
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+            >
+              Testing & Security
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              Jest, Cypress, Authentication security, OWASP principles, Secure
+              API development
+            </p>
+          </div>
+          <div
+            class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <h3
+              class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
+            >
+              AI Tooling
+            </h3>
+            <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
+              GitHub Copilot, Claude Code, Claude, ChatGPT
             </p>
           </div>
         </div>
-      </section>
-
-      <section class="flex flex-col gap-6">
-        <h2
-          class="text-2xl lg:text-3xl text-gray-0 border-b-2 border-accent-regular pb-2"
-        >
-          Skills
-        </h2>
-        <div class="flex flex-col gap-6">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                Languages
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                JavaScript, TypeScript, Python, Java, SQL, NoSQL
-              </p>
-            </div>
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                Front-End
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                React, React Native, Remix, Astro, Next.js
-              </p>
-            </div>
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                Back-End & APIs
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                Node.js, Express.js, NestJS, GraphQL, Bun, RESTful APIs
-              </p>
-            </div>
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                Cloud & DevOps
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                AWS, Docker, GitHub Actions
-              </p>
-            </div>
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                Testing & Security
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                Jest, Cypress, Authentication security, OWASP principles, Secure
-                API development
-              </p>
-            </div>
-            <div
-              class="bg-(image:--gradient-subtle) p-6 lg:p-8 rounded-xl border border-gray-800 shadow-sm transition-[transform,box-shadow] duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3
-                class="text-md lg:text-lg text-accent-regular mb-3 font-semibold"
-              >
-                AI Tooling
-              </h3>
-              <p class="text-gray-300 leading-[1.6] m-0 lg:text-md">
-                GitHub Copilot, Claude Code, Claude, ChatGPT
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
