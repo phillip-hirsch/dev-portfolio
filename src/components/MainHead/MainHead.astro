@@ -1,24 +1,51 @@
 ---
-import { Font } from "astro:assets";
-import { ClientRouter } from "astro:transitions";
-import "../../styles/global.css";
+import { Font } from 'astro:assets'
+import { ClientRouter } from 'astro:transitions'
+
+import '../../styles/global.css'
 
 interface Props {
-  title?: string | undefined;
-  description?: string | undefined;
+  title?: string | undefined
+  description?: string | undefined
+  canonical?: string | undefined
+  image?: string | undefined
+  type?: 'website' | 'article'
 }
 
 const {
-  title = "Phillip Hirsch",
-  description = "The personal portfolio site of Phillip Hirsch",
-} = Astro.props;
+  title = 'Phillip Hirsch',
+  description = 'The personal portfolio site of Phillip Hirsch',
+  canonical,
+  image,
+  type = 'website',
+} = Astro.props
+
+const resolvedCanonical =
+  canonical ??
+  (Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined)
+const resolvedImage = image
+  ? new URL(image, Astro.site ?? Astro.url).toString()
+  : undefined
+const twitterCard = resolvedImage ? 'summary_large_image' : 'summary'
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
+<meta name="description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+{resolvedCanonical && <meta property="og:url" content={resolvedCanonical} />}
+{resolvedImage && <meta property="og:image" content={resolvedImage} />}
+
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{resolvedImage && <meta name="twitter:image" content={resolvedImage} />}
+{resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
@@ -26,48 +53,21 @@ const {
 <Font cssVariable="--font-brand" preload />
 <ClientRouter />
 <script is:inline>
-  // This code is inlined in the head to make dark mode instant & blocking.
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+  // Blocking script — runs before paint to prevent flash.
+  // Theme stored as 'dark' | 'light' | 'system' (= follow OS).
+  // ThemeToggle owns localStorage; this script only reads it.
+  const getIsDark = () => {
+    const pref = localStorage.getItem("theme");
+    if (pref === "dark") return true;
+    if (pref === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   };
-
-  const setTheme = () => {
-    const isDark = getThemePreference() === "dark";
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+  const applyTheme = (doc) => {
+    doc.documentElement.classList[getIsDark() ? "add" : "remove"]("dark");
   };
-
-  // Set theme on initial load
-  setTheme();
-
-  // Apply theme BEFORE the swap to prevent flash
-  document.addEventListener("astro:before-swap", (event) => {
-    // Check if the new document would have a different theme
-    const isDark = getThemePreference() === "dark";
-
-    if (isDark) {
-      event.newDocument.documentElement.classList.add("dark");
-    } else {
-      event.newDocument.documentElement.classList.remove("dark");
-    }
-  });
-
-  // Reapply theme on page load (handles both initial load and after swap)
-  document.addEventListener("astro:page-load", setTheme);
-
-  if (typeof localStorage !== "undefined") {
-    // Watch the document element and persist user preference when it changes.
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
+  applyTheme(document);
+  document.addEventListener("astro:before-swap", (e) =>
+    applyTheme(e.newDocument),
+  );
+  document.addEventListener("astro:page-load", () => applyTheme(document));
 </script>

@@ -1,7 +1,9 @@
 ---
-import Hero from "../components/Hero/Hero.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { pageTransition } from "../utils/animations";
+import { CalendarBlankIcon, MapPinIcon } from '@phosphor-icons/react'
+import PageHeader from '../components/PageHeader/PageHeader.astro'
+import { experiences } from '../data/experience'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { pageTransition } from '../utils/animations'
 ---
 
 <BaseLayout
@@ -9,87 +11,119 @@ import { pageTransition } from "../utils/animations";
   description="Professional work experience of Phillip Hirsch"
 >
   <main
-    class="max-w-250 mx-auto py-8 px-6 flex flex-col gap-8"
+    class="max-w-250 mx-auto flex flex-col gap-8 px-6 py-8"
     transition:animate={pageTransition}
   >
-    <Hero title="Experience" align="start" />
+    <PageHeader title="Experience" align="start" />
 
-    <section class="flex flex-col gap-12 mt-8">
-      <div
-        class="bg-(image:--gradient-subtle) border border-gray-800 rounded-2xl p-8 lg:p-10 shadow-sm"
-      >
-        <div
-          class="flex flex-col gap-4 mb-6 flex-wrap lg:flex-row lg:justify-between lg:items-start"
-        >
-          <div>
-            <h2 class="text-xl lg:text-2xl text-gray-0 mb-2">
-              Software Engineer (Contract)
-            </h2>
-            <h3 class="text-lg lg:text-xl text-accent-regular font-medium">
-              Ally Financial via Brooksource
-            </h3>
-          </div>
-          <div class="text-left lg:text-right">
-            <p class="text-md text-gray-200 font-medium mb-1">
-              March 2023 - Present
-            </p>
-            <p class="text-sm text-gray-400">Charlotte, NC</p>
-          </div>
-        </div>
-        <ul class="list-none p-0 m-0 flex flex-col gap-4">
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
+    <section
+      class="relative mt-4 flex flex-col gap-10 lg:before:absolute lg:before:bottom-3 lg:before:-left-6 lg:before:top-3 lg:before:w-0.5 lg:before:rounded-[1px] lg:before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),var(--color-accent-light)_60%,transparent)] lg:before:content-['']"
+    >
+      {
+        experiences.map((experience, entryIndex) => (
+          <article
+            class="relative flex flex-col gap-6 rounded-[1.25rem] border border-gray-800 bg-(image:--gradient-subtle) p-8 shadow-sm animate-[fadeInUp_0.45s_ease-out_both] lg:p-10 lg:before:absolute lg:before:-left-8.5 lg:before:top-8 lg:before:h-5 lg:before:w-5 lg:before:rounded-full lg:before:border-2 lg:before:border-solid lg:before:border-accent-regular lg:before:bg-(--color-gray-999) lg:before:shadow-[0_0_0_4px_var(--color-gray-999),0_0_12px_var(--color-accent-overlay)] lg:before:content-['']"
+            style={`animation-delay: ${0.05 + entryIndex * 0.05}s`}
           >
-            Optimized Ally's mobile banking app, cutting load times by 15% and
-            improving rendering efficiency by 30% through state management
-            optimization and component refactoring.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Developed & maintained reusable UI components in React, React
-            Native, and TypeScript, improving developer productivity across 5+
-            enterprise applications.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Implemented API integrations with Contentful, automating content
-            delivery and reducing manual updates by 40%, increasing operational
-            efficiency.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Refactored legacy codebase, improving maintainability and reducing
-            technical debt for long-term scalability.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Strengthened authentication security and ensured adherence to secure
-            coding best practices.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Improved accessibility compliance (WCAG 2.1), enhancing inclusivity
-            and user experience.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Mentored junior engineers, reducing onboarding time by 20% and
-            fostering a culture of collaboration.
-          </li>
-          <li
-            class="relative pl-6 text-gray-300 leading-[1.6] lg:text-md before:content-['▹'] before:absolute before:left-0 before:text-accent-regular before:font-bold"
-          >
-            Optimized API interactions, improving data-fetching strategies and
-            implementing efficient caching mechanisms to enhance responsiveness.
-          </li>
-        </ul>
-      </div>
+            <!-- Header -->
+            <header class="flex flex-col gap-[0.4rem]">
+              <div class="flex flex-wrap items-baseline gap-[0.6rem]">
+                <h2
+                  class="m-0 font-brand text-[clamp(1.4rem,3vw,1.85rem)] font-semibold leading-[1.2] text-gray-0"
+                >
+                  {experience.title}
+                </h2>
+                <span
+                  class="self-center whitespace-nowrap text-xs font-medium uppercase tracking-[0.06em] text-accent-regular"
+                >
+                  {experience.employmentType}
+                </span>
+              </div>
+              <h3
+                class="m-0 font-brand text-[clamp(1rem,2vw,1.2rem)] font-medium text-accent-regular"
+              >
+                {experience.company}{' '}
+                {
+                  experience.via && (
+                    <span class="text-[0.9em] font-normal text-gray-400">
+                      via {experience.via}
+                    </span>
+                  )
+                }
+              </h3>
+              <div class="mt-1 flex flex-wrap gap-2">
+                <span
+                  class="inline-flex items-center gap-[0.35rem] text-[0.8rem] text-gray-300"
+                >
+                  <CalendarBlankIcon size={12} aria-hidden="true" />
+                  {experience.period}
+                </span>
+                <span
+                  class="inline-flex items-center gap-[0.35rem] text-[0.8rem] text-gray-300"
+                >
+                  <MapPinIcon size={12} aria-hidden="true" />
+                  {experience.location}
+                </span>
+              </div>
+            </header>
+
+            <!-- Divider -->
+            <div
+              aria-hidden="true"
+              class="h-px opacity-40 bg-[linear-gradient(to_right,var(--color-accent-regular),var(--color-gray-800)_60%,transparent)]"
+            >
+            </div>
+
+            <!-- Accomplishments -->
+            <div class="flex flex-col gap-6">
+              {
+                experience.categories.map((category, categoryIndex) => (
+                  <div
+                    class="flex flex-col gap-[0.6rem] animate-[fadeInUp_0.4s_ease-out_both]"
+                    style={`animation-delay: ${categoryIndex * 0.08}s`}
+                  >
+                    <p
+                      class="m-0 text-[0.7rem] font-semibold uppercase tracking-widest text-accent-regular"
+                    >
+                      {category.label}
+                    </p>
+                    <ul class="m-0 flex list-none flex-col gap-2.5 p-0">
+                      {
+                        category.bullets.map((bullet) => (
+                          <li
+                            class="relative pl-[1.35rem] text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.65] text-gray-300 before:absolute before:left-0 before:font-bold before:leading-[1.65] before:text-accent-regular before:content-['▹']"
+                          >
+                            {bullet}
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Skills -->
+            <footer
+              class="border-t border-gray-800 pt-5 animate-[fadeInUp_0.4s_ease-out_both]"
+              style="animation-delay: 0.28s"
+            >
+              <ul
+                class="m-0 flex list-none flex-wrap gap-2 p-0"
+                aria-label="Technologies used"
+              >
+                {
+                  experience.technologies.map((skill) => (
+                    <li class="cursor-default rounded-full border border-gray-800 px-3 py-1 text-xs font-medium text-gray-400 transition-[color,border-color] duration-200 hover:border-accent-regular hover:text-accent-regular">
+                      {skill}
+                    </li>
+                  ))
+                }
+              </ul>
+            </footer>
+          </article>
+        ))
+      }
     </section>
   </main>
 </BaseLayout>

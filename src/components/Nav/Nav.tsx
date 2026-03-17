@@ -3,10 +3,9 @@ import {
   GithubLogoIcon,
   LinkedinLogoIcon,
   ListIcon,
-  TerminalWindowIcon,
 } from '@phosphor-icons/react'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { GradientIcon } from '../GradientIcon/GradientIcon'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
+
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
 
 /** Main menu items */
@@ -35,41 +34,68 @@ const iconLinks: {
 ]
 
 /** Check if a link points to the current page. */
-function isCurrentPage(href: string, pathname: string): boolean {
+const isCurrentPage = (href: string, pathname: string): boolean => {
   let p = pathname
-  if (!p.startsWith('/')) p = '/' + p
+  if (!p.startsWith('/')) p = `/${p}`
   if (!p.endsWith('/')) p += '/'
   return p === href || (href !== '/' && p.startsWith(href))
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────
 
-function NavLinks({ pathname }: { pathname: string }) {
+const NavLinks = ({
+  pathname,
+  onNavigate,
+}: {
+  pathname: string
+  onNavigate?: () => void
+}) => {
   return (
-    <ul className="m-0 flex flex-col gap-4 text-md leading-tight list-none p-8 bg-gray-999 border-b border-gray-800 lg:relative lg:flex-row lg:text-sm lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] lg:shadow-md lg:before:absolute lg:before:-inset-px lg:before:content-[''] lg:before:bg-(image:--gradient-stroke) lg:before:rounded-full lg:before:-z-10">
-      {textLinks.map(({ label, href }) => (
-        <li key={href}>
-          <a
-            aria-current={isCurrentPage(href, pathname) ? 'page' : undefined}
-            className="inline-block text-gray-300 no-underline aria-[current=page]:text-gray-0 lg:px-4 lg:py-2 lg:rounded-full lg:transition-colors lg:duration-200 lg:hover:text-gray-100 lg:hover:bg-accent-subtle-overlay lg:aria-[current=page]:text-accent-text-over lg:aria-[current=page]:bg-accent-regular forced-colors:aria-[current=page]:text-[SelectedItem]"
-            href={href}
+    <ul className="m-0 flex flex-col list-none py-2 bg-gray-999/95 border-b border-gray-800/50 lg:flex-row lg:bg-transparent lg:border-0 lg:py-0 lg:gap-0.5">
+      {textLinks.map(({ label, href }) => {
+        const current = isCurrentPage(href, pathname)
+        return (
+          <li
+            key={href}
+            className="border-b border-gray-800/40 last:border-0 lg:border-0"
           >
-            {label}
-          </a>
-        </li>
-      ))}
+            <a
+              aria-current={current ? 'page' : undefined}
+              href={href}
+              onClick={onNavigate}
+              className={[
+                'group relative inline-flex items-center no-underline font-medium',
+                'w-full px-5 py-4 text-md transition-colors duration-200 border-l-2',
+                'lg:w-auto lg:px-5 lg:py-2 lg:text-sm lg:border-l-0 lg:rounded',
+                'lg:hover:bg-accent-subtle-overlay',
+                'forced-colors:aria-[current=page]:text-[SelectedItem]',
+                current
+                  ? 'text-gray-0 border-accent-regular lg:hover:text-gray-0'
+                  : 'text-gray-400 border-transparent hover:text-gray-200 hover:border-gray-600 lg:hover:text-gray-0',
+              ].join(' ')}
+            >
+              {label}
+              {/* Desktop: sliding underline for active / hover */}
+              <span
+                aria-hidden="true"
+                className={`hidden lg:block absolute bottom-1 left-5 right-5 h-px bg-accent-regular transition-transform duration-200 ease-out origin-center ${current ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
+              />
+            </a>
+          </li>
+        )
+      })}
     </ul>
   )
 }
 
 function SocialLinks() {
   return (
-    <div className="flex flex-wrap gap-2.5 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+    <div className="flex gap-1 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
       {iconLinks.map(({ href, icon: SocialIcon, label }) => (
         <a
           key={label}
           href={href}
-          className="flex p-2 no-underline text-accent-dark transition-colors duration-200 hover:text-accent-text-over"
+          className="flex p-2 no-underline text-gray-400 transition-colors duration-200 hover:text-accent-regular"
         >
           <span className="sr-only">{label}</span>
           <SocialIcon />
@@ -85,7 +111,9 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [closing, setClosing] = useState(false)
-  const menuRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const menuContainerRef = useRef<HTMLDivElement>(null)
+  const menuId = useId()
 
   // Read pathname client-side so it works with Astro's static builds.
   const pathname =
@@ -110,7 +138,6 @@ export default function Nav() {
 
   const toggleMenu = useCallback(() => {
     if (menuOpen && !closing) {
-      // Start close animation
       setClosing(true)
     } else {
       setMenuOpen(true)
@@ -122,10 +149,43 @@ export default function Nav() {
     if (closing) {
       setMenuOpen(false)
       setClosing(false)
+      menuButtonRef.current?.focus()
     }
   }, [closing])
 
+  const onNavigate = useCallback(() => {
+    if (!isDesktop && menuOpen && !closing) {
+      setClosing(true)
+    }
+  }, [isDesktop, menuOpen, closing])
+
   const menuVisible = menuOpen || closing
+
+  useEffect(() => {
+    if (isDesktop || !menuOpen || closing) {
+      return
+    }
+
+    const firstLink =
+      menuContainerRef.current?.querySelector<HTMLAnchorElement>('a[href]')
+    firstLink?.focus()
+  }, [isDesktop, menuOpen, closing])
+
+  useEffect(() => {
+    if (isDesktop || !menuVisible) {
+      return
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setClosing(true)
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [isDesktop, menuVisible])
+
   const menuClasses = [
     'absolute inset-x-0 origin-top overflow-hidden lg:[display:contents] lg:![animation:none] lg:!transform-none lg:!opacity-100 lg:overflow-visible',
     menuOpen && !closing ? '[animation:var(--animate-menu-slide-down)]' : '',
@@ -135,26 +195,39 @@ export default function Nav() {
     .join(' ')
 
   return (
-    <nav className="z-9999 relative font-brand font-medium mb-14 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-20 lg:py-10 lg:gap-4">
-      <div className="flex justify-between gap-2 p-6 lg:p-0">
+    <nav className="sticky top-0 z-9999 font-brand font-medium mb-14 border-b border-gray-800/50 bg-gray-999/85 backdrop-blur-md lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-16 lg:py-5 lg:gap-8">
+      <div className="flex justify-between items-center gap-2 px-5 py-4 lg:p-0">
         <a
           href="/"
-          className="flex gap-2 items-center leading-tight text-gray-0 no-underline lg:text-lg"
+          className="flex gap-2 items-center leading-tight no-underline lg:text-lg"
         >
-          <GradientIcon icon={TerminalWindowIcon} size="1.6em" />
-          Phillip Hirsch
+          <span className="text-gray-0">
+            Phillip{' '}
+            <span
+              style={{
+                background: 'var(--gradient-accent)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              Hirsch
+            </span>
+          </span>
         </a>
 
         {/* Menu toggle — hidden on desktop */}
         {!isDesktop && (
           <button
+            ref={menuButtonRef}
             type="button"
-            className="relative flex border-0 rounded-full p-2 text-2xl text-gray-300 bg-[radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)] shadow-md before:absolute before:-inset-px before:content-[''] before:bg-(image:--gradient-stroke) before:rounded-full before:-z-10 aria-expanded:text-gray-0 aria-expanded:bg-[linear-gradient(180deg,var(--color-gray-600),transparent),radial-gradient(var(--color-gray-900),var(--color-gray-800)_150%)]"
+            className="flex items-center justify-center w-9 h-9 rounded-lg border border-gray-800 bg-transparent text-gray-400 cursor-pointer transition-[color,border-color] duration-200 hover:text-gray-0 hover:border-gray-600 aria-expanded:text-accent-regular aria-expanded:border-accent-regular"
             aria-expanded={menuOpen && !closing}
+            aria-controls={menuId}
             onClick={toggleMenu}
           >
             <span className="sr-only">Menu</span>
-            <ListIcon />
+            <ListIcon size={18} />
           </button>
         )}
       </div>
@@ -162,16 +235,15 @@ export default function Nav() {
       {/* Menu content — always rendered on desktop, toggled on mobile */}
       {menuVisible && (
         <div
-          ref={menuRef}
+          id={menuId}
+          ref={menuContainerRef}
           className={menuClasses}
           onAnimationEnd={onAnimationEnd}
         >
-          <NavLinks pathname={pathname} />
-          <div className="flex justify-between gap-3 py-6 px-8 bg-gray-999 rounded-b-xl shadow-lg lg:justify-self-end lg:items-center lg:p-0 lg:bg-transparent lg:shadow-none">
+          <NavLinks pathname={pathname} onNavigate={onNavigate} />
+          <div className="flex justify-between items-center gap-3 px-5 py-4 bg-gray-999/95 shadow-md lg:justify-self-end lg:p-0 lg:bg-transparent lg:shadow-none">
             <SocialLinks />
-            <div className="flex items-center">
-              <ThemeToggle />
-            </div>
+            <ThemeToggle />
           </div>
         </div>
       )}

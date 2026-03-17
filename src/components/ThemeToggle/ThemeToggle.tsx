@@ -1,33 +1,100 @@
-import { MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
+import { CircleHalfIcon, MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 
-export const ThemeToggle = () => {
-  const [dark, setDark] = useState(false)
+type ThemePref = 'system' | 'light' | 'dark'
 
-  // Sync initial state from the DOM on mount (server may have set .dark already).
+const CYCLE: ThemePref[] = ['system', 'light', 'dark']
+
+const LABELS: Record<ThemePref, string> = {
+  system: 'System theme',
+  light: 'Light theme',
+  dark: 'Dark theme',
+}
+
+const applyTheme = (pref: ThemePref): void => {
+  if (pref === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else if (pref === 'light') {
+    document.documentElement.classList.remove('dark')
+  } else {
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches
+    document.documentElement.classList[prefersDark ? 'add' : 'remove']('dark')
+  }
+}
+
+export const ThemeToggle = () => {
+  const [pref, setPref] = useState<ThemePref>('system')
+
   useEffect(() => {
-    setDark(document.documentElement.classList.contains('dark'))
+    const stored = localStorage.getItem('theme') as ThemePref | null
+    const initial: ThemePref = stored ?? 'system'
+    setPref(initial)
+    applyTheme(initial)
+
+    // Keep system mode in sync when OS preference changes
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleSystemChange = () => {
+      if ((localStorage.getItem('theme') ?? 'system') === 'system') {
+        applyTheme('system')
+      }
+    }
+    mq.addEventListener('change', handleSystemChange)
+    return () => mq.removeEventListener('change', handleSystemChange)
   }, [])
 
-  const toggle = () => {
-    const next = !dark
-    document.documentElement.classList[next ? 'add' : 'remove']('dark')
-    setDark(next)
+  const cycle = () => {
+    const next = CYCLE[(CYCLE.indexOf(pref) + 1) % CYCLE.length]
+    setPref(next)
+    localStorage.setItem('theme', next)
+    applyTheme(next)
   }
 
   return (
     <button
       type="button"
-      aria-pressed={dark}
-      onClick={toggle}
-      className="flex border-0 rounded-full p-0 bg-gray-999 shadow-[inset_0_0_0_1px_var(--color-accent-overlay)] cursor-pointer"
+      aria-label={`${LABELS[pref]} — click to switch`}
+      title={LABELS[pref]}
+      onClick={cycle}
+      className="relative flex items-center justify-center w-9 h-9 rounded-full border border-gray-800 bg-(--color-gray-999) cursor-pointer overflow-hidden transition-[border-color,transform] duration-200 hover:border-accent-regular active:scale-95"
     >
-      <span className="sr-only">Dark theme</span>
-      <span className="relative z-10 flex p-2 w-8 h-8 text-base text-accent-text-over dark:text-accent-overlay before:content-[''] before:absolute before:inset-0 before:-z-10 before:bg-accent-regular before:rounded-full motion-safe:before:transition-transform motion-safe:before:duration-200 motion-safe:before:ease-in-out motion-safe:transition-colors motion-safe:duration-200 dark:before:translate-x-full forced-colors:before:bg-[SelectedItem]">
-        <SunIcon />
+      <span className="sr-only">{LABELS[pref]}</span>
+
+      {/* Sun — light mode */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center text-accent-regular transition-[opacity,transform] duration-200 ease-out"
+        style={{
+          opacity: pref === 'light' ? 1 : 0,
+          transform: pref === 'light' ? 'scale(1)' : 'scale(0.35)',
+        }}
+      >
+        <SunIcon size={16} />
       </span>
-      <span className="relative z-10 flex p-2 w-8 h-8 text-base text-accent-overlay dark:text-accent-text-over motion-safe:transition-colors motion-safe:duration-200">
-        <MoonStarsIcon />
+
+      {/* Moon — dark mode */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center text-accent-dark transition-[opacity,transform] duration-200 ease-out"
+        style={{
+          opacity: pref === 'dark' ? 1 : 0,
+          transform: pref === 'dark' ? 'scale(1)' : 'scale(0.35)',
+        }}
+      >
+        <MoonStarsIcon size={16} />
+      </span>
+
+      {/* Half circle — system/auto mode */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center text-gray-400 transition-[opacity,transform] duration-200 ease-out"
+        style={{
+          opacity: pref === 'system' ? 1 : 0,
+          transform: pref === 'system' ? 'scale(1)' : 'scale(0.35)',
+        }}
+      >
+        <CircleHalfIcon size={16} />
       </span>
     </button>
   )

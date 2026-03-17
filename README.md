@@ -4,8 +4,8 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 ## Features
 
-- **Astro 5** with view transitions and page animations
-- **React 19** interactive components (navigation, theme toggle, gradient icons)
+- **Astro 6** with view transitions and page animations
+- **React 19** interactive components (navigation, theme toggle)
 - **Tailwind CSS v4** for styling
 - **Dark / light theme** toggle with system-aware defaults
 - **Responsive Layout** — mobile-first with adaptive grid on larger screens
@@ -17,7 +17,7 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 | Route          | Description                                |
 | :------------- | :----------------------------------------- |
-| `/`            | Home — hero section, portrait, and skills  |
+| `/`            | Home — hero section and introduction       |
 | `/about`       | Summary, education, and background         |
 | `/experience`  | Professional work history and achievements |
 | `/404`         | Custom not-found page                      |
@@ -26,7 +26,7 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 | Layer       | Technology                     |
 | :---------- | :----------------------------- |
-| Framework   | Astro 5                        |
+| Framework   | Astro 6                        |
 | UI          | React 19                       |
 | Styling     | Tailwind CSS 4                 |
 | Icons       | Phosphor Icons                 |
@@ -38,7 +38,7 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 ```bash
 src/
-├── components/    # Reusable UI components (Nav, Hero, Footer, etc.)
+├── components/    # Reusable UI components (Nav, Hero, PageHeader, etc.)
 ├── images/        # Optimized image assets
 ├── layouts/       # Base page layout
 ├── pages/         # File-based routes
@@ -55,13 +55,13 @@ public/
 bun install
 
 # Start the dev server
-bun dev
+bun run dev
 
 # Build for production
-bun build
+bun run build
 
 # Preview the production build locally
-bun preview
+bun run preview
 ```
 
 ## Linting & Formatting

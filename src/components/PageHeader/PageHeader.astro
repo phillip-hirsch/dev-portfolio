@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string
+  tagline?: string
+  align?: 'start' | 'center'
+}
+
+const { align = 'center', tagline, title } = Astro.props
+const isStart = align === 'start'
+---
+
+<div
+  class={`flex flex-col gap-4 animate-[fadeInUp_0.45s_ease-out_backwards] ${isStart ? 'items-start text-start' : 'items-center text-center'}`}
+>
+  {
+    tagline ? (
+      <>
+        <h1 class="font-brand text-[clamp(2rem,6vw,3.5rem)] font-bold text-gray-0 leading-[1.05] tracking-[-0.02em] max-w-[20ch] m-0">
+          {title}
+        </h1>
+        <div class="flex flex-col gap-3 w-fit max-w-full">
+          <p class="text-[clamp(0.9rem,1.8vw,1.05rem)] text-gray-400 max-w-[44ch] leading-[1.7] m-0">
+            {tagline}
+          </p>
+          <span class="block w-full h-0.75 rounded-sm bg-(image:--gradient-accent)" aria-hidden="true" />
+        </div>
+      </>
+    ) : (
+      <div class="flex flex-col gap-3 w-fit max-w-full">
+        <h1 class="font-brand text-[clamp(2rem,6vw,3.5rem)] font-bold text-gray-0 leading-[1.05] tracking-[-0.02em] max-w-[20ch] m-0">
+          {title}
+        </h1>
+        <span class="block w-full h-0.75 rounded-sm bg-(image:--gradient-accent)" aria-hidden="true" />
+      </div>
+    )
+  }
+  <slot />
+</div>

@@ -2,17 +2,16 @@
 // Learn about using Astro layouts:
 // https://docs.astro.build/en/basics/layouts/
 
-import Footer from "../components/Footer/Footer.astro";
 // Component Imports
-import MainHead from "../components/MainHead/MainHead.astro";
-import Nav from "../components/Nav/Nav.tsx";
+import MainHead from '../components/MainHead/MainHead.astro'
+import Nav from '../components/Nav/Nav.tsx'
 
 interface Props {
-  title?: string | undefined;
-  description?: string | undefined;
+  title?: string | undefined
+  description?: string | undefined
 }
 
-const { title, description } = Astro.props;
+const { title, description } = Astro.props
 ---
 
 <html lang="en">
@@ -23,7 +22,6 @@ const { title, description } = Astro.props;
     <div class="flex flex-col min-h-dvh backgrounds">
       <Nav client:load />
       <slot />
-      <Footer />
     </div>
 
     <script>

@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bunx --bun biome check --write \"${file}\""
+          },
+          {
+            "type": "command",
+            "command": "if [[ \"${file}\" == *.astro || \"${file}\" == *.tsx ]]; then bunx --bun astro check; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

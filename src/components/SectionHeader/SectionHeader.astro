@@ -1,0 +1,23 @@
+---
+interface Props {
+  label: string
+  title: string
+}
+
+const { label, title } = Astro.props
+---
+
+<header
+  class="relative flex flex-col gap-[0.3rem] overflow-hidden border-b border-gray-800 pb-4"
+>
+  <span
+    class="font-body text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-accent-regular"
+  >
+    {label}
+  </span>
+  <h2
+    class="m-0 font-brand text-[clamp(1.6rem,4vw,2.4rem)] font-semibold leading-[1.1] text-gray-0"
+  >
+    {title}
+  </h2>
+</header>

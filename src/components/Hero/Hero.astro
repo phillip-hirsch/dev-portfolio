@@ -1,42 +1,90 @@
 ---
+import { Image } from 'astro:assets'
+import { DownloadSimpleIcon } from '@phosphor-icons/react'
+import type { ImageMetadata } from 'astro'
+
 interface Props {
-  title: string;
-  tagline?: string;
-  align?: "start" | "center";
-  showDownloadLink?: boolean;
+  name: string
+  image: ImageMetadata
+  imageAlt: string
+  techStack: string[]
 }
 
-const { align = "center", tagline, title, showDownloadLink } = Astro.props;
-const isStart = align === "start";
+const { name, image, imageAlt, techStack } = Astro.props
+const [firstName, ...rest] = name.split(' ')
+const lastName = rest.join(' ')
 ---
 
 <div
-  class={`flex flex-col gap-4 text-lg text-center lg:text-xl ${isStart ? "lg:text-start" : ""}`}
+  class="flex flex-col items-center gap-10 pt-8
+         lg:grid lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-14 lg:pt-14
+         lg:max-w-4xl lg:w-full lg:mx-auto"
 >
-  <div class="flex flex-col gap-2">
-    <h1
-      class={`text-3xl lg:text-5xl text-gray-0 max-w-[37ch] mx-auto ${isStart ? "lg:mx-0" : ""}`}
+  <!-- Portrait — mobile: centered, desktop: fills right column -->
+  <div
+    class="order-1 lg:order-2 w-full flex justify-center animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:50ms]"
+  >
+    <div
+      class="w-fit lg:w-full bg-(image:--gradient-accent) rounded-[2.5rem] p-0.75 shadow-(--shadow-lg)"
     >
-      {title}
-    </h1>
-    {
-      tagline && (
-        <p class={`max-w-[37ch] mx-auto ${isStart ? "lg:mx-0" : ""}`}>
-          {tagline}
-        </p>
-      )
-    }
-    {
-      showDownloadLink && (
-        <a
-          href="/assets/Phillip_Hirsch.pdf"
-          download
-          class={`max-w-[37ch] mx-auto ${isStart ? "lg:mx-0" : ""} no-underline text-accent-regular transition-colors duration-200 hover:text-accent-dark hover:underline`}
-        >
-          Click here to download my resume.
-        </a>
-      )
-    }
+      <Image
+        alt={imageAlt}
+        width="480"
+        height="620"
+        loading="eager"
+        fetchpriority="high"
+        src={image}
+        class="w-56 lg:w-full lg:max-h-110 aspect-3/4 object-cover object-top block rounded-[calc(2.5rem-3px)]"
+      />
+    </div>
   </div>
-  <slot />
+
+  <!-- Text — mobile: centered, desktop: left-aligned -->
+  <div
+    class="order-2 lg:order-1 flex flex-col gap-5 items-center lg:items-start animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:200ms]"
+  >
+    <h1
+      class="flex flex-col font-brand font-semibold leading-none tracking-tight text-center lg:text-start"
+    >
+      <span class="text-[clamp(2.5rem,5.5vw,5rem)] text-gray-0"
+        >{firstName}</span
+      >
+      {
+        lastName && (
+          <span class="text-[clamp(2.5rem,5.5vw,5rem)] bg-(image:--gradient-accent) bg-clip-text text-transparent">
+            {lastName}
+          </span>
+        )
+      }
+    </h1>
+
+    <div class="flex items-center gap-3">
+      <div class="w-5 h-px bg-accent-regular shrink-0 hidden lg:block"></div>
+      <p class="text-xs text-gray-400 uppercase tracking-[0.14em]">
+        Frontend Engineer · Charlotte, NC · 3+ Years
+      </p>
+    </div>
+
+    <div
+      class="flex flex-wrap gap-2 justify-center lg:justify-start"
+      aria-label="Core technologies"
+    >
+      {
+        techStack.map((tech) => (
+          <span class="inline-flex items-center py-[0.2rem] px-[0.65rem] rounded-full text-[0.7rem] font-mono tracking-[0.02em] border border-gray-800 text-gray-400 bg-(--color-gray-999) transition-[color,border-color] duration-200 cursor-default select-none hover:border-accent-regular hover:text-accent-regular">
+            {tech}
+          </span>
+        ))
+      }
+    </div>
+
+    <a
+      href="/assets/Phillip_Hirsch.pdf"
+      download
+      class="no-underline w-fit inline-flex items-center gap-2 text-sm font-medium text-accent-regular hover:text-accent-dark transition-colors duration-200"
+    >
+      <DownloadSimpleIcon size={14} aria-hidden="true" className="shrink-0" />
+      Download Resume
+    </a>
+  </div>
 </div>
