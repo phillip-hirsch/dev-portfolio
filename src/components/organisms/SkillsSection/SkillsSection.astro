@@ -1,0 +1,18 @@
+---
+import { skillCategories } from '../../../data/about'
+import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
+import SkillRow from '../../molecules/SkillRow/SkillRow.astro'
+---
+
+<section id="skills" class="flex flex-col gap-24 lg:gap-32">
+  <div
+    class="flex flex-col gap-8 animate-[fadeInUp_0.5s_ease-out_backwards]"
+    style="animation-delay: 0.25s"
+  >
+    <SectionHeader label="Expertise" title="Skills" />
+
+    <dl class="flex flex-col">
+      {skillCategories.map((category, index) => <SkillRow category={category} isFirst={index === 0} />)}
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import { educationEntries } from '../../../data/about'
+import EducationEntry from '../../molecules/EducationEntry/EducationEntry.astro'
+import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
+---
+
+<section id="education" class="flex flex-col gap-24 lg:gap-32">
+  <div
+    class="flex flex-col gap-8 animate-[fadeInUp_0.5s_ease-out_backwards]"
+    style="animation-delay: 0.15s"
+  >
+    <SectionHeader label="Background" title="Education" />
+
+    <ol
+      class="relative m-0 list-none pl-4 before:absolute before:bottom-[0.6rem] before:left-0 before:top-[0.6rem] before:w-px before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),transparent)] before:content-['']"
+      role="list"
+    >
+      {educationEntries.map((entry) => <EducationEntry entry={entry} />)}
+    </ol>
+  </div>
+</section>

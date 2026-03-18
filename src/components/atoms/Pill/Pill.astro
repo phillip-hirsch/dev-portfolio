@@ -1,0 +1,16 @@
+---
+interface Props {
+  size?: 'sm' | 'md'
+}
+const { size = 'md' } = Astro.props
+const sizeClasses =
+  size === 'sm'
+    ? 'font-mono text-[0.7rem] py-[0.2rem] px-[0.65rem] tracking-[0.02em] bg-(--color-gray-999) select-none'
+    : 'text-xs font-medium px-3 py-1'
+---
+
+<span
+  class={`rounded-full border border-gray-800 text-gray-300 cursor-default transition-[color,border-color] duration-200 hover:border-accent-regular hover:text-accent-regular ${sizeClasses}`}
+>
+  <slot />
+</span>

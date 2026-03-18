@@ -1,0 +1,45 @@
+---
+import { CalendarBlankIcon, MapPinIcon } from '@phosphor-icons/react'
+import IconMeta from '../../atoms/IconMeta/IconMeta.astro'
+
+interface Props {
+  title: string
+  employmentType: string
+  company: string
+  via?: string
+  period: string
+  location: string
+}
+const { title, employmentType, company, via, period, location } = Astro.props
+---
+
+<header class="flex flex-col gap-[0.4rem]">
+  <div class="flex flex-wrap items-baseline gap-[0.6rem]">
+    <h2
+      class="m-0 font-brand text-[clamp(1.4rem,3vw,1.85rem)] font-semibold leading-[1.2] text-gray-0"
+    >
+      {title}
+    </h2>
+    <span
+      class="self-center whitespace-nowrap text-xs font-medium uppercase tracking-[0.06em] text-accent-regular"
+    >
+      {employmentType}
+    </span>
+  </div>
+  <h3 class="m-0 font-brand text-[clamp(1rem,2vw,1.2rem)] font-medium text-accent-regular">
+    {company}{' '}
+    {
+      via && (
+        <span class="text-[0.9em] font-normal text-gray-400">via {via}</span>
+      )
+    }
+  </h3>
+  <div class="mt-1 flex flex-wrap gap-2">
+    <IconMeta text={period}>
+      <CalendarBlankIcon size={12} aria-hidden="true" />
+    </IconMeta>
+    <IconMeta text={location}>
+      <MapPinIcon size={12} aria-hidden="true" />
+    </IconMeta>
+  </div>
+</header>

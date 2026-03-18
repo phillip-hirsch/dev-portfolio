@@ -6,13 +6,14 @@ import {
 } from '@phosphor-icons/react'
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 
-import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
+import { ThemeToggle } from '../../molecules/ThemeToggle/ThemeToggle'
 
-/** Main menu items */
-const textLinks: { label: string; href: string }[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Experience', href: '/experience/' },
+/** Main menu items — section ID is '' for the top of the page. */
+const textLinks: { label: string; href: string; section: string }[] = [
+  { label: 'Home', href: '/', section: '' },
+  { label: 'Experience', href: '#experience', section: 'experience' },
+  { label: 'Education', href: '#education', section: 'education' },
+  { label: 'Skills', href: '#skills', section: 'skills' },
 ]
 
 /** Icon links to social media */
@@ -33,27 +34,60 @@ const iconLinks: {
   },
 ]
 
-/** Check if a link points to the current page. */
-const isCurrentPage = (href: string, pathname: string): boolean => {
-  let p = pathname
-  if (!p.startsWith('/')) p = `/${p}`
-  if (!p.endsWith('/')) p += '/'
-  return p === href || (href !== '/' && p.startsWith(href))
+/**
+ * Track which section is currently scrolled into view.
+ * Returns the section id string, or '' when at the top (Home active).
+ */
+function useActiveSection(): string {
+  const [active, setActive] = useState('')
+
+  useEffect(() => {
+    const sectionIds = ['experience', 'education', 'skills']
+    const NAV_OFFSET = 100 // nav height + a small buffer
+
+    const update = () => {
+      let current = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (el && window.scrollY >= el.offsetTop - NAV_OFFSET) {
+          current = id
+        }
+      }
+      setActive(current)
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
+  return active
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────
 
 const NavLinks = ({
-  pathname,
+  activeSection,
   onNavigate,
 }: {
-  pathname: string
+  activeSection: string
   onNavigate?: () => void
 }) => {
+  const handleHomeClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Avoid a full Astro page transition when already on the home page
+      e.preventDefault()
+      history.pushState(null, '', '/')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      onNavigate?.()
+    },
+    [onNavigate],
+  )
+
   return (
     <ul className="m-0 flex flex-col list-none py-2 bg-gray-999/95 border-b border-gray-800/50 lg:flex-row lg:bg-transparent lg:border-0 lg:py-0 lg:gap-0.5">
-      {textLinks.map(({ label, href }) => {
-        const current = isCurrentPage(href, pathname)
+      {textLinks.map(({ label, href, section }) => {
+        const current = activeSection === section
         return (
           <li
             key={href}
@@ -62,7 +96,7 @@ const NavLinks = ({
             <a
               aria-current={current ? 'page' : undefined}
               href={href}
-              onClick={onNavigate}
+              onClick={href === '/' ? handleHomeClick : undefined}
               className={[
                 'group relative inline-flex items-center no-underline font-medium',
                 'w-full px-5 py-4 text-md transition-colors duration-200 border-l-2',
@@ -88,22 +122,20 @@ const NavLinks = ({
   )
 }
 
-function SocialLinks() {
-  return (
-    <div className="flex gap-1 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
-      {iconLinks.map(({ href, icon: SocialIcon, label }) => (
-        <a
-          key={label}
-          href={href}
-          className="flex p-2 no-underline text-gray-400 transition-colors duration-200 hover:text-accent-regular"
-        >
-          <span className="sr-only">{label}</span>
-          <SocialIcon />
-        </a>
-      ))}
-    </div>
-  )
-}
+const SocialLinks = () => (
+  <div className="flex gap-1 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+    {iconLinks.map(({ href, icon: SocialIcon, label }) => (
+      <a
+        key={label}
+        href={href}
+        className="flex p-2 no-underline text-gray-400 transition-colors duration-200 hover:text-accent-regular"
+      >
+        <span className="sr-only">{label}</span>
+        <SocialIcon />
+      </a>
+    ))}
+  </div>
+)
 
 // ─── Main Nav component ──────────────────────────────────────────────
 
@@ -113,13 +145,10 @@ export default function Nav() {
   const [closing, setClosing] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const menuContainerRef = useRef<HTMLDivElement>(null)
+  const closedByNavRef = useRef(false)
   const menuId = useId()
+  const activeSection = useActiveSection()
 
-  // Read pathname client-side so it works with Astro's static builds.
-  const pathname =
-    typeof window !== 'undefined' ? window.location.pathname : '/'
-
-  // Track viewport breakpoint
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 50em)')
     const handler = (e: MediaQueryListEvent | MediaQueryList) => {
@@ -149,53 +178,78 @@ export default function Nav() {
     if (closing) {
       setMenuOpen(false)
       setClosing(false)
-      menuButtonRef.current?.focus()
+      if (!closedByNavRef.current) {
+        menuButtonRef.current?.focus()
+      }
+      closedByNavRef.current = false
     }
   }, [closing])
 
+  const closeByNav = useCallback(() => {
+    closedByNavRef.current = true
+    setClosing(true)
+  }, [])
+
   const onNavigate = useCallback(() => {
-    if (!isDesktop && menuOpen && !closing) {
-      setClosing(true)
-    }
+    if (!isDesktop && menuOpen && !closing) setClosing(true)
   }, [isDesktop, menuOpen, closing])
 
   const menuVisible = menuOpen || closing
 
+  // Close mobile menu after hash navigation once the smooth scroll settles.
   useEffect(() => {
-    if (isDesktop || !menuOpen || closing) {
-      return
-    }
+    const onNav = () => {
+      if (isDesktop || !menuOpen || closing) return
 
+      let cleanup: () => void
+      const done = () => {
+        cleanup()
+        closeByNav()
+      }
+
+      const onScrollEnd = () => done()
+      window.addEventListener('scrollend', onScrollEnd, { once: true })
+
+      // Safety cap in case scrollend never fires
+      const timeout = setTimeout(done, 1000)
+
+      cleanup = () => {
+        clearTimeout(timeout)
+        window.removeEventListener('scrollend', onScrollEnd)
+      }
+    }
+    window.addEventListener('popstate', onNav)
+    window.addEventListener('hashchange', onNav)
+    return () => {
+      window.removeEventListener('popstate', onNav)
+      window.removeEventListener('hashchange', onNav)
+    }
+  }, [isDesktop, menuOpen, closing, closeByNav])
+
+  useEffect(() => {
+    if (isDesktop || !menuOpen || closing) return
     const firstLink =
       menuContainerRef.current?.querySelector<HTMLAnchorElement>('a[href]')
     firstLink?.focus()
   }, [isDesktop, menuOpen, closing])
 
   useEffect(() => {
-    if (isDesktop || !menuVisible) {
-      return
-    }
-
+    if (isDesktop || !menuVisible) return
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setClosing(true)
-      }
+      if (event.key === 'Escape') setClosing(true)
     }
-
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [isDesktop, menuVisible])
 
-  const menuClasses = [
-    'absolute inset-x-0 origin-top overflow-hidden lg:[display:contents] lg:![animation:none] lg:!transform-none lg:!opacity-100 lg:overflow-visible',
-    menuOpen && !closing ? '[animation:var(--animate-menu-slide-down)]' : '',
-    closing ? '[animation:var(--animate-menu-slide-up)]' : '',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const menuClasses = `absolute inset-x-0 top-full origin-top overflow-hidden lg:[display:contents] lg:![animation:none] lg:!transform-none lg:!opacity-100 lg:overflow-visible ${
+    closing
+      ? '[animation:var(--animate-menu-slide-up)]'
+      : '[animation:var(--animate-menu-slide-down)]'
+  }`
 
   return (
-    <nav className="sticky top-0 z-9999 font-brand font-medium mb-14 border-b border-gray-800/50 bg-gray-999/85 backdrop-blur-md lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-16 lg:py-5 lg:gap-8">
+    <nav className="sticky top-0 z-9999 font-brand font-medium border-b border-gray-800/50 bg-gray-999/85 backdrop-blur-md lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-16 lg:py-5 lg:gap-8">
       <div className="flex justify-between items-center gap-2 px-5 py-4 lg:p-0">
         <a
           href="/"
@@ -240,7 +294,7 @@ export default function Nav() {
           className={menuClasses}
           onAnimationEnd={onAnimationEnd}
         >
-          <NavLinks pathname={pathname} onNavigate={onNavigate} />
+          <NavLinks activeSection={activeSection} onNavigate={onNavigate} />
           <div className="flex justify-between items-center gap-3 px-5 py-4 bg-gray-999/95 shadow-md lg:justify-self-end lg:p-0 lg:bg-transparent lg:shadow-none">
             <SocialLinks />
             <ThemeToggle />

@@ -1,0 +1,23 @@
+---
+import type { SkillCategory } from '../../../data/about'
+
+interface Props {
+  category: SkillCategory
+  isFirst?: boolean
+}
+const { category, isFirst = false } = Astro.props
+
+const rowClass =
+  'grid grid-cols-1 gap-[0.4rem] border-b border-gray-800 py-[1.1rem] transition-colors duration-150 lg:grid-cols-[11rem_1fr] lg:items-baseline lg:gap-8 lg:py-4 lg:hover:-mx-6 lg:hover:rounded-md lg:hover:border-t-transparent lg:hover:border-b-transparent lg:hover:bg-(--color-accent-subtle-overlay) lg:hover:px-6'
+---
+
+<div class={`${rowClass} ${isFirst ? 'border-t' : ''}`}>
+  <dt
+    class="whitespace-nowrap font-brand text-[0.725rem] font-bold uppercase tracking-widest text-accent-regular"
+  >
+    {category.label}
+  </dt>
+  <dd class="text-[0.9rem] leading-[1.7] text-gray-300">
+    {category.items.join(' · ')}
+  </dd>
+</div>

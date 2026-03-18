@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+
+interface Props {
+  image: ImageMetadata
+  imageAlt: string
+}
+const { image, imageAlt } = Astro.props
+---
+
+<div
+  class="order-1 lg:order-2 w-full flex justify-center animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:50ms]"
+>
+  <div
+    class="w-fit lg:w-full bg-(image:--gradient-accent) rounded-[2.5rem] p-0.75 shadow-(--shadow-lg)"
+  >
+    <Image
+      alt={imageAlt}
+      width="480"
+      height="620"
+      loading="eager"
+      fetchpriority="high"
+      src={image}
+      class="w-56 lg:w-full lg:max-h-110 aspect-3/4 object-cover object-top block rounded-[calc(2.5rem-3px)]"
+    />
+  </div>
+</div>

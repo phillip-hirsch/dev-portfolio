@@ -1,0 +1,27 @@
+---
+import type { ExperienceCategory } from '../../../data/experience'
+
+interface Props {
+  category: ExperienceCategory
+  animationIndex?: number
+}
+const { category, animationIndex = 0 } = Astro.props
+---
+
+<div
+  class="flex flex-col gap-[0.6rem] animate-[fadeInUp_0.4s_ease-out_both]"
+  style={`animation-delay: ${animationIndex * 0.08}s`}
+>
+  <p class="m-0 text-[0.7rem] font-semibold uppercase tracking-widest text-accent-regular">
+    {category.label}
+  </p>
+  <ul class="m-0 flex list-none flex-col gap-2.5 p-0">
+    {
+      category.bullets.map((bullet) => (
+        <li class="relative pl-[1.35rem] text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.65] text-gray-300 before:absolute before:left-0 before:font-bold before:leading-[1.65] before:text-accent-regular before:content-['▹']">
+          {bullet}
+        </li>
+      ))
+    }
+  </ul>
+</div>

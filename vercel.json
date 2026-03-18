@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/education",
+      "destination": "/#education",
+      "permanent": true
+    },
+    {
+      "source": "/experience",
+      "destination": "/#experience",
+      "permanent": true
+    },
+    {
+      "source": "/skills",
+      "destination": "/#skills",
+      "permanent": true
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+import type { ImageMetadata } from 'astro'
+import HeroContent from '../../molecules/HeroContent/HeroContent.astro'
+import HeroPortrait from '../../molecules/HeroPortrait/HeroPortrait.astro'
+
+interface Props {
+  name: string
+  image: ImageMetadata
+  imageAlt: string
+  techStack: string[]
+}
+
+const { name, image, imageAlt, techStack } = Astro.props
+const [firstName, ...rest] = name.split(' ')
+const lastName = rest.join(' ')
+---
+
+<div
+  class="flex flex-col items-center gap-10 py-8
+         lg:grid lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-14 lg:py-12
+         lg:max-w-4xl lg:w-full lg:mx-auto"
+>
+  <HeroPortrait image={image} imageAlt={imageAlt} />
+  <HeroContent firstName={firstName} lastName={lastName} techStack={techStack} />
+</div>

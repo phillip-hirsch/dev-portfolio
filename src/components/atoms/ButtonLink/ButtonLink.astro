@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string
+  variant?: 'primary' | 'secondary'
+  download?: boolean
+}
+const { href, variant = 'primary', download } = Astro.props
+const variantClasses =
+  variant === 'primary'
+    ? 'bg-accent-regular text-white hover:bg-accent-dark'
+    : 'border border-gray-700 text-gray-300 hover:border-accent-regular hover:text-accent-regular'
+---
+
+<a
+  href={href}
+  download={download || undefined}
+  class={`no-underline w-fit inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-regular ${variantClasses}`}
+>
+  <slot />
+</a>
