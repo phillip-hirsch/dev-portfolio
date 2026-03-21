@@ -1,12 +1,6 @@
 ---
 import Pill from '../../atoms/Pill/Pill.astro'
 
-interface Props {
-  items: string[]
-  ariaLabel?: string
-  size?: 'sm' | 'md'
-  as?: 'div' | 'ul'
-}
 const { items, ariaLabel, size = 'md', as: Tag = 'div' } = Astro.props
 ---
 

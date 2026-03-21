@@ -4,48 +4,52 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 ## Features
 
-- **Astro 6** with view transitions and page animations
-- **React 19** interactive components (navigation, theme toggle)
-- **Tailwind CSS v4** for styling
-- **Dark / light theme** toggle with system-aware defaults
-- **Responsive Layout** — mobile-first with adaptive grid on larger screens
+- **Astro 6** with page animations
+- **React 19** interactive islands (navigation, theme toggle)
+- **Tailwind CSS v4** for styling with custom theme tokens
+- **Dark / light / system theme** toggle with persistence
+- **Responsive layout** — mobile-first with adaptive grid
 - **Phosphor Icons** for a consistent icon set
+- **Auto-generated OG images** via `@vercel/og`
 - **Biome** for linting and formatting
 - **TypeScript** in strict mode
 
-## Pages
+## Architecture
 
-| Route          | Description                                |
-| :------------- | :----------------------------------------- |
-| `/`            | Home — hero section and introduction       |
-| `/about`       | Summary, education, and background         |
-| `/experience`  | Professional work history and achievements |
-| `/404`         | Custom not-found page                      |
+Single-page layout — `index.astro` is the only content page. Nav links use anchor IDs (`#experience`, `#education`, `#skills`) for smooth scroll navigation.
+
+Components follow **atomic design**: atoms (Pill, ButtonLink), molecules (HeroPortrait, PageHeader, EducationEntry), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
+
+Static `.astro` components by default; `.tsx` React components only where interactivity is needed.
 
 ## Tech Stack
 
-| Layer       | Technology                     |
-| :---------- | :----------------------------- |
-| Framework   | Astro 6                        |
-| UI          | React 19                       |
-| Styling     | Tailwind CSS 4                 |
-| Icons       | Phosphor Icons                 |
-| Linting     | Biome                          |
-| Hosting     | Vercel                         |
-| Runtime     | Bun                            |
+| Layer     | Technology                           |
+| :-------- | :----------------------------------- |
+| Framework | Astro 6                              |
+| UI        | React 19                             |
+| Styling   | Tailwind CSS 4                       |
+| Icons     | Phosphor Icons                       |
+| Fonts     | Public Sans, Rubik (via Astro Fonts) |
+| Linting   | Biome                                |
+| Hosting   | Vercel (static)                      |
+| Runtime   | Bun                                  |
 
 ## Project Structure
 
 ```bash
 src/
-├── components/    # Reusable UI components (Nav, Hero, PageHeader, etc.)
-├── images/        # Optimized image assets
-├── layouts/       # Base page layout
-├── pages/         # File-based routes
-├── styles/        # Global CSS and theme variables
-└── utils/         # Helpers (animations, etc.)
+├── components/
+│   ├── atoms/         # Pill, ButtonLink, etc.
+│   ├── molecules/     # HeroPortrait, PageHeader, EducationEntry, etc.
+│   └── organisms/     # Hero, Nav, ExperienceSection, SkillsSection, etc.
+├── data/              # Content data (experience, education, skills, nav)
+├── images/            # Optimized image assets
+├── layouts/           # BaseLayout
+├── pages/             # index.astro, 404.astro, og.png.ts
+└── styles/            # Global CSS and theme variables
 public/
-└── assets/        # Static files (backgrounds, favicons)
+└── assets/            # Static files (resume PDF, favicons)
 ```
 
 ## Getting Started
@@ -68,8 +72,11 @@ bun run preview
 
 ```bash
 # Check for lint and format issues
-bunx --bun biome check .
+bun run biome:check
 
 # Auto-fix issues
-bunx --bun biome check --write .
+bun run biome:check:write
+
+# Type-check Astro and TSX files
+bun run astro:check
 ```

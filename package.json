@@ -6,7 +6,10 @@
     "dev": "bunx --bun astro dev",
     "build": "bunx --bun astro build",
     "preview": "bunx --bun astro preview",
-    "astro": "bunx --bun astro"
+    "astro": "bunx --bun astro",
+    "astro:check": "bunx --bun astro check",
+    "biome:check": "bunx --bun biome check .",
+    "biome:check:write": "bunx --bun biome check --write ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",

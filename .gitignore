@@ -29,3 +29,7 @@ pnpm-debug.log*
 
 # ide
 .vscode/
+
+# CLAUDE
+CLAUDE.md
+**/CLAUDE.md
