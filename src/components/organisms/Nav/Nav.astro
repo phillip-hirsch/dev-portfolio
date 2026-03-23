@@ -1,0 +1,137 @@
+---
+import { ThemeToggle } from '../../molecules/ThemeToggle/ThemeToggle'
+import BrandLink from './BrandLink.astro'
+import MobileMenuToggle from './MobileMenuToggle.astro'
+import NavLinks from './NavLinks.astro'
+import SocialLinks from './SocialLinks.astro'
+---
+
+<nav
+  data-menu-state="closed"
+  class="sticky top-0 z-9999 font-brand font-medium border-b border-gray-800/50 bg-gray-999/85 backdrop-blur-md lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-16 lg:py-5 lg:gap-8"
+>
+  <div class="flex justify-between items-center gap-2 px-5 py-4 lg:p-0">
+    <BrandLink />
+    <MobileMenuToggle />
+  </div>
+
+  <div
+    id="nav-menu"
+    class="nav-menu-container absolute inset-x-0 top-full origin-top overflow-hidden lg:contents lg:overflow-visible"
+  >
+    <NavLinks />
+    <div class="flex justify-between items-center gap-3 px-5 py-4 bg-gray-999/95 shadow-md lg:justify-self-end lg:p-0 lg:bg-transparent lg:shadow-none">
+      <SocialLinks />
+      <ThemeToggle client:load />
+    </div>
+  </div>
+</nav>
+
+<style>
+  @media not all and (min-width: 50em) {
+    nav[data-menu-state='closed'] .nav-menu-container {
+      display: none;
+    }
+    nav[data-menu-state='open'] .nav-menu-container {
+      animation: var(--animate-menu-slide-down);
+    }
+    nav[data-menu-state='closing'] .nav-menu-container {
+      animation: var(--animate-menu-slide-up);
+    }
+  }
+  @media (min-width: 50em) {
+    nav .nav-menu-container {
+      display: contents;
+      animation: none;
+      transform: none;
+      opacity: 1;
+      overflow: visible;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('nav[data-menu-state]')
+  const toggle = nav?.querySelector<HTMLButtonElement>('[data-menu-toggle]')
+  const container = nav?.querySelector<HTMLDivElement>('#nav-menu')
+  const LG = window.matchMedia('(min-width: 50em)')
+
+  let skipFocusRestore = false
+
+  function getState(): string {
+    if (!nav) return 'closed'
+    return nav.dataset.menuState ?? 'closed'
+  }
+
+  function setState(s: 'closed' | 'open' | 'closing') {
+    if (!nav || !toggle) return
+    nav.dataset.menuState = s
+    toggle.setAttribute('aria-pressed', String(s === 'open'))
+  }
+
+  function openMenu() {
+    if (!container) return
+    setState('open')
+    requestAnimationFrame(() => {
+      container.querySelector<HTMLAnchorElement>('a[href]')?.focus()
+    })
+  }
+
+  function closeMenu(restoreFocus = true) {
+    if (getState() !== 'open') return
+    if (!restoreFocus) skipFocusRestore = true
+    setState('closing')
+  }
+
+  // Toggle button
+  if (nav && toggle && container) {
+    toggle.addEventListener('click', () => {
+      getState() === 'open' ? closeMenu() : openMenu()
+    })
+
+    // Finish close animation
+    container.addEventListener('animationend', () => {
+      if (getState() !== 'closing') return
+      setState('closed')
+      if (!skipFocusRestore) toggle.focus()
+      skipFocusRestore = false
+    })
+
+    // Nav link clicks inside the menu → close without restoring focus
+    container.querySelectorAll('a[href]').forEach((link) => {
+      link.addEventListener('click', () => closeMenu(false))
+    })
+
+    // Smooth scroll to top for home links (brand + Home nav link)
+    nav.querySelectorAll<HTMLAnchorElement>('[data-nav-home]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        history.pushState(null, '', '/')
+
+        const prefersReducedMotion = window
+          .matchMedia('(prefers-reduced-motion: reduce)')
+          .matches
+
+        if (prefersReducedMotion) {
+          window.scrollTo(0, 0)
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+
+        closeMenu(false)
+      })
+    })
+  }
+
+  // Escape key closes menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && getState() === 'open' && !LG.matches) {
+      closeMenu()
+    }
+  })
+
+  // Desktop breakpoint: reset any lingering mobile state
+  LG.addEventListener('change', (e) => {
+    if (e.matches) setState('closed')
+  })
+</script>

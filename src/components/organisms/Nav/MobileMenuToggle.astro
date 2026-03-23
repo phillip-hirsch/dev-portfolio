@@ -1,0 +1,42 @@
+---
+---
+
+<button
+  type="button"
+  id="menu-toggle"
+  data-menu-toggle
+  aria-pressed="false"
+  aria-controls="nav-menu"
+  class="group inline-flex w-12 h-12 text-shadow-gray-400 bg-transparent text-center items-center justify-center transition lg:hidden"
+>
+  <span class="sr-only">Menu</span>
+  <svg
+    class="w-6 h-6 fill-current pointer-events-none"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect
+      class="origin-center -translate-y-1.25 translate-x-1.75 transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-pressed:translate-x-0 group-aria-pressed:translate-y-0 group-aria-pressed:rotate-315"
+      y="7"
+      width="9"
+      height="2"
+      rx="1"
+    ></rect>
+    <rect
+      class="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-aria-pressed:rotate-45"
+      y="7"
+      width="16"
+      height="2"
+      rx="1"
+    ></rect>
+    <rect
+      class="origin-center translate-y-1.25 transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-pressed:translate-y-0 group-aria-pressed:rotate-135"
+      y="7"
+      width="9"
+      height="2"
+      rx="1"
+    ></rect>
+  </svg>
+</button>

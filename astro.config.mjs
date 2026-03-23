@@ -25,6 +25,17 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        onwarn(warning, defaultHandler) {
+          if (
+            warning.message.includes('externalized for browser compatibility')
+          )
+            return
+          defaultHandler(warning)
+        },
+      },
+    },
   },
 
   integrations: [react()],

@@ -4,7 +4,7 @@
 
 // Component Imports
 import MainHead from '../components/MainHead/MainHead.astro'
-import Nav from '../components/organisms/Nav/Nav.tsx'
+import Nav from '../components/organisms/Nav/Nav.astro'
 
 interface Props {
   title?: string | undefined
@@ -18,20 +18,33 @@ const { title, description } = Astro.props
   <head>
     <MainHead title={title} description={description} />
   </head>
-  <body>
-    <div class="flex flex-col min-h-dvh backgrounds">
-      <Nav client:load />
-      <slot />
-    </div>
-
-    <script>
-      // Add "loaded" class once the document has completely loaded.
-      addEventListener("load", () =>
-        document.documentElement.classList.add("loaded"),
-      ); // Re-add "loaded" class after view transitions (load event doesn't re-fire).
-      document.addEventListener("astro:page-load", () =>
-        document.documentElement.classList.add("loaded"),
-      );
-    </script>
+  <body class="flex flex-col min-h-dvh backgrounds">
+    <Nav />
+    <slot />
   </body>
 </html>
+
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+ 
+	if (typeof localStorage !== 'undefined') {
+		// Uses `let` because `lastStoredTheme` is updated inside the MutationObserver callback.
+		let lastStoredTheme = localStorage.getItem('theme');
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('dark');
+			const nextTheme = isDark ? 'dark' : 'light';
+			if (lastStoredTheme !== nextTheme) {
+				localStorage.setItem('theme', nextTheme);
+				lastStoredTheme = nextTheme;
+			}
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>

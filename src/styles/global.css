@@ -128,9 +128,21 @@
       hsla(199, 90%, 55%, 0.18) 0%,
       transparent 70%
     );
-    --bg-image-subtle-1: var(--_placeholder-bg);
-    --bg-image-subtle-2: var(--_placeholder-bg);
-    --bg-image-footer: var(--_placeholder-bg);
+    --bg-image-subtle-1: radial-gradient(
+      ellipse 80% 50% at 20% 50%,
+      hsla(199, 70%, 75%, 0.18) 0%,
+      transparent 70%
+    );
+    --bg-image-subtle-2: radial-gradient(
+      ellipse 80% 50% at 80% 60%,
+      hsla(187, 65%, 72%, 0.15) 0%,
+      transparent 70%
+    );
+    --bg-image-footer: radial-gradient(
+      ellipse 120% 50% at 50% 120%,
+      hsla(199, 75%, 65%, 0.3) 0%,
+      transparent 70%
+    );
     --bg-svg-blend-mode: screen;
     --bg-blend-mode: multiply;
     --bg-gradient-size: 100%;
@@ -160,31 +172,6 @@
       hsla(199, 90%, 35%, 0.25) 0%,
       transparent 70%
     );
-    --bg-svg-blend-mode: screen;
-    --bg-blend-mode: screen;
-  }
-
-  /* Lazy-loaded backgrounds (below the fold) — light */
-  :root.loaded {
-    --bg-image-subtle-1: radial-gradient(
-      ellipse 80% 50% at 20% 50%,
-      hsla(199, 70%, 75%, 0.18) 0%,
-      transparent 70%
-    );
-    --bg-image-subtle-2: radial-gradient(
-      ellipse 80% 50% at 80% 60%,
-      hsla(187, 65%, 72%, 0.15) 0%,
-      transparent 70%
-    );
-    --bg-image-footer: radial-gradient(
-      ellipse 120% 50% at 50% 120%,
-      hsla(199, 75%, 65%, 0.3) 0%,
-      transparent 70%
-    );
-  }
-
-  /* Lazy-loaded backgrounds (below the fold) — dark */
-  :root.loaded.dark {
     --bg-image-subtle-1: radial-gradient(
       ellipse 80% 50% at 20% 50%,
       hsla(199, 70%, 18%, 0.5) 0%,
@@ -200,6 +187,8 @@
       hsla(199, 75%, 14%, 0.7) 0%,
       transparent 70%
     );
+    --bg-svg-blend-mode: screen;
+    --bg-blend-mode: screen;
   }
 
   /* Base HTML styles */
@@ -293,51 +282,6 @@
       background-blend-mode: none;
       --bg-gradient-size: none;
     }
-  }
-}
-
-/* Page transition keyframes (used by src/utils/animations.ts) */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOutUp {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(12px);
   }
 }
 

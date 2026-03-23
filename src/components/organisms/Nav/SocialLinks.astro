@@ -1,0 +1,15 @@
+---
+import { iconLinks } from '../../../data/nav'
+---
+
+<div class="flex gap-1 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+  {iconLinks.map(({ href, icon: SocialIcon, label }) => (
+    <a
+      href={href}
+      class="flex p-2 no-underline text-gray-400 transition-colors duration-200 hover:text-accent-regular"
+    >
+      <span class="sr-only">{label}</span>
+      <SocialIcon />
+    </a>
+  ))}
+</div>
