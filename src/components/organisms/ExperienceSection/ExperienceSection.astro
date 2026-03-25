@@ -4,7 +4,6 @@ import GradientDivider from '../../atoms/GradientDivider/GradientDivider.astro'
 import TimelineDot from '../../atoms/TimelineDot/TimelineDot.astro'
 import AccomplishmentGroup from '../../molecules/AccomplishmentGroup/AccomplishmentGroup.astro'
 import ExperienceCardHeader from '../../molecules/ExperienceCardHeader/ExperienceCardHeader.astro'
-import PillList from '../../molecules/PillList/PillList.astro'
 import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
 ---
 
@@ -12,13 +11,14 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
   id="experience"
   class="relative flex flex-col gap-10 lg:before:absolute lg:before:bottom-3 lg:before:-left-6 lg:before:top-3 lg:before:w-0.5 lg:before:rounded-[1px] lg:before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),var(--color-accent-light)_60%,transparent)] lg:before:content-['']"
 >
-  <SectionHeader label="Career" title="Experience" />
+  <div class="reveal">
+    <SectionHeader label="Career" title="Experience" />
+  </div>
 
   {
     experiences.map((experience, entryIndex) => (
       <article
-        class="relative flex flex-col gap-6 rounded-[1.25rem] border border-gray-800 bg-(image:--gradient-subtle) p-8 shadow-sm animate-[fadeInUp_0.45s_ease-out_both] lg:p-10"
-        style={`animation-delay: ${0.05 + entryIndex * 0.05}s`}
+        class={`reveal reveal-delay-${Math.min(entryIndex + 1, 4)} liquid-glass relative flex flex-col gap-6 rounded-[1.5rem] p-8 lg:p-10`}
       >
         <div class="hidden lg:block absolute -left-8.5 top-8" aria-hidden="true">
           <TimelineDot size="lg" />
@@ -31,22 +31,16 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
           via={experience.via}
           period={experience.period}
           location={experience.location}
+          technologies={experience.technologies}
         />
 
         <GradientDivider />
 
         <div class="flex flex-col gap-6">
-          {experience.categories.map((category, categoryIndex) => (
-            <AccomplishmentGroup category={category} animationIndex={categoryIndex} />
+          {experience.categories.map((category) => (
+            <AccomplishmentGroup category={category} />
           ))}
         </div>
-
-        <footer
-          class="border-t border-gray-800 pt-5 animate-[fadeInUp_0.4s_ease-out_both]"
-          style="animation-delay: 0.28s"
-        >
-          <PillList items={experience.technologies} ariaLabel="Technologies used" as="ul" />
-        </footer>
       </article>
     ))
   }

@@ -2,14 +2,21 @@
 import { iconLinks } from '../../../data/nav'
 ---
 
-<div class="flex gap-1 text-xl lg:hidden xl:flex xl:justify-end xl:gap-0">
+<div class="flex gap-0.5 text-xl">
   {iconLinks.map(({ href, icon: SocialIcon, label }) => (
     <a
       href={href}
-      class="flex p-2 no-underline text-gray-400 transition-colors duration-200 hover:text-accent-regular"
+      class="social-icon flex p-2 no-underline text-gray-400 rounded-xl transition-all duration-300 ease-out hover:text-gray-0"
     >
       <span class="sr-only">{label}</span>
       <SocialIcon />
     </a>
   ))}
 </div>
+
+<style>
+  .social-icon:hover {
+    background: var(--glass-chip-bg);
+    box-shadow: var(--glass-chip-specular);
+  }
+</style>

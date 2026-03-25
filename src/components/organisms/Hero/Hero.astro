@@ -7,10 +7,9 @@ interface Props {
   name: string
   image: ImageMetadata
   imageAlt: string
-  techStack: string[]
 }
 
-const { name, image, imageAlt, techStack } = Astro.props
+const { name, image, imageAlt } = Astro.props
 const [firstName, ...rest] = name.split(' ')
 const lastName = rest.join(' ')
 ---
@@ -21,5 +20,5 @@ const lastName = rest.join(' ')
          lg:max-w-4xl lg:w-full lg:mx-auto"
 >
   <HeroPortrait image={image} imageAlt={imageAlt} />
-  <HeroContent firstName={firstName} lastName={lastName} techStack={techStack} />
+  <HeroContent firstName={firstName} lastName={lastName} />
 </div>

@@ -5,12 +5,12 @@ interface Props {
 const { size = 'md' } = Astro.props
 const sizeClasses =
   size === 'sm'
-    ? 'font-mono text-[0.7rem] py-[0.2rem] px-[0.65rem] tracking-[0.02em] bg-(--color-gray-999) select-none'
-    : 'text-xs font-medium px-3 py-1'
+    ? 'font-mono text-[0.7rem] py-[0.3rem] px-[0.75rem] tracking-[0.02em] select-none'
+    : 'text-xs font-medium px-3.5 py-1.5'
 ---
 
 <span
-  class={`rounded-full border border-gray-800 text-gray-300 cursor-default transition-[color,border-color] duration-200 hover:border-accent-regular hover:text-accent-regular ${sizeClasses}`}
+  class={`glass-chip rounded-full text-gray-300 cursor-default hover:text-gray-100 ${sizeClasses}`}
 >
   <slot />
 </span>

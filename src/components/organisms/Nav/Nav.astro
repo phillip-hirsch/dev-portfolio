@@ -8,27 +8,59 @@ import SocialLinks from './SocialLinks.astro'
 
 <nav
   data-menu-state="closed"
-  class="sticky top-0 z-9999 font-brand font-medium border-b border-gray-800/50 bg-gray-999/85 backdrop-blur-md lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-16 lg:py-5 lg:gap-8"
+  class="nav-bar sticky top-0 z-9999 font-brand font-medium"
 >
-  <div class="flex justify-between items-center gap-2 px-5 py-4 lg:p-0">
+  <div class="flex justify-between items-center gap-2 px-5 py-3.5 lg:px-16 lg:py-4">
     <BrandLink />
-    <MobileMenuToggle />
+
+    {/* Desktop nav — centered links */}
+    <div class="hidden lg:flex items-center gap-1">
+      <NavLinks variant="desktop" />
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="hidden xl:flex items-center gap-0.5">
+        <SocialLinks />
+      </div>
+      <ThemeToggle client:load />
+      <MobileMenuToggle />
+    </div>
   </div>
 
+  {/* Mobile menu panel — full-width, opaque, high-contrast */}
   <div
     id="nav-menu"
-    class="nav-menu-container absolute inset-x-0 top-full origin-top overflow-hidden lg:contents lg:overflow-visible"
+    class="nav-menu-container"
   >
-    <NavLinks />
-    <div class="flex justify-between items-center gap-3 px-5 py-4 bg-gray-999/95 shadow-md lg:justify-self-end lg:p-0 lg:bg-transparent lg:shadow-none">
-      <SocialLinks />
-      <ThemeToggle client:load />
+    <div class="mobile-menu-panel">
+      <NavLinks variant="mobile" />
+      <div class="flex items-center gap-3 px-6 py-4 border-t border-gray-800/30">
+        <SocialLinks />
+      </div>
     </div>
   </div>
 </nav>
 
 <style>
+  /* ── Nav bar base ── */
+  .nav-bar {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: var(--glass-border);
+    box-shadow: var(--glass-specular);
+  }
+
+  /* ── Mobile menu ── */
   @media not all and (min-width: 50em) {
+    .nav-menu-container {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      overflow: hidden;
+      transform-origin: top center;
+    }
+
     nav[data-menu-state='closed'] .nav-menu-container {
       display: none;
     }
@@ -38,14 +70,21 @@ import SocialLinks from './SocialLinks.astro'
     nav[data-menu-state='closing'] .nav-menu-container {
       animation: var(--animate-menu-slide-up);
     }
+
+    .mobile-menu-panel {
+      background-color: var(--color-gray-999);
+      border-bottom: 1px solid var(--color-gray-800);
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+    }
   }
+
+  /* ── Desktop — menu panel becomes inline ── */
   @media (min-width: 50em) {
-    nav .nav-menu-container {
-      display: contents;
-      animation: none;
-      transform: none;
-      opacity: 1;
-      overflow: visible;
+    .nav-menu-container,
+    .mobile-menu-panel {
+      display: none;
     }
   }
 </style>

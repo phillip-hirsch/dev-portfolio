@@ -10,19 +10,30 @@ const { image, imageAlt } = Astro.props
 ---
 
 <div
-  class="order-1 lg:order-2 w-full flex justify-center animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:50ms]"
+  class="order-1 lg:order-2 w-full flex justify-center animate-[fadeInScale_0.7s_cubic-bezier(0.16,1,0.3,1)_backwards] [animation-delay:100ms]"
 >
-  <div
-    class="w-fit lg:w-full bg-(image:--gradient-accent) rounded-[2.5rem] p-0.75 shadow-(--shadow-lg)"
-  >
-    <Image
-      alt={imageAlt}
-      width="480"
-      height="620"
-      loading="eager"
-      fetchpriority="high"
-      src={image}
-      class="w-56 lg:w-full lg:max-h-110 aspect-3/4 object-cover object-top block rounded-[calc(2.5rem-3px)]"
-    />
+  <div class="relative">
+    {/* Ambient glow behind the portrait */}
+    <div
+      class="absolute -inset-3 rounded-[3rem] blur-2xl animate-[fadeInUp_1.2s_ease-out_0.6s_backwards]"
+      style="background: radial-gradient(ellipse at center, hsla(199, 89%, 48%, 0.2), transparent 70%);"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div
+      class="portrait-frame relative w-fit lg:w-full rounded-[2.5rem] p-0.75"
+      style="background: var(--gradient-accent); box-shadow: var(--glass-specular), var(--glass-shadow);"
+    >
+      <Image
+        alt={imageAlt}
+        width="480"
+        height="620"
+        loading="eager"
+        fetchpriority="high"
+        src={image}
+        class="w-56 lg:w-full lg:max-h-110 aspect-3/4 object-cover object-top block rounded-[calc(2.5rem-3px)]"
+      />
+    </div>
   </div>
 </div>

@@ -5,16 +5,25 @@ interface Props {
   download?: boolean
 }
 const { href, variant = 'primary', download } = Astro.props
-const variantClasses =
-  variant === 'primary'
-    ? 'bg-accent-regular text-white hover:bg-accent-dark'
-    : 'border border-gray-700 text-gray-300 hover:border-accent-regular hover:text-accent-regular'
 ---
 
-<a
-  href={href}
-  download={download || undefined}
-  class={`no-underline w-fit inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-regular ${variantClasses}`}
->
-  <slot />
-</a>
+{
+  variant === 'primary' ? (
+    <a
+      href={href}
+      download={download || undefined}
+      class="no-underline w-fit inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-medium bg-accent-regular text-white transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-regular hover:bg-accent-dark"
+      style="box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,0.25), 0 4px 16px hsla(199,89%,48%,0.2);"
+    >
+      <slot />
+    </a>
+  ) : (
+    <a
+      href={href}
+      download={download || undefined}
+      class="glass-chip no-underline w-fit inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-medium text-gray-300 transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-regular hover:text-gray-100"
+    >
+      <slot />
+    </a>
+  )
+}

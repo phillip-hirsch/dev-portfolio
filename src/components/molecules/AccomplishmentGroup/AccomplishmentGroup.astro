@@ -3,15 +3,11 @@ import type { ExperienceCategory } from '../../../data/experience'
 
 interface Props {
   category: ExperienceCategory
-  animationIndex?: number
 }
-const { category, animationIndex = 0 } = Astro.props
+const { category } = Astro.props
 ---
 
-<div
-  class="flex flex-col gap-[0.6rem] animate-[fadeInUp_0.4s_ease-out_both]"
-  style={`animation-delay: ${animationIndex * 0.08}s`}
->
+<div class="flex flex-col gap-[0.6rem]">
   <p class="m-0 text-[0.7rem] font-semibold uppercase tracking-widest text-accent-regular">
     {category.label}
   </p>

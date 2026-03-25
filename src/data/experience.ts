@@ -47,12 +47,6 @@ export const experiences: ExperienceEntry[] = [
         ],
       },
     ],
-    technologies: [
-      'React',
-      'React Native',
-      'TypeScript',
-      'Contentful',
-      'WCAG 2.1',
-    ],
+    technologies: ['React', 'React Native', 'TypeScript', 'Contentful'],
   },
 ]
