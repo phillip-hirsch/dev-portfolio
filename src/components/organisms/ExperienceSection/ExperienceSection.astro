@@ -18,7 +18,7 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
   {
     experiences.map((experience, entryIndex) => (
       <article
-        class={`reveal reveal-delay-${Math.min(entryIndex + 1, 4)} liquid-glass relative flex flex-col gap-6 rounded-[1.5rem] p-8 lg:p-10`}
+        class={`reveal reveal-delay-${Math.min(entryIndex + 1, 4)} card relative flex flex-col gap-6 rounded-[1.5rem] p-8 lg:p-10`}
       >
         <div class="hidden lg:block absolute -left-8.5 top-8" aria-hidden="true">
           <TimelineDot size="lg" />

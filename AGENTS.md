@@ -38,7 +38,7 @@ Fonts loaded via Astro Fonts API: Public Sans (body), Rubik (brand).
 
 **Layout**: All pages use `src/layouts/BaseLayout.astro`, which wraps content with `MainHead` and `Nav`. There is no shared Footer component.
 
-**Component structure**: Follows atomic design — `src/components/atoms/` (Pill, ButtonLink, etc.), `src/components/molecules/` (HeroPortrait, PageHeader, etc.), `src/components/organisms/` (Hero, Nav, ExperienceSection, etc.).
+**Component structure**: Follows atomic design — `src/components/atoms/` (ButtonLink, TimelineDot, etc.), `src/components/molecules/` (HeroPortrait, PageHeader, etc.), `src/components/organisms/` (Hero, Nav, ExperienceSection, etc.).
 
 **PageHeader**: Reusable `src/components/molecules/PageHeader/PageHeader.astro` renders a page title with an optional tagline and accent underline. Accepts `title`, `tagline?`, and `align?` (`'center'` default or `'start'`).
 
