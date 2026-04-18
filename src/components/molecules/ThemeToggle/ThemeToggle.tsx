@@ -36,7 +36,7 @@ export const ThemeToggle = () => {
       }
       title={theme === 'dark' ? 'Dark theme' : 'Light theme'}
       onClick={toggle}
-      className="theme-toggle relative flex items-center justify-center w-9 h-9 rounded-xl cursor-pointer overflow-hidden transition-all duration-300 active:scale-95"
+      className="chip relative flex items-center justify-center w-9 h-9 rounded-xl cursor-pointer overflow-hidden transition-all duration-300 active:scale-95"
     >
       <span className="sr-only">
         {theme === 'dark' ? 'Dark theme' : 'Light theme'}

@@ -18,7 +18,7 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 Single-page layout — `index.astro` is the only content page. Nav links use anchor IDs (`#experience`, `#education`, `#skills`) for smooth scroll navigation.
 
-Components follow **atomic design**: atoms (Pill, ButtonLink), molecules (HeroPortrait, PageHeader, EducationEntry), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
+Components follow **atomic design**: atoms (ButtonLink, TimelineDot), molecules (HeroPortrait, PageHeader, EducationEntry), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
 
 Static `.astro` components by default; `.tsx` React components only where interactivity is needed.
 
@@ -40,7 +40,7 @@ Static `.astro` components by default; `.tsx` React components only where intera
 ```bash
 src/
 ├── components/
-│   ├── atoms/         # Pill, ButtonLink, etc.
+│   ├── atoms/         # ButtonLink, TimelineDot, etc.
 │   ├── molecules/     # HeroPortrait, PageHeader, EducationEntry, etc.
 │   └── organisms/     # Hero, Nav, ExperienceSection, SkillsSection, etc.
 ├── data/              # Content data (experience, education, skills, nav)
