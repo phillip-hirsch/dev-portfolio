@@ -29,11 +29,11 @@ const {
     >
       {title}
     </h2>
-    <span
-      class="self-center whitespace-nowrap text-xs font-medium uppercase tracking-[0.06em] text-accent-regular"
+    <p
+      class="m-0 self-center whitespace-nowrap text-xs font-medium uppercase tracking-[0.06em] text-accent-regular"
     >
       {employmentType}
-    </span>
+    </p>
   </div>
   <h3 class="m-0 font-brand text-[clamp(1rem,2vw,1.2rem)] font-medium text-accent-regular">
     {company}{' '}
@@ -51,9 +51,9 @@ const {
       <MapPinIcon size={12} aria-hidden="true" />
     </IconMeta>
     {technologies.length > 0 && (
-      <span class="text-[0.8rem] text-gray-400 tracking-[0.01em]">
+      <p class="m-0 text-[0.8rem] text-gray-400 tracking-[0.01em]">
         {technologies.join(' · ')}
-      </span>
+      </p>
     )}
   </div>
 </header>

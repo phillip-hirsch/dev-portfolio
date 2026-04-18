@@ -14,11 +14,11 @@ interface Props {
 const { title, description } = Astro.props
 ---
 
-<html lang="en">
+<html lang="en" class="antialiased">
   <head>
     <MainHead title={title} description={description} />
   </head>
-  <body class="flex flex-col min-h-dvh backgrounds">
+  <body class="isolate flex flex-col min-h-dvh backgrounds">
     <Nav />
     <slot />
   </body>

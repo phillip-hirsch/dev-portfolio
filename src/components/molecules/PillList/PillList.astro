@@ -6,7 +6,7 @@ const { items, ariaLabel, size = 'md', as: Tag = 'div' } = Astro.props
 
 {
   Tag === 'ul' ? (
-    <ul class="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={ariaLabel}>
+    <ul class="m-0 flex list-none flex-wrap gap-2 p-0" role="list" aria-label={ariaLabel}>
       {items.map((item: string) => (
         <li>
           <Pill size={size}>{item}</Pill>

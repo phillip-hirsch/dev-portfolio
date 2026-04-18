@@ -7,8 +7,8 @@ const { size = 'sm' } = Astro.props
 
 {
   size === 'sm' ? (
-    <span class="block h-2.5 w-2.5 rounded-full bg-accent-regular shadow-[0_0_0_3px_var(--color-gray-999),0_0_0_5px_var(--color-accent-regular)] transition-shadow duration-200 group-hover:shadow-[0_0_0_3px_var(--color-gray-999),0_0_0_5px_var(--color-accent-regular),0_0_12px_var(--color-accent-overlay)]" />
+    <span class="block size-2.5 rounded-full bg-accent-regular shadow-[0_0_0_3px_var(--color-gray-999),0_0_0_5px_var(--color-accent-regular)] transition-shadow duration-200 group-hover:shadow-[0_0_0_3px_var(--color-gray-999),0_0_0_5px_var(--color-accent-regular),0_0_12px_var(--color-accent-overlay)]" />
   ) : (
-    <span class="block h-5 w-5 rounded-full border-2 border-solid border-accent-regular bg-(--color-gray-999) shadow-[0_0_0_4px_var(--color-gray-999),0_0_12px_var(--color-accent-overlay)]" />
+    <span class="block size-5 rounded-full border-2 border-accent-regular bg-(--color-gray-999) shadow-[0_0_0_4px_var(--color-gray-999),0_0_12px_var(--color-accent-overlay)]" />
   )
 }
