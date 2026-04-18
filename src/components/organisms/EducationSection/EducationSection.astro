@@ -1,6 +1,5 @@
 ---
 import { educationEntries } from '../../../data/education'
-import EducationEntry from '../../molecules/EducationEntry/EducationEntry.astro'
 import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
 ---
 
@@ -10,11 +9,40 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
       <SectionHeader label="Background" title="Education" />
     </div>
 
-    <ol
-      class="reveal reveal-delay-1 relative m-0 list-none pl-4 before:absolute before:bottom-[0.6rem] before:left-0 before:top-[0.6rem] before:w-px before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),transparent)] before:content-['']"
-      role="list"
-    >
-      {educationEntries.map((entry) => <EducationEntry entry={entry} />)}
-    </ol>
+    <div class="reveal reveal-delay-1 flex flex-col">
+      {
+        educationEntries.map((entry, index) => {
+          const [monthLabel, yearLabel] = entry.dateLabel.split(' ')
+          return (
+            <div
+              class={`grid grid-cols-1 gap-4 py-8 lg:grid-cols-[14rem_1fr] lg:gap-16 lg:py-10 ${
+                index > 0 ? 'border-t border-gray-800/40' : ''
+              }`}
+            >
+              <div class="flex flex-col gap-1">
+                <time
+                  class="font-mono text-[2rem] font-normal leading-none text-gray-0 lg:text-[2.5rem]"
+                  datetime={entry.dateTime}
+                >
+                  {yearLabel}
+                </time>
+                <span class="font-mono text-[0.75rem] uppercase tracking-[0.2em] text-accent-regular">
+                  {monthLabel}
+                </span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="m-0 font-brand text-[1.5rem] font-semibold leading-[1.2] text-gray-0 lg:text-[1.75rem]">
+                  {entry.degree}
+                </h3>
+                <p class="m-0 text-[1rem] text-gray-200">{entry.institution}</p>
+                <p class="m-0 text-[0.9rem] italic text-gray-400">
+                  Concentration: {entry.concentration}
+                </p>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
   </div>
 </section>
