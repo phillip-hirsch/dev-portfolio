@@ -12,14 +12,22 @@ export default defineConfig({
 
   fonts: [
     {
-      name: 'Public Sans',
+      name: 'Space Grotesk',
       cssVariable: '--font-body',
       provider: fontProviders.google(),
+      weights: ['400', '500', '600', '700'],
     },
     {
-      name: 'Rubik',
+      name: 'Space Grotesk',
       cssVariable: '--font-brand',
       provider: fontProviders.google(),
+      weights: ['500', '600', '700'],
+    },
+    {
+      name: 'Space Mono',
+      cssVariable: '--font-mono',
+      provider: fontProviders.google(),
+      weights: ['400', '700'],
     },
   ],
 
