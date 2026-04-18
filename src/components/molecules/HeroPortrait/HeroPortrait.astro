@@ -15,15 +15,13 @@ const { image, imageAlt } = Astro.props
   <div class="relative">
     {/* Ambient glow behind the portrait */}
     <div
-      class="absolute -inset-3 rounded-[3rem] blur-2xl animate-[fadeInUp_1.2s_ease-out_0.6s_backwards]"
-      style="background: radial-gradient(ellipse at center, hsla(199, 89%, 48%, 0.2), transparent 70%);"
+      class="absolute -inset-3 rounded-[3rem] blur-2xl animate-[fadeInUp_1.2s_ease-out_0.6s_backwards] bg-[radial-gradient(ellipse_at_center,hsla(199,89%,48%,0.2),transparent_70%)]"
       aria-hidden="true"
     >
     </div>
 
     <div
-      class="portrait-frame relative w-fit lg:w-full rounded-[2.5rem] p-0.75"
-      style="background: var(--gradient-accent); box-shadow: var(--glass-specular), var(--glass-shadow);"
+      class="portrait-frame relative w-fit lg:w-full rounded-[2.5rem] p-0.75 bg-(image:--gradient-accent) [box-shadow:var(--glass-specular),var(--glass-shadow)]"
     >
       <Image
         alt={imageAlt}

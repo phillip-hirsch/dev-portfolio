@@ -9,7 +9,7 @@ const { variant } = Astro.props
 
 {
   variant === 'desktop' ? (
-    <ul class="m-0 flex list-none gap-1 p-0">
+    <ul class="m-0 flex list-none gap-1 p-0" role="list">
       {textLinks.map(({ label, href }) => (
         <li>
           <a
