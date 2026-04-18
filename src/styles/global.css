@@ -181,6 +181,14 @@
     isolation: isolate;
     background: var(--color-gray-999);
   }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family:
+      var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
 }
 
 /* ── Flat Catppuccin surfaces ── */
