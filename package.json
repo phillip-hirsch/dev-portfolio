@@ -3,14 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "bunx --bun astro dev",
-    "build": "bunx --bun astro build",
-    "preview": "bunx --bun astro preview",
-    "sync": "bunx --bun astro sync",
-    "astro:check": "bunx --bun astro check",
-    "astro:check:write": "bunx --bun astro check . --write",
-    "biome:check": "bunx --bun biome check .",
-    "biome:check:write": "bunx --bun biome check --write ."
+    "dev": "astro dev",
+    "build": "astro build",
+    "sync": "astro sync",
+    "astro:check": "astro check",
+    "astro:check:write": "astro check . --write",
+    "biome:check": "biome check .",
+    "biome:check:write": "biome check . --write"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
