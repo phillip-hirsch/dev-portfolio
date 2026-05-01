@@ -76,9 +76,10 @@ const twitterCard = resolvedImage ? 'summary_large_image' : 'summary'
   const applyTheme = (doc) => {
     doc.documentElement.classList[getIsDark() ? 'add' : 'remove']('dark')
   }
+  const handleBeforeSwap = (e) => {
+    applyTheme(e.newDocument)
+  }
   applyTheme(document)
-  document.addEventListener('astro:before-swap', (e) =>
-    applyTheme(e.newDocument),
-  )
+  document.addEventListener('astro:before-swap', handleBeforeSwap)
   document.addEventListener('astro:page-load', () => applyTheme(document))
 </script>
