@@ -12,9 +12,9 @@
 - Tailwind v4 tokens are mapped through `@theme`; use utilities such as `text-gray-0`, `bg-accent-regular`, `shadow-md`, and `font-brand`.
 - Prefer those token-backed utilities over raw CSS variable utilities such as `text-[var(--color-gray-0)]`.
 - Custom breakpoints override Tailwind defaults:
-- `lg: 50em`
-- `xl: 60em`
-- `2xl: 70em`
+  - `lg: 50em`
+  - `xl: 60em`
+  - `2xl: 70em`
 
 ## Gradients And Backgrounds
 
