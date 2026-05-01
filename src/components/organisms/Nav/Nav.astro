@@ -1,9 +1,9 @@
 ---
-import { ThemeToggle } from '../../molecules/ThemeToggle/ThemeToggle'
 import BrandLink from './BrandLink.astro'
 import MobileMenuToggle from './MobileMenuToggle.astro'
 import NavLinks from './NavLinks.astro'
 import SocialLinks from './SocialLinks.astro'
+import ThemeToggle from '../../molecules/ThemeToggle/ThemeToggle.astro'
 ---
 
 <nav
@@ -24,7 +24,7 @@ import SocialLinks from './SocialLinks.astro'
       <div class="hidden items-center gap-0.5 xl:flex">
         <SocialLinks />
       </div>
-      <ThemeToggle client:load />
+      <ThemeToggle />
       <MobileMenuToggle />
     </div>
   </div>
