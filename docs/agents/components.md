@@ -4,9 +4,9 @@
 
 - The reusable page header pattern renders a title, optional tagline, and accent underline.
 - Props:
-- `title`
-- `tagline?`
-- `align?` with `'center'` as the default and `'start'` as the alternative.
+  - `title`
+  - `tagline?`
+  - `align?` with `'center'` as the default and `'start'` as the alternative.
 
 ## Navigation
 
