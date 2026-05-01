@@ -64,9 +64,13 @@ const twitterCard = resolvedImage ? 'summary_large_image' : 'summary'
   // If nothing is stored, fall back to the OS color scheme.
   // This script only reads the persisted theme preference; ThemeToggle writes it.
   const getIsDark = () => {
-    const pref = localStorage.getItem('theme')
-    if (pref === 'dark') return true
-    if (pref === 'light') return false
+    try {
+      const pref = localStorage.getItem('theme')
+      if (pref === 'dark') return true
+      if (pref === 'light') return false
+    } catch {
+      // Ignore storage access errors and fall back to the OS color scheme.
+    }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   }
   const applyTheme = (doc) => {
