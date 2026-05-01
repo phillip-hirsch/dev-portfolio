@@ -8,8 +8,8 @@
     "sync": "astro sync",
     "astro:check": "astro check",
     "astro:check:write": "astro check . --write",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\"",
+    "lint:fix": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\" --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },

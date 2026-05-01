@@ -61,7 +61,7 @@ const twitterCard = resolvedImage ? 'summary_large_image' : 'summary'
 <script is:inline>
   // Blocking script — runs before paint to prevent flash.
   // Theme stored as 'dark' | 'light' | 'system' (= follow OS).
-  // ThemeToggle owns localStorage; this script only reads it.
+  // This script only reads the persisted theme preference; persistence is handled elsewhere.
   const getIsDark = () => {
     const pref = localStorage.getItem('theme')
     if (pref === 'dark') return true
