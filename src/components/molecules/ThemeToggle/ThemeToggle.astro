@@ -35,7 +35,11 @@ import { MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
       button.dataset.themeToggleBound = 'true'
       button.addEventListener('click', () => {
         const isDark = document.documentElement.classList.toggle('dark')
-        localStorage.setItem('theme', isDark ? 'dark' : 'light')
+        try {
+          localStorage.setItem('theme', isDark ? 'dark' : 'light')
+        } catch {
+          // Ignore storage write failures so theme toggling still works.
+        }
       })
     }
   })
