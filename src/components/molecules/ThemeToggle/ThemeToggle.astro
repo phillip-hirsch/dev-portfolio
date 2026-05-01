@@ -5,11 +5,12 @@ import { MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
 <button
   type="button"
   data-theme-toggle
+  aria-pressed="false"
   aria-label="Toggle theme"
   title="Toggle theme"
   class="chip relative flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-xl transition-all duration-300 active:scale-95"
 >
-  <span class="sr-only">Toggle theme</span>
+  <span class="sr-only" data-theme-toggle-label>Toggle theme</span>
 
   {/* Sun — light mode */}
   <span
@@ -29,10 +30,21 @@ import { MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
 </button>
 
 <script>
+  const syncThemeToggleState = (button: HTMLButtonElement) => {
+    const isDark = document.documentElement.classList.contains('dark')
+    const label = isDark ? 'Switch to light mode' : 'Switch to dark mode'
+    button.setAttribute('aria-pressed', String(isDark))
+    button.setAttribute('aria-label', label)
+    button.setAttribute('title', label)
+    const text = button.querySelector('[data-theme-toggle-label]')
+    if (text) text.textContent = label
+  }
+
   document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
     if (button instanceof HTMLButtonElement) {
       if (button.dataset.themeToggleBound === 'true') return
       button.dataset.themeToggleBound = 'true'
+      syncThemeToggleState(button)
       button.addEventListener('click', () => {
         const isDark = document.documentElement.classList.toggle('dark')
         try {
@@ -40,6 +52,7 @@ import { MoonStarsIcon, SunIcon } from '@phosphor-icons/react'
         } catch {
           // Ignore storage write failures so theme toggling still works.
         }
+        syncThemeToggleState(button)
       })
     }
   })
