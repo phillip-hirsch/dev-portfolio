@@ -66,8 +66,6 @@ bun run dev
 # Build for production
 bun run build
 
-# Preview the production build locally
-bun run preview
 ```
 
 ## Linting & Formatting

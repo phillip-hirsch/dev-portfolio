@@ -3,7 +3,6 @@
 ## Commands
 
 - Development: `bun run dev`
-- Preview: `bun run preview`
 - Typecheck: `bun run astro:check`
 - Lint: `bun run lint`
 - Lint autofix: `bun run lint:fix`
