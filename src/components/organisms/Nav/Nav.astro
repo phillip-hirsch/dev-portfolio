@@ -148,6 +148,10 @@ import ThemeToggle from '../../molecules/ThemeToggle/ThemeToggle.astro'
       .querySelectorAll<HTMLAnchorElement>('[data-nav-home]')
       .forEach((link) => {
         link.addEventListener('click', (e) => {
+          if (window.location.pathname !== '/') {
+            return
+          }
+
           e.preventDefault()
           history.pushState(null, '', '/')
 
