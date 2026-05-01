@@ -3,12 +3,16 @@ import { useEffect, useState } from 'react'
 
 type Theme = 'light' | 'dark' | 'system'
 
+const getInitialTheme = (): Theme => {
+  if (typeof document === 'undefined') {
+    return 'light'
+  }
+
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+}
+
 export const ThemeToggle = () => {
-  const [theme, setThemeState] = useState<Theme>('light')
-  useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains('dark')
-    setThemeState(isDarkMode ? 'dark' : 'light')
-  }, [])
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme)
 
   useEffect(() => {
     const isDark =
@@ -21,9 +25,6 @@ export const ThemeToggle = () => {
   const toggle = () => {
     const next: Theme = theme === 'dark' ? 'light' : 'dark'
     setThemeState(next)
-    document.documentElement.classList[next === 'dark' ? 'add' : 'remove'](
-      'dark',
-    )
   }
 
   return (
@@ -36,7 +37,7 @@ export const ThemeToggle = () => {
       }
       title={theme === 'dark' ? 'Dark theme' : 'Light theme'}
       onClick={toggle}
-      className="chip relative flex items-center justify-center w-9 h-9 rounded-xl cursor-pointer overflow-hidden transition-all duration-300 active:scale-95"
+      className="chip relative flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-xl transition-all duration-300 active:scale-95"
     >
       <span className="sr-only">
         {theme === 'dark' ? 'Dark theme' : 'Light theme'}
@@ -45,7 +46,7 @@ export const ThemeToggle = () => {
       {/* Sun — light mode */}
       <span
         aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center text-accent-regular transition-[opacity,transform] duration-200 ease-out"
+        className="text-accent-regular absolute inset-0 flex items-center justify-center transition-[opacity,transform] duration-200 ease-out"
         style={{
           opacity: theme === 'light' ? 1 : 0,
           transform: theme === 'light' ? 'scale(1)' : 'scale(0.35)',
@@ -57,7 +58,7 @@ export const ThemeToggle = () => {
       {/* Moon — dark mode */}
       <span
         aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center text-accent-dark transition-[opacity,transform] duration-200 ease-out"
+        className="text-accent-dark absolute inset-0 flex items-center justify-center transition-[opacity,transform] duration-200 ease-out"
         style={{
           opacity: theme === 'dark' ? 1 : 0,
           transform: theme === 'dark' ? 'scale(1)' : 'scale(0.35)',

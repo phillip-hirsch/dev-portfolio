@@ -9,16 +9,14 @@ interface Props {
 const { firstName, lastName } = Astro.props
 ---
 
-<div
-  class="order-2 lg:order-1 flex flex-col gap-5 items-center lg:items-start"
->
+<div class="order-2 flex flex-col items-center gap-5 lg:order-1 lg:items-start">
   <h1
-    class="flex flex-col font-brand font-semibold leading-none tracking-tight text-center lg:text-start animate-[fadeInUp_0.6s_cubic-bezier(0.16,1,0.3,1)_backwards] [animation-delay:250ms]"
+    class="font-brand flex animate-[fadeInUp_0.6s_cubic-bezier(0.16,1,0.3,1)_backwards] flex-col text-center leading-none font-semibold tracking-tight [animation-delay:250ms] lg:text-start"
   >
-    <span class="text-[clamp(2.5rem,5.5vw,5rem)] text-gray-0">{firstName}</span>
+    <span class="text-gray-0 text-[clamp(2.5rem,5.5vw,5rem)]">{firstName}</span>
     {
       lastName && (
-        <span class="text-[clamp(2.5rem,5.5vw,5rem)] bg-(image:--gradient-accent) bg-clip-text text-transparent">
+        <span class="bg-(image:--gradient-accent) bg-clip-text text-[clamp(2.5rem,5.5vw,5rem)] text-transparent">
           {lastName}
         </span>
       )
@@ -26,25 +24,32 @@ const { firstName, lastName } = Astro.props
   </h1>
 
   <div
-    class="flex items-center gap-3 animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:400ms]"
+    class="flex animate-[fadeInUp_0.5s_ease-out_backwards] items-center gap-3 [animation-delay:400ms]"
   >
-    <div class="w-8 h-px bg-linear-to-r from-accent-regular to-transparent shrink-0 hidden lg:block"></div>
-    <p class="text-xs text-gray-300 uppercase tracking-[0.16em]">
+    <div
+      class="from-accent-regular hidden h-px w-8 shrink-0 bg-linear-to-r to-transparent lg:block"
+    >
+    </div>
+    <p class="text-xs tracking-[0.16em] text-gray-300 uppercase">
       Software Engineer · Charlotte, NC · 3+ Years
     </p>
   </div>
 
   <p
-    class="text-sm/6 text-gray-300 text-center lg:text-start max-w-sm animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:480ms]"
+    class="max-w-sm animate-[fadeInUp_0.5s_ease-out_backwards] text-center text-sm/6 text-gray-300 [animation-delay:480ms] lg:text-start"
   >
-    I turn complex requirements into clean, scalable products — specializing in React, TypeScript,
-    and the full stack between design and deployment.
+    I turn complex requirements into clean, scalable products — specializing in
+    React, TypeScript, and the full stack between design and deployment.
   </p>
 
   <div
-    class="flex flex-wrap items-center gap-3 justify-center lg:justify-start animate-[fadeInUp_0.5s_ease-out_backwards] [animation-delay:560ms]"
+    class="flex animate-[fadeInUp_0.5s_ease-out_backwards] flex-wrap items-center justify-center gap-3 [animation-delay:560ms] lg:justify-start"
   >
-    <ButtonLink href="/assets/Phillip_Hirsch.pdf" variant="secondary" download={true}>
+    <ButtonLink
+      href="/assets/Phillip_Hirsch.pdf"
+      variant="secondary"
+      download={true}
+    >
       <DownloadSimpleIcon size={14} aria-hidden="true" className="shrink-0" />
       Resume
     </ButtonLink>

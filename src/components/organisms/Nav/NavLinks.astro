@@ -15,7 +15,7 @@ const { variant } = Astro.props
           <a
             href={href}
             {...(href === '/' ? { 'data-nav-home': true } : {})}
-            class="desktop-nav-link relative inline-flex items-center no-underline font-medium px-4 py-1.5 text-sm rounded-xl text-gray-400 transition-all duration-300 hover:text-gray-0"
+            class="desktop-nav-link hover:text-gray-0 relative inline-flex items-center rounded-xl px-4 py-1.5 text-sm font-medium text-gray-400 no-underline transition-all duration-300"
           >
             {label}
           </a>
@@ -23,13 +23,13 @@ const { variant } = Astro.props
       ))}
     </ul>
   ) : (
-    <ul class="m-0 flex flex-col list-none p-0" role="list">
+    <ul class="m-0 flex list-none flex-col p-0" role="list">
       {textLinks.map(({ label, href }) => (
         <li>
           <a
             href={href}
             {...(href === '/' ? { 'data-nav-home': true } : {})}
-            class="flex items-center no-underline font-medium w-full px-6 py-4 text-lg text-gray-100 transition-colors duration-200 hover:text-accent-regular active:bg-gray-900"
+            class="hover:text-accent-regular flex w-full items-center px-6 py-4 text-lg font-medium text-gray-100 no-underline transition-colors duration-200 active:bg-gray-900"
           >
             {label}
           </a>

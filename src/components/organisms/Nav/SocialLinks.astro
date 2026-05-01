@@ -3,15 +3,17 @@ import { iconLinks } from '../../../data/nav'
 ---
 
 <div class="flex gap-0.5 text-xl">
-  {iconLinks.map(({ href, icon: SocialIcon, label }) => (
-    <a
-      href={href}
-      class="social-icon flex p-2 no-underline text-gray-400 rounded-xl transition-all duration-300 ease-out hover:text-gray-0"
-    >
-      <span class="sr-only">{label}</span>
-      <SocialIcon />
-    </a>
-  ))}
+  {
+    iconLinks.map(({ href, icon: SocialIcon, label }) => (
+      <a
+        href={href}
+        class="social-icon hover:text-gray-0 flex rounded-xl p-2 text-gray-400 no-underline transition-all duration-300 ease-out"
+      >
+        <span class="sr-only">{label}</span>
+        <SocialIcon />
+      </a>
+    ))
+  }
 </div>
 
 <style>

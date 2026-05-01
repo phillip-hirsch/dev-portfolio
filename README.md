@@ -11,7 +11,8 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 - **Responsive layout** — mobile-first with adaptive grid
 - **Phosphor Icons** for a consistent icon set
 - **Auto-generated OG images** via `@vercel/og`
-- **Biome** for linting and formatting
+- **ESLint** for linting
+- **Prettier** for formatting
 - **TypeScript** in strict mode
 
 ## Architecture
@@ -24,16 +25,17 @@ Static `.astro` components by default; `.tsx` React components only where intera
 
 ## Tech Stack
 
-| Layer     | Technology                           |
-| :-------- | :----------------------------------- |
-| Framework | Astro 6                              |
-| UI        | React 19                             |
-| Styling   | Tailwind CSS 4                       |
-| Icons     | Phosphor Icons                       |
-| Fonts     | Space Grotesk, Space Mono (via Astro Fonts) |
-| Linting   | Biome                                |
-| Hosting   | Vercel (hybrid — static pages + OG endpoint as serverless fn) |
-| Runtime   | Bun                                  |
+| Layer      | Technology                                                    |
+| :--------- | :------------------------------------------------------------ |
+| Framework  | Astro 6                                                       |
+| UI         | React 19                                                      |
+| Styling    | Tailwind CSS 4                                                |
+| Icons      | Phosphor Icons                                                |
+| Fonts      | Space Grotesk, Space Mono (via Astro Fonts)                   |
+| Linting    | ESLint                                                        |
+| Formatting | Prettier                                                      |
+| Hosting    | Vercel (hybrid — static pages + OG endpoint as serverless fn) |
+| Runtime    | Bun                                                           |
 
 ## Project Structure
 
@@ -71,11 +73,17 @@ bun run preview
 ## Linting & Formatting
 
 ```bash
-# Check for lint and format issues
-bun run biome:check
+# Check for lint issues
+bun run lint
 
-# Auto-fix issues
-bun run biome:check:write
+# Check formatting
+bun run format:check
+
+# Auto-fix lint issues
+bun run lint:fix
+
+# Rewrite files with Prettier
+bun run format
 
 # Type-check Astro and TSX files
 bun run astro:check

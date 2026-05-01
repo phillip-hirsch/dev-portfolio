@@ -11,7 +11,11 @@ import SkillRow from '../../molecules/SkillRow/SkillRow.astro'
     </div>
 
     <dl class="reveal reveal-delay-1 flex flex-col">
-      {skillCategories.map((category, index) => <SkillRow category={category} isFirst={index === 0} />)}
+      {
+        skillCategories.map((category, index) => (
+          <SkillRow category={category} isFirst={index === 0} />
+        ))
+      }
     </dl>
   </div>
 </section>

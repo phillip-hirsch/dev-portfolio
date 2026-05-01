@@ -11,9 +11,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   title="Phillip Hirsch | Software Engineer"
   description="Software engineer building accessible, performant web and mobile products with React, TypeScript, and modern architecture."
 >
-  <main class="w-full mx-auto px-6 lg:px-10">
+  <main class="mx-auto w-full px-6 lg:px-10">
     <!-- Hero -->
-    <div class="min-h-[calc(100dvh-4.5rem)] flex flex-col justify-center">
+    <div class="flex min-h-[calc(100dvh-4.5rem)] flex-col justify-center">
       <Hero
         name="Phillip Hirsch"
         image={portrait}
@@ -22,7 +22,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     </div>
 
     <!-- Below-fold sections -->
-    <div class="max-w-250 mx-auto flex flex-col gap-24 pb-28 lg:gap-32">
+    <div class="mx-auto flex max-w-250 flex-col gap-24 pb-28 lg:gap-32">
       <ExperienceSection />
       <EducationSection />
       <SkillsSection />

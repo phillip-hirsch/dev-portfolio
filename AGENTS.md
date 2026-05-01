@@ -4,7 +4,7 @@ This file provides guidance to AI agent when working with code in this repositor
 
 ## Task Completion Requirements
 
-- All of `bun run astro:check`, `bun run biome:check`, and `bun run build` must pass before considering tasks completed.
+- All of `bun run astro:check`, `bun run lint`, `bun run format:check`, and `bun run build` must pass before considering tasks completed.
 
 ## Commands
 
@@ -17,16 +17,18 @@ bun run preview   # Preview production build
 # Type checking
 bun run astro:check          # Type-check .astro and .tsx files
 
-# Linting & Formatting (via Biome)
-bun run biome:check          # Check for lint/format issues
-bun run biome:check:write    # Auto-fix lint/format issues
+# Linting & Formatting
+bun run lint                 # Check for lint issues
+bun run lint:fix             # Auto-fix lint issues
+bun run format:check         # Check formatting
+bun run format               # Rewrite files with Prettier
 ```
 
 No test suite is configured.
 
 ## Tech Stack
 
-Astro 6 · React 19 (islands) · Tailwind CSS v4 · Phosphor Icons · Biome · Bun
+Astro 6 · React 19 (islands) · Tailwind CSS v4 · Phosphor Icons · ESLint · Prettier · Bun
 Deployed to Vercel in hybrid mode — pages are prerendered, but `src/pages/og.png.ts` opts into SSR (`export const prerender = false`) and runs as a serverless function.
 Fonts loaded via Astro Fonts API: Space Grotesk (body & brand), Space Mono (mono).
 
@@ -62,6 +64,6 @@ Fonts loaded via Astro Fonts API: Space Grotesk (body & brand), Space Mono (mono
 
 ## Notes
 
-- Biome disables unused variable/import checks for `.astro` files — don't add them back.
+- ESLint disables unused variable/import checks for `.astro` files — don't add them back.
 - TypeScript strict mode via `tsconfig.json` extending `astro/tsconfigs/strict`.
 - Tailwind is configured via the Vite plugin (`@tailwindcss/vite`), not PostCSS.
