@@ -5,13 +5,14 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 ## Features
 
 - **Astro 6** with page animations
-- **React 19** interactive island (theme toggle)
+- **React 19** for server-rendered integrations
 - **Tailwind CSS v4** for styling with custom theme tokens
 - **Dark / light theme** toggle with persistence (falls back to `prefers-color-scheme` on first visit)
 - **Responsive layout** — mobile-first with adaptive grid
 - **Phosphor Icons** for a consistent icon set
 - **Auto-generated OG images** via `@vercel/og`
-- **Biome** for linting and formatting
+- **ESLint** for linting
+- **Prettier** for formatting
 - **TypeScript** in strict mode
 
 ## Architecture
@@ -20,20 +21,21 @@ Single-page layout — `index.astro` is the only content page. Nav links use anc
 
 Components follow **atomic design**: atoms (ButtonLink, TimelineDot), molecules (HeroPortrait, PageHeader, EducationEntry), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
 
-Static `.astro` components by default; `.tsx` React components only where interactivity is needed.
+Static `.astro` components by default; there are currently no hydrated React islands. React remains in use for server-rendered integrations such as icons and the OG image endpoint.
 
 ## Tech Stack
 
-| Layer     | Technology                           |
-| :-------- | :----------------------------------- |
-| Framework | Astro 6                              |
-| UI        | React 19                             |
-| Styling   | Tailwind CSS 4                       |
-| Icons     | Phosphor Icons                       |
-| Fonts     | Space Grotesk, Space Mono (via Astro Fonts) |
-| Linting   | Biome                                |
-| Hosting   | Vercel (hybrid — static pages + OG endpoint as serverless fn) |
-| Runtime   | Bun                                  |
+| Layer      | Technology                                                    |
+| :--------- | :------------------------------------------------------------ |
+| Framework  | Astro 6                                                       |
+| UI         | React 19                                                      |
+| Styling    | Tailwind CSS 4                                                |
+| Icons      | Phosphor Icons                                                |
+| Fonts      | Space Grotesk, Space Mono (via Astro Fonts)                   |
+| Linting    | ESLint                                                        |
+| Formatting | Prettier                                                      |
+| Hosting    | Vercel (hybrid — static pages + OG endpoint as serverless fn) |
+| Runtime    | Bun                                                           |
 
 ## Project Structure
 
@@ -71,12 +73,18 @@ bun run preview
 ## Linting & Formatting
 
 ```bash
-# Check for lint and format issues
-bun run biome:check
+# Check for lint issues
+bun run lint
 
-# Auto-fix issues
-bun run biome:check:write
+# Check formatting
+bun run format:check
 
-# Type-check Astro and TSX files
+# Auto-fix lint issues
+bun run lint:fix
+
+# Rewrite files with Prettier
+bun run format
+
+# Type-check Astro and TypeScript files
 bun run astro:check
 ```

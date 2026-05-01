@@ -1,40 +1,41 @@
 ---
-import { ThemeToggle } from '../../molecules/ThemeToggle/ThemeToggle'
 import BrandLink from './BrandLink.astro'
 import MobileMenuToggle from './MobileMenuToggle.astro'
 import NavLinks from './NavLinks.astro'
 import SocialLinks from './SocialLinks.astro'
+import ThemeToggle from '../../molecules/ThemeToggle/ThemeToggle.astro'
 ---
 
 <nav
   data-menu-state="closed"
-  class="nav-bar sticky top-0 z-9999 font-brand font-medium"
+  class="nav-bar font-brand sticky top-0 z-9999 font-medium"
 >
-  <div class="flex justify-between items-center gap-2 px-5 py-3.5 lg:px-16 lg:py-4">
+  <div
+    class="flex items-center justify-between gap-2 px-5 py-3.5 lg:px-16 lg:py-4"
+  >
     <BrandLink />
 
     {/* Desktop nav — centered links */}
-    <div class="hidden lg:flex items-center gap-1">
+    <div class="hidden items-center gap-1 lg:flex">
       <NavLinks variant="desktop" />
     </div>
 
     <div class="flex items-center gap-2">
-      <div class="hidden xl:flex items-center gap-0.5">
+      <div class="hidden items-center gap-0.5 xl:flex">
         <SocialLinks />
       </div>
-      <ThemeToggle client:load />
+      <ThemeToggle />
       <MobileMenuToggle />
     </div>
   </div>
 
   {/* Mobile menu panel — full-width, opaque, high-contrast */}
-  <div
-    id="nav-menu"
-    class="nav-menu-container"
-  >
+  <div id="nav-menu" class="nav-menu-container">
     <div class="mobile-menu-panel">
       <NavLinks variant="mobile" />
-      <div class="flex items-center gap-3 px-6 py-4 border-t border-gray-800/30">
+      <div
+        class="flex items-center gap-3 border-t border-gray-800/30 px-6 py-4"
+      >
         <SocialLinks />
       </div>
     </div>
@@ -122,7 +123,11 @@ import SocialLinks from './SocialLinks.astro'
   // Toggle button
   if (nav && toggle && container) {
     toggle.addEventListener('click', () => {
-      getState() === 'open' ? closeMenu() : openMenu()
+      if (getState() === 'open') {
+        closeMenu()
+      } else {
+        openMenu()
+      }
     })
 
     // Finish close animation
@@ -139,24 +144,30 @@ import SocialLinks from './SocialLinks.astro'
     })
 
     // Smooth scroll to top for home links (brand + Home nav link)
-    nav.querySelectorAll<HTMLAnchorElement>('[data-nav-home]').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault()
-        history.pushState(null, '', '/')
+    nav
+      .querySelectorAll<HTMLAnchorElement>('[data-nav-home]')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          if (window.location.pathname !== '/') {
+            return
+          }
 
-        const prefersReducedMotion = window
-          .matchMedia('(prefers-reduced-motion: reduce)')
-          .matches
+          e.preventDefault()
+          history.pushState(null, '', '/')
 
-        if (prefersReducedMotion) {
-          window.scrollTo(0, 0)
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }
+          const prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+          ).matches
 
-        closeMenu(false)
+          if (prefersReducedMotion) {
+            window.scrollTo(0, 0)
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+
+          closeMenu(false)
+        })
       })
-    })
   }
 
   // Escape key closes menu

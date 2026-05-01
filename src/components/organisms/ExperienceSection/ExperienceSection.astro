@@ -9,7 +9,7 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
 
 <section
   id="experience"
-  class="relative flex flex-col gap-10 lg:before:absolute lg:before:bottom-3 lg:before:-left-6 lg:before:top-3 lg:before:w-0.5 lg:before:rounded-[1px] lg:before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),var(--color-accent-light)_60%,transparent)] lg:before:content-['']"
+  class="relative flex flex-col gap-10 lg:before:absolute lg:before:top-3 lg:before:bottom-3 lg:before:-left-6 lg:before:w-0.5 lg:before:rounded-[1px] lg:before:bg-[linear-gradient(to_bottom,var(--color-accent-regular),var(--color-accent-light)_60%,transparent)] lg:before:content-['']"
 >
   <div class="reveal">
     <SectionHeader label="Career" title="Experience" />
@@ -20,7 +20,10 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
       <article
         class={`reveal reveal-delay-${Math.min(entryIndex + 1, 4)} card relative flex flex-col gap-6 rounded-[1.5rem] p-8 lg:p-10`}
       >
-        <div class="hidden lg:block absolute -left-8.5 top-8" aria-hidden="true">
+        <div
+          class="absolute top-8 -left-8.5 hidden lg:block"
+          aria-hidden="true"
+        >
           <TimelineDot size="lg" />
         </div>
 

@@ -60,20 +60,26 @@ const twitterCard = resolvedImage ? 'summary_large_image' : 'summary'
 <Font cssVariable="--font-mono" />
 <script is:inline>
   // Blocking script — runs before paint to prevent flash.
-  // Theme stored as 'dark' | 'light' | 'system' (= follow OS).
-  // ThemeToggle owns localStorage; this script only reads it.
+  // Persisted theme values are 'dark' or 'light'.
+  // If nothing is stored, fall back to the OS color scheme.
+  // This script only reads the persisted theme preference; ThemeToggle writes it.
   const getIsDark = () => {
-    const pref = localStorage.getItem("theme");
-    if (pref === "dark") return true;
-    if (pref === "light") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  };
+    try {
+      const pref = localStorage.getItem('theme')
+      if (pref === 'dark') return true
+      if (pref === 'light') return false
+    } catch {
+      // Ignore storage access errors and fall back to the OS color scheme.
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
   const applyTheme = (doc) => {
-    doc.documentElement.classList[getIsDark() ? "add" : "remove"]("dark");
-  };
-  applyTheme(document);
-  document.addEventListener("astro:before-swap", (e) =>
-    applyTheme(e.newDocument),
-  );
-  document.addEventListener("astro:page-load", () => applyTheme(document));
+    doc.documentElement.classList[getIsDark() ? 'add' : 'remove']('dark')
+  }
+  const handleBeforeSwap = (e) => {
+    applyTheme(e.newDocument)
+  }
+  applyTheme(document)
+  document.addEventListener('astro:before-swap', handleBeforeSwap)
+  document.addEventListener('astro:page-load', () => applyTheme(document))
 </script>

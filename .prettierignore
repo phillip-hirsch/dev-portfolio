@@ -1,0 +1,7 @@
+.astro
+bun.lock
+bun.lockb
+dist
+node_modules
+public/assets
+public/favicon.ico

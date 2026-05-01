@@ -7,16 +7,14 @@ interface Props {
 const { label, title } = Astro.props
 ---
 
-<header
-  class="relative flex flex-col gap-[0.3rem] overflow-hidden pb-5"
->
+<header class="relative flex flex-col gap-[0.3rem] overflow-hidden pb-5">
   <p
-    class="m-0 font-body text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-accent-regular"
+    class="font-body text-accent-regular m-0 text-[0.7rem] font-semibold tracking-[0.2em] uppercase"
   >
     {label}
   </p>
   <h2
-    class="m-0 font-brand text-[clamp(1.6rem,4vw,2.4rem)] font-semibold text-gray-0"
+    class="font-brand text-gray-0 m-0 text-[clamp(1.6rem,4vw,2.4rem)] font-semibold"
   >
     {title}
   </h2>
