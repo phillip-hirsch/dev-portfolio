@@ -4,7 +4,7 @@ description: Run the full set of project gates (astro:check, lint, format:check,
 user-invocable: false
 ---
 
-`AGENTS.md` requires four checks before any task is considered complete. Run them in this order — each is fast except `build`, and stopping early on a failure saves time:
+`AGENTS.md` requires these four checks before any task is considered complete. A good default is to run them in this order — each is fast except `build`, and stopping early on a failure saves time:
 
 1. `bun run astro:check` — TypeScript + Astro diagnostics
 2. `bun run lint` — ESLint
