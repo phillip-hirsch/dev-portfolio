@@ -6,9 +6,9 @@ disable-model-invocation: true
 
 Run the following in sequence and report results. If any step fails, stop and surface the error — don't attempt fixes automatically.
 
-1. `bun run format:check` — Prettier format check
+1. `bun run astro:check` — TypeScript + Astro type check
 2. `bun run lint` — ESLint
-3. `bun run astro:check` — TypeScript + Astro type check
+3. `bun run format:check` — Prettier format check
 4. `bun run build` — full production build
 5. **OG endpoint smoke check** (Playwright MCP). The `/og.png` route is `prerender = false`, so it can't be served by `astro preview` — use `bun run dev`:
    1. Start `bun run dev` in the background (default port `4321`). Wait for the "ready" log line.
