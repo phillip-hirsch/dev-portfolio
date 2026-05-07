@@ -20,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bunx --bun astro check"
+            "command": "bun run astro:check"
           }
         ]
       }
