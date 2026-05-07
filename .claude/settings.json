@@ -6,11 +6,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bunx --bun prettier --write \"${file}\" 2>/dev/null || true"
+            "command": "bunx --bun prettier --write --log-level warn --ignore-unknown \"${file}\" || true"
           },
           {
             "type": "command",
-            "command": "case \"${file}\" in *.astro|*.tsx|*.ts|*.jsx|*.js|*.mjs|*.cjs) bunx --bun eslint --fix \"${file}\" 2>/dev/null || true ;; esac"
+            "command": "case \"${file}\" in *.astro|*.tsx|*.ts|*.jsx|*.js|*.mjs|*.cjs) bunx --bun eslint --fix \"${file}\" ;; esac"
           }
         ]
       }
