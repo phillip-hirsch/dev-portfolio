@@ -6,14 +6,27 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bunx --bun biome check --write \"${file}\""
+            "command": "bunx --bun prettier --write \"${file}\" 2>/dev/null || true"
           },
           {
             "type": "command",
-            "command": "if [[ \"${file}\" == *.astro || \"${file}\" == *.tsx ]]; then bunx --bun astro check; fi"
+            "command": "case \"${file}\" in *.astro|*.tsx|*.ts|*.jsx|*.js|*.mjs|*.cjs) bunx --bun eslint --fix \"${file}\" 2>/dev/null || true ;; esac"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bunx --bun astro check"
           }
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "playwright@claude-plugins-official": true
   }
 }
