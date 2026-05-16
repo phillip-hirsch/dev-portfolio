@@ -6,39 +6,43 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     label: 'Languages',
-    items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL', 'NoSQL'],
+    items: ['TypeScript', 'JavaScript', 'Python', 'Swift', 'Kotlin'],
   },
   {
-    label: 'Front-End',
-    items: ['React', 'React Native', 'Remix', 'Astro', 'Next.js'],
-  },
-  {
-    label: 'Back-End & APIs',
+    label: 'Frontend',
     items: [
-      'Node.js',
-      'Express.js',
-      'NestJS',
-      'GraphQL',
-      'Bun',
-      'RESTful APIs',
+      'React',
+      'React Native',
+      'Astro',
+      'Tailwind CSS',
+      'Vite',
+      'React Router',
+      'React Navigation',
+      'React Reanimated',
+      'Zustand',
+      'TanStack React Query',
+      'XState',
+      'LaunchDarkly',
     ],
   },
   {
-    label: 'Cloud & DevOps',
-    items: ['AWS', 'Docker', 'GitHub Actions'],
+    label: 'Data & API',
+    items: ['GraphQL', 'REST APIs', 'Contentful (headless CMS)'],
   },
   {
-    label: 'Testing & Security',
-    items: [
-      'Jest',
-      'Cypress',
-      'Authentication Security',
-      'OWASP',
-      'Secure API Development',
-    ],
+    label: 'Testing',
+    items: ['Jest', 'Cypress'],
   },
   {
-    label: 'AI Tooling',
-    items: ['GitHub Copilot', 'Claude Code', 'Claude', 'ChatGPT'],
+    label: 'CI/CD',
+    items: ['GitHub Actions', 'Docker', 'Vercel', 'Netlify', 'Cloudflare'],
+  },
+  {
+    label: 'Monitoring',
+    items: ['Dynatrace'],
+  },
+  {
+    label: 'AI Tools',
+    items: ['Claude Code', 'Codex', 'OpenCode', 'Pi'],
   },
 ]
