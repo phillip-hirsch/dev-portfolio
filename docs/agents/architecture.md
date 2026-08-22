@@ -13,6 +13,15 @@
 - Navigation is in-page and anchored to the main resume-style sections: experience, education, and skills.
 - The site includes a not-found page and a dynamic Open Graph image endpoint.
 - The OG image endpoint is the main server-rendered exception in an otherwise mostly static site.
+- Trust anchor pages live at `/about`, `/contact`, and `/privacy`; they reuse the base layout and page header and are listed in the sitemap.
+
+## Machine-Readable Surfaces
+
+- `src/data/site.ts` is the canonical identity module (name, URL, location, profiles) shared by every machine-readable surface.
+- `/index.md`, `/llms.txt`, and `/sitemap.xml` are prerendered endpoints generated from the same data modules as the HTML sections — update the data, not the endpoints.
+- `GET /` serves the markdown variant when the request sends `Accept: text/markdown`; the rewrite and `Vary: Accept` headers live in `vercel.json`.
+- The homepage embeds Person and WebSite JSON-LD via the `StructuredData` atom.
+- `tests/agent-readiness.test.ts` asserts on all of these against the build output in `.vercel/output/static`.
 
 ## Layout
 

@@ -1,13 +1,48 @@
 ---
 import PageHeader from '../components/molecules/PageHeader/PageHeader.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+const destinations = [
+  { href: '/', label: 'Home', note: 'resume, experience, education, skills' },
+  { href: '/about', label: 'About', note: 'background and current focus' },
+  { href: '/contact', label: 'Contact', note: 'how to get in touch' },
+  { href: '/sitemap.xml', label: 'Sitemap', note: 'all indexable URLs' },
+  {
+    href: '/llms.txt',
+    label: 'llms.txt',
+    note: 'guidance for AI agents',
+  },
+  {
+    href: '/index.md',
+    label: 'index.md',
+    note: 'this site as markdown',
+  },
+]
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-  <main class="flex flex-col gap-20 pt-14">
+  <main class="flex flex-col items-center gap-10 px-6 pt-14 pb-28">
     <PageHeader
       title="404 — Page Not Found"
       tagline="Sorry, the page you're looking for doesn't exist or has been moved."
     />
+    <nav
+      aria-label="Suggested destinations"
+      class="flex max-w-md flex-col gap-3 text-center text-[0.95rem] leading-[1.7] text-gray-300"
+    >
+      <p class="m-0">Here's where to look instead:</p>
+      <ul class="m-0 flex list-none flex-col gap-1.5 p-0" role="list">
+        {
+          destinations.map(({ href, label, note }) => (
+            <li>
+              <a href={href} class="text-accent-regular">
+                {label}
+              </a>
+              <span class="text-gray-400"> — {note}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </main>
 </BaseLayout>

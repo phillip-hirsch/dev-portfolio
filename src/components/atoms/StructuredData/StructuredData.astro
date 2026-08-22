@@ -1,0 +1,60 @@
+---
+import { educationEntries } from '../../../data/education'
+import { absoluteUrl, site } from '../../../data/site'
+import { skillCategories } from '../../../data/skills'
+
+const personId = `${site.url}/#person`
+const websiteId = `${site.url}/#website`
+
+const alumniOf = [
+  ...new Set(educationEntries.map((entry) => entry.institution)),
+].map((institution) => ({
+  '@type': 'CollegeOrUniversity',
+  name: institution,
+}))
+
+const knowsAbout = skillCategories.flatMap((category) => category.items)
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.name,
+      url: `${site.url}/`,
+      jobTitle: site.jobTitle,
+      description: site.description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: site.location.city,
+        addressRegion: site.location.region,
+        addressCountry: site.location.country,
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'professional inquiries',
+        url: absoluteUrl('/contact'),
+      },
+      sameAs: [...site.sameAs],
+      alumniOf,
+      knowsAbout,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: site.name,
+      url: `${site.url}/`,
+      description: site.description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+  ],
+}
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

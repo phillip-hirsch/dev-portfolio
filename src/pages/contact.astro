@@ -1,0 +1,61 @@
+---
+import PageHeader from '../components/molecules/PageHeader/PageHeader.astro'
+import { site } from '../data/site'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title={`Contact | ${site.name}`}
+  description={`How to reach ${site.name} for roles, collaboration, or questions.`}
+>
+  <main class="mx-auto w-full max-w-3xl px-6 pt-14 pb-28 lg:px-10">
+    <div class="flex flex-col gap-10">
+      <PageHeader
+        title="Contact"
+        tagline="The best ways to reach me, and what to expect."
+        align="start"
+      />
+      <div
+        class="flex flex-col gap-5 text-[0.95rem] leading-[1.75] text-gray-300"
+      >
+        <p>
+          I'm always happy to hear about interesting engineering problems,
+          whether that's a role, a collaboration, or a question about something
+          I've worked on. I'm based in {site.location.city},
+          {site.location.region} (Eastern Time), and I typically reply within a couple
+          of business days.
+        </p>
+        <ul class="m-0 flex list-none flex-col gap-2.5 p-0" role="list">
+          <li>
+            <strong class="text-gray-0 font-medium"
+              >LinkedIn (preferred):</strong
+            >
+            <a href={site.sameAs[0]} class="text-accent-regular"
+              >linkedin.com/in/phillip-hirsch</a
+            > — direct messages are the fastest way to reach me.
+          </li>
+          <li>
+            <strong class="text-gray-0 font-medium">GitHub:</strong>
+            <a href={site.sameAs[1]} class="text-accent-regular"
+              >github.com/phillip-hirsch</a
+            > — for anything related to my open-source work or code samples.
+          </li>
+          <li>
+            <strong class="text-gray-0 font-medium">Resume:</strong>
+            <a href={site.resumePath} class="text-accent-regular"
+              >download the PDF</a
+            > for a printable summary of my experience.
+          </li>
+        </ul>
+        <p>
+          For recruiters: my current role, work history, and full skill list are
+          on the <a href="/" class="text-accent-regular">home page</a>, and a
+          machine-readable markdown version is available at
+          <a href="/index.md" class="text-accent-regular">/index.md</a>. Please
+          include the role, location or remote policy, and tech stack in a first
+          message — it helps me respond quickly and usefully.
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

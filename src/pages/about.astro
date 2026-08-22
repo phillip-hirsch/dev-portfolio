@@ -1,0 +1,52 @@
+---
+import PageHeader from '../components/molecules/PageHeader/PageHeader.astro'
+import { site } from '../data/site'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title={`About | ${site.name}`}
+  description={`Who ${site.name} is — background, current work, and what this site is for.`}
+>
+  <main class="mx-auto w-full max-w-3xl px-6 pt-14 pb-28 lg:px-10">
+    <div class="flex flex-col gap-10">
+      <PageHeader
+        title="About"
+        tagline="A short introduction beyond the resume."
+        align="start"
+      />
+      <div
+        class="flex flex-col gap-5 text-[0.95rem] leading-[1.75] text-gray-300"
+      >
+        <p>
+          I'm {site.name}, a software engineer based in {site.location.city},
+          {site.location.region}. Since March 2023 I've been working with Ally
+          Financial (on contract via Brooksource), where I build and optimize
+          mobile and web banking experiences in React, React Native, and
+          TypeScript — cutting load times, improving rendering efficiency, and
+          raising accessibility to WCAG 2.1 standards.
+        </p>
+        <p>
+          Before that, I earned an M.S. in Computer Science (Software, Systems
+          &amp; Networks) and a B.S. in Computer Science (Software Engineering),
+          both from the University of North Carolina at Charlotte. Day to day I
+          care about the full stack between design and deployment: reusable
+          component systems, sensible state management, API integration with
+          headless CMS platforms like Contentful, and CI/CD on platforms such as
+          Vercel and Netlify.
+        </p>
+        <p>
+          This site is my personal portfolio — a single-page resume covering my
+          <a href="/#experience" class="text-accent-regular">experience</a>,
+          <a href="/#education" class="text-accent-regular">education</a>, and
+          <a href="/#skills" class="text-accent-regular">skills</a>. It's built
+          with Astro and Tailwind CSS, deployed on Vercel, and the source
+          content is also available as
+          <a href="/index.md" class="text-accent-regular">markdown</a> for AI agents
+          and other tools. If you'd like to get in touch, see the
+          <a href="/contact" class="text-accent-regular">contact page</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

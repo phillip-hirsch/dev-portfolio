@@ -14,7 +14,8 @@
     "lint": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\"",
     "lint:fix": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\" --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "test": "bun test"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/bun": "^1.4.0",
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^2.0.0",

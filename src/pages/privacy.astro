@@ -1,0 +1,53 @@
+---
+import PageHeader from '../components/molecules/PageHeader/PageHeader.astro'
+import { site } from '../data/site'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title={`Privacy | ${site.name}`}
+  description="How this site handles visitor data: no accounts, no tracking cookies, and a locally stored theme preference."
+>
+  <main class="mx-auto w-full max-w-3xl px-6 pt-14 pb-28 lg:px-10">
+    <div class="flex flex-col gap-10">
+      <PageHeader
+        title="Privacy"
+        tagline="What this site does — and doesn't — collect."
+        align="start"
+      />
+      <div
+        class="flex flex-col gap-5 text-[0.95rem] leading-[1.75] text-gray-300"
+      >
+        <p>
+          This is a static personal portfolio. It has no user accounts, no
+          contact forms, no advertising, and no third-party analytics or
+          tracking scripts. I don't collect, store, or sell personal information
+          about visitors.
+        </p>
+        <p>
+          The only thing the site stores on your device is a single
+          <code class="font-mono text-[0.85em]">theme</code> preference in your browser's
+          local storage, so your light-or-dark choice persists between visits. It
+          never leaves your browser, and clearing your browser storage removes it.
+          Fonts are served from this domain rather than a third-party CDN.
+        </p>
+        <p>
+          The site is hosted on Vercel, which processes standard server request
+          logs (such as IP address and user agent) to deliver pages and protect
+          the service; see
+          <a
+            href="https://vercel.com/legal/privacy-policy"
+            class="text-accent-regular">Vercel's privacy policy</a
+          > for details. Outbound links — for example to LinkedIn or GitHub — are
+          governed by those services' own privacy policies once you leave this site.
+        </p>
+        <p>
+          If you have any questions about this policy, reach out through the
+          channels on the
+          <a href="/contact" class="text-accent-regular">contact page</a>. This
+          policy was last updated in August 2026.
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -6,7 +6,7 @@ Single-page Astro portfolio for `philliphirsch.com`, deployed on Vercel with a d
 
 - Use `bun` for dependency management and scripts.
 - Before considering a task complete, run `bun run astro:check`, `bun run lint`, `bun run format:check`, and `bun run build`.
-- No automated test suite is configured.
+- Tests live in `tests/` and assert on the build output — run `bun run build` first, then `bun test`.
 
 ## Repo Docs
 

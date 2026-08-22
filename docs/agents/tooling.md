@@ -8,6 +8,7 @@
 - Lint autofix: `bun run lint:fix`
 - Format: `bun run format`
 - Format check: `bun run format:check`
+- Tests: `bun test` (asserts on build output — run `bun run build` first)
 
 ## TypeScript
 

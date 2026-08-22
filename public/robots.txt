@@ -152,3 +152,5 @@ Disallow: /
 
 User-agent: Bytespider
 Disallow: /
+
+Sitemap: https://www.philliphirsch.com/sitemap.xml
