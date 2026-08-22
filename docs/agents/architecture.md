@@ -19,7 +19,7 @@
 
 - `src/data/site.ts` is the canonical identity module (name, URL, location, profiles) shared by every machine-readable surface.
 - `/index.md`, `/llms.txt`, and `/sitemap.xml` are prerendered endpoints generated from the same data modules as the HTML sections — update the data, not the endpoints.
-- `GET /` serves the markdown variant when the request sends `Accept: text/markdown`; the rewrite and `Vary: Accept` headers live in `vercel.json`.
+- `GET /` with `Accept: text/markdown` is redirected (307) to `/index.md`; the conditional redirect and `Vary: Accept` headers live in `vercel.json`. It must stay a redirect — vercel.json rewrites run after the filesystem check, so a rewrite on `/` would lose to the static `index.html`.
 - The homepage embeds Person and WebSite JSON-LD via the `StructuredData` atom.
 - `tests/agent-readiness.test.ts` asserts on all of these against the build output in `.vercel/output/static`.
 

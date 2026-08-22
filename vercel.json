@@ -1,6 +1,18 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "destination": "/index.md",
+      "permanent": false
+    },
+    {
       "source": "/education",
       "destination": "/#education",
       "permanent": true
@@ -16,19 +28,6 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*text/markdown.*"
-        }
-      ],
-      "destination": "/index.md"
-    }
-  ],
   "headers": [
     {
       "source": "/",
@@ -36,22 +35,6 @@
         {
           "key": "Vary",
           "value": "Accept"
-        }
-      ]
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*text/markdown.*"
-        }
-      ],
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/markdown; charset=utf-8"
         }
       ]
     },

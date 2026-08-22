@@ -204,11 +204,13 @@ describe('markdown content negotiation (vercel.json)', () => {
   const config = JSON.parse(
     readFileSync(join(import.meta.dir, '..', 'vercel.json'), 'utf-8'),
   ) as {
-    rewrites?: {
+    redirects?: {
       source: string
       destination: string
+      permanent?: boolean
       has?: { type: string; key: string; value?: string }[]
     }[]
+    rewrites?: unknown[]
     headers?: {
       source: string
       has?: { type: string; key: string; value?: string }[]
@@ -216,18 +218,23 @@ describe('markdown content negotiation (vercel.json)', () => {
     }[]
   }
 
-  test('rewrites / to /index.md when Accept requests text/markdown', () => {
-    const rewrite = config.rewrites?.find(
+  test('redirects / to /index.md when Accept requests text/markdown', () => {
+    // Must be a redirect, not a rewrite: vercel.json rewrites are evaluated
+    // after the filesystem check, so the static index.html would always win.
+    // Redirects are evaluated before it.
+    const redirect = config.redirects?.find(
       (rule) => rule.source === '/' && rule.destination === '/index.md',
     )
-    expect(rewrite).toBeDefined()
-    const condition = rewrite?.has?.find(
+    expect(redirect).toBeDefined()
+    expect(redirect?.permanent).toBe(false)
+    const condition = redirect?.has?.find(
       (has) => has.type === 'header' && has.key === 'accept',
     )
     expect(condition?.value).toContain('text/markdown')
+    expect(config.rewrites ?? []).toEqual([])
   })
 
-  test('negotiated responses set Vary: Accept and the markdown content type', () => {
+  test('/ and /index.md set Vary: Accept; only /index.md is typed markdown', () => {
     const varyRules = config.headers?.filter((rule) =>
       rule.headers.some(
         (header) => header.key === 'Vary' && header.value.includes('Accept'),
@@ -236,18 +243,22 @@ describe('markdown content negotiation (vercel.json)', () => {
     expect(varyRules?.map((rule) => rule.source)).toEqual(
       expect.arrayContaining(['/', '/index.md']),
     )
-    const negotiatedContentType = config.headers?.find(
+    const markdownContentType = config.headers?.find(
       (rule) =>
-        rule.source === '/' &&
-        rule.has?.some(
-          (has) => has.key === 'accept' && has.value?.includes('text/markdown'),
-        ) &&
+        rule.source === '/index.md' &&
         rule.headers.some(
           (header) =>
             header.key === 'Content-Type' &&
             header.value.startsWith('text/markdown'),
         ),
     )
-    expect(negotiatedContentType).toBeDefined()
+    expect(markdownContentType).toBeDefined()
+    // Guard: no rule may ever label the HTML homepage as markdown.
+    const mislabeledHome = config.headers?.find(
+      (rule) =>
+        rule.source === '/' &&
+        rule.headers.some((header) => header.key === 'Content-Type'),
+    )
+    expect(mislabeledHome).toBeUndefined()
   })
 })

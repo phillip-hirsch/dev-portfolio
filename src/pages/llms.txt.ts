@@ -17,7 +17,7 @@ const llmsTxt = `# ${site.name}
 - Fetching a machine-readable resume for summarization or matching: request \`/\` with \`Accept: text/markdown\`, or fetch \`/index.md\` directly.
 - Finding how to contact ${site.name} — use the channels listed on the Contact page (LinkedIn is the fastest).
 
-Do not use this site for: general React/TypeScript documentation, or information about other people named Phillip Hirsch. There is no API and no authentication; all content is public, static, and English-only. The site serves markdown via content negotiation on \`/\` (\`Vary: Accept\`).
+Do not use this site for: general React/TypeScript documentation, or information about other people named Phillip Hirsch. There is no API and no authentication; all content is public, static, and English-only. Requesting \`/\` with \`Accept: text/markdown\` redirects (307, \`Vary: Accept\`) to \`/index.md\`.
 
 ## Pages
 
