@@ -14,9 +14,7 @@ const [firstName, ...rest] = name.split(' ')
 const lastName = rest.join(' ')
 ---
 
-<div
-  class="flex flex-col items-center gap-10 py-8 lg:mx-auto lg:grid lg:w-full lg:max-w-4xl lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-14 lg:py-12"
->
+<div class="flex flex-col items-center gap-10 py-8 lg:mx-auto lg:grid lg:w-full lg:max-w-4xl lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-14 lg:py-12">
   <HeroPortrait image={image} imageAlt={imageAlt} />
   <HeroContent firstName={firstName} lastName={lastName} />
 </div>

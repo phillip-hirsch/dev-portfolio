@@ -1,10 +1,10 @@
 # Phillip Hirsch — Developer Portfolio
 
-Personal portfolio site built with [Astro](https://astro.build), [React](https://react.dev), and [Tailwind CSS](https://tailwindcss.com). Deployed on [Vercel](https://vercel.com).
+Personal portfolio site for [philliphirsch.com](https://philliphirsch.com), built with [Astro](https://astro.build), [React](https://react.dev), and [Tailwind CSS](https://tailwindcss.com). Deployed on [Vercel](https://vercel.com).
 
 ## Features
 
-- **Astro 6** with page animations
+- **Astro 7** with page animations
 - **React 19** for server-rendered integrations
 - **Tailwind CSS v4** for styling with custom theme tokens
 - **Dark / light theme** toggle with persistence (falls back to `prefers-color-scheme` on first visit)
@@ -19,7 +19,7 @@ Personal portfolio site built with [Astro](https://astro.build), [React](https:/
 
 Single-page layout — `index.astro` is the only content page. Nav links use anchor IDs (`#experience`, `#education`, `#skills`) for smooth scroll navigation.
 
-Components follow **atomic design**: atoms (ButtonLink, TimelineDot), molecules (HeroPortrait, PageHeader, EducationEntry), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
+Components follow **atomic design**: atoms (ButtonLink, TimelineDot), molecules (HeroPortrait, PageHeader, ThemeToggle), and organisms (Hero, Nav, ExperienceSection, SkillsSection).
 
 Static `.astro` components by default; there are currently no hydrated React islands. React remains in use for server-rendered integrations such as icons and the OG image endpoint.
 
@@ -27,7 +27,7 @@ Static `.astro` components by default; there are currently no hydrated React isl
 
 | Layer      | Technology                                                    |
 | :--------- | :------------------------------------------------------------ |
-| Framework  | Astro 6                                                       |
+| Framework  | Astro 7                                                       |
 | UI         | React 19                                                      |
 | Styling    | Tailwind CSS 4                                                |
 | Icons      | Phosphor Icons                                                |
@@ -42,19 +42,22 @@ Static `.astro` components by default; there are currently no hydrated React isl
 ```bash
 src/
 ├── components/
-│   ├── atoms/         # ButtonLink, TimelineDot, etc.
-│   ├── molecules/     # HeroPortrait, PageHeader, EducationEntry, etc.
-│   └── organisms/     # Hero, Nav, ExperienceSection, SkillsSection, etc.
+│   ├── atoms/         # ButtonLink, TimelineDot, GradientDivider, etc.
+│   ├── molecules/     # HeroPortrait, PageHeader, ThemeToggle, etc.
+│   ├── organisms/     # Hero, Nav, ExperienceSection, SkillsSection, etc.
+│   └── MainHead/      # Document head and OG metadata
 ├── data/              # Content data (experience, education, skills, nav)
 ├── images/            # Optimized image assets
 ├── layouts/           # BaseLayout
 ├── pages/             # index.astro, 404.astro, og.png.ts
 └── styles/            # Global CSS and theme variables
 public/
-└── assets/            # Static files (resume PDF, favicons)
+└── assets/            # Static files (resume PDF)
 ```
 
 ## Getting Started
+
+Requires [Bun](https://bun.sh) and Node.js `>=20.19.0`.
 
 ```bash
 # Install dependencies
@@ -65,7 +68,6 @@ bun run dev
 
 # Build for production
 bun run build
-
 ```
 
 ## Linting & Formatting
