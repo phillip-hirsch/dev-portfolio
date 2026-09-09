@@ -5,3 +5,7 @@ dist
 node_modules
 public/assets
 public/favicon.ico
+.agents
+.claude
+.cursor
+.mcp.json

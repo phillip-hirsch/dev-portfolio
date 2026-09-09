@@ -24,26 +24,18 @@ const {
 
 <header class="flex flex-col gap-[0.4rem]">
   <div class="flex flex-wrap items-baseline gap-[0.6rem]">
-    <h2
-      class="font-brand text-gray-0 m-0 text-[clamp(1.4rem,3vw,1.85rem)] leading-[1.2] font-semibold"
-    >
+    <h2 class="font-brand text-gray-0 m-0 text-[clamp(1.4rem,3vw,1.85rem)] leading-[1.2] font-semibold">
       {title}
     </h2>
-    <p
-      class="text-accent-regular m-0 self-center text-xs font-medium tracking-[0.06em] whitespace-nowrap uppercase"
-    >
+    <p class="text-accent-regular m-0 self-center text-xs font-medium tracking-[0.06em] whitespace-nowrap uppercase">
       {employmentType}
     </p>
   </div>
-  <h3
-    class="font-brand text-accent-regular m-0 text-[clamp(1rem,2vw,1.2rem)] font-medium"
-  >
+  <h3 class="font-brand text-accent-regular m-0 text-[clamp(1rem,2vw,1.2rem)] font-medium">
     {company}{' '}
-    {
-      via && (
-        <span class="text-[0.9em] font-normal text-gray-400">via {via}</span>
-      )
-    }
+    {via && (
+      <span class="text-[0.9em] font-normal text-gray-400">via {via}</span>
+    )}
   </h3>
   <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
     <IconMeta text={period}>
@@ -52,12 +44,10 @@ const {
     <IconMeta text={location}>
       <MapPinIcon size={12} aria-hidden="true" />
     </IconMeta>
-    {
-      technologies.length > 0 && (
-        <p class="m-0 text-[0.8rem] tracking-[0.01em] text-gray-400">
-          {technologies.join(' · ')}
-        </p>
-      )
-    }
+    {technologies.length > 0 && (
+      <p class="m-0 text-[0.8rem] tracking-[0.01em] text-gray-400">
+        {technologies.join(' · ')}
+      </p>
+    )}
   </div>
 </header>

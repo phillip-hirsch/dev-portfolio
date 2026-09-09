@@ -10,41 +10,28 @@ const { firstName, lastName } = Astro.props
 ---
 
 <div class="order-2 flex flex-col items-center gap-5 lg:order-1 lg:items-start">
-  <h1
-    class="font-brand flex animate-[fadeInUp_0.6s_cubic-bezier(0.16,1,0.3,1)_backwards] flex-col text-center leading-none font-semibold tracking-tight [animation-delay:250ms] lg:text-start"
-  >
+  <h1 class="font-brand flex animate-[fadeInUp_0.6s_cubic-bezier(0.16,1,0.3,1)_backwards] flex-col text-center leading-none font-semibold tracking-tight [animation-delay:250ms] lg:text-start">
     <span class="text-gray-0 text-[clamp(2.5rem,5.5vw,5rem)]">{firstName}</span>
-    {
-      lastName && (
-        <span class="bg-(image:--gradient-accent) bg-clip-text text-[clamp(2.5rem,5.5vw,5rem)] text-transparent">
-          {lastName}
-        </span>
-      )
-    }
+    {lastName && (
+      <span class="bg-(image:--gradient-accent) bg-clip-text text-[clamp(2.5rem,5.5vw,5rem)] text-transparent">
+        {lastName}
+      </span>
+    )}
   </h1>
 
-  <div
-    class="flex animate-[fadeInUp_0.5s_ease-out_backwards] items-center gap-3 [animation-delay:400ms]"
-  >
-    <div
-      class="from-accent-regular hidden h-px w-8 shrink-0 bg-linear-to-r to-transparent lg:block"
-    >
-    </div>
+  <div class="flex animate-[fadeInUp_0.5s_ease-out_backwards] items-center gap-3 [animation-delay:400ms]">
+    <div class="from-accent-regular hidden h-px w-8 shrink-0 bg-linear-to-r to-transparent lg:block"></div>
     <p class="text-xs tracking-[0.16em] text-gray-300 uppercase">
       Software Engineer · Charlotte, NC · 3+ Years
     </p>
   </div>
 
-  <p
-    class="max-w-sm animate-[fadeInUp_0.5s_ease-out_backwards] text-center text-sm/6 text-gray-300 [animation-delay:480ms] lg:text-start"
-  >
+  <p class="max-w-sm animate-[fadeInUp_0.5s_ease-out_backwards] text-center text-sm/6 text-gray-300 [animation-delay:480ms] lg:text-start">
     I turn complex requirements into clean, scalable products — specializing in
     React, TypeScript, and the full stack between design and deployment.
   </p>
 
-  <div
-    class="flex animate-[fadeInUp_0.5s_ease-out_backwards] flex-wrap items-center justify-center gap-3 [animation-delay:560ms] lg:justify-start"
-  >
+  <div class="flex animate-[fadeInUp_0.5s_ease-out_backwards] flex-wrap items-center justify-center gap-3 [animation-delay:560ms] lg:justify-start">
     <ButtonLink
       href="/assets/Phillip_Hirsch.pdf"
       variant="secondary"

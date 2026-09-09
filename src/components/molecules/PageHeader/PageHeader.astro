@@ -12,33 +12,31 @@ const isStart = align === 'start'
 <div
   class={`flex flex-col gap-4 animate-[fadeInUp_0.45s_ease-out_backwards] ${isStart ? 'items-start text-start' : 'items-center text-center'}`}
 >
-  {
-    tagline ? (
-      <>
-        <h1 class="font-brand text-gray-0 m-0 max-w-[20ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05] font-bold tracking-[-0.02em]">
-          {title}
-        </h1>
-        <div class="flex w-fit max-w-full flex-col gap-3">
-          <p class="m-0 max-w-[44ch] text-[clamp(0.9rem,1.8vw,1.05rem)] leading-[1.7] text-gray-400">
-            {tagline}
-          </p>
-          <span
-            class="block h-0.75 w-full rounded-sm bg-(image:--gradient-accent)"
-            aria-hidden="true"
-          />
-        </div>
-      </>
-    ) : (
+  {tagline ? (
+    <>
+      <h1 class="font-brand text-gray-0 m-0 max-w-[20ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05] font-bold tracking-[-0.02em]">
+        {title}
+      </h1>
       <div class="flex w-fit max-w-full flex-col gap-3">
-        <h1 class="font-brand text-gray-0 m-0 max-w-[20ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05] font-bold tracking-[-0.02em]">
-          {title}
-        </h1>
+        <p class="m-0 max-w-[44ch] text-[clamp(0.9rem,1.8vw,1.05rem)] leading-[1.7] text-gray-400">
+          {tagline}
+        </p>
         <span
           class="block h-0.75 w-full rounded-sm bg-(image:--gradient-accent)"
           aria-hidden="true"
         />
       </div>
-    )
-  }
+    </>
+  ) : (
+    <div class="flex w-fit max-w-full flex-col gap-3">
+      <h1 class="font-brand text-gray-0 m-0 max-w-[20ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05] font-bold tracking-[-0.02em]">
+        {title}
+      </h1>
+      <span
+        class="block h-0.75 w-full rounded-sm bg-(image:--gradient-accent)"
+        aria-hidden="true"
+      />
+    </div>
+  )}
   <slot />
 </div>

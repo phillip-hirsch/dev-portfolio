@@ -9,20 +9,15 @@ interface Props {
 const { image, imageAlt } = Astro.props
 ---
 
-<div
-  class="order-1 flex w-full animate-[fadeInScale_0.7s_cubic-bezier(0.16,1,0.3,1)_backwards] justify-center [animation-delay:100ms] lg:order-2"
->
+<div class="order-1 flex w-full animate-[fadeInScale_0.7s_cubic-bezier(0.16,1,0.3,1)_backwards] justify-center [animation-delay:100ms] lg:order-2">
   <div class="relative">
     {/* Ambient glow behind the portrait */}
     <div
       class="absolute -inset-3 animate-[fadeInUp_1.2s_ease-out_0.6s_backwards] rounded-[3rem] bg-[radial-gradient(ellipse_at_center,hsla(199,89%,48%,0.2),transparent_70%)] blur-2xl"
       aria-hidden="true"
-    >
-    </div>
+    ></div>
 
-    <div
-      class="portrait-frame relative w-fit rounded-[2.5rem] bg-(image:--gradient-accent) p-0.75 shadow-md lg:w-full"
-    >
+    <div class="portrait-frame relative w-fit rounded-[2.5rem] bg-(image:--gradient-accent) p-0.75 shadow-md lg:w-full">
       <Image
         alt={imageAlt}
         width="480"

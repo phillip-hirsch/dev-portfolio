@@ -9,24 +9,20 @@ const { category } = Astro.props
 ---
 
 <div class="flex flex-col gap-[0.6rem]">
-  <p
-    class="text-accent-regular m-0 text-[0.7rem] font-semibold tracking-widest uppercase"
-  >
+  <p class="text-accent-regular m-0 text-[0.7rem] font-semibold tracking-widest uppercase">
     {category.label}
   </p>
   <ul class="m-0 flex list-none flex-col gap-2.5 p-0" role="list">
-    {
-      category.bullets.map((bullet) => (
-        <li class="flex items-start gap-2.5 text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.65] text-gray-300">
-          <CaretRightIcon
-            size={16}
-            weight="bold"
-            aria-hidden="true"
-            className="mt-[0.35rem] shrink-0 text-accent-regular"
-          />
-          <span>{bullet}</span>
-        </li>
-      ))
-    }
+    {category.bullets.map((bullet) => (
+      <li class="flex items-start gap-2.5 text-[clamp(0.875rem,1.5vw,1rem)] leading-[1.65] text-gray-300">
+        <CaretRightIcon
+          size={16}
+          weight="bold"
+          aria-hidden="true"
+          className="mt-[0.35rem] shrink-0 text-accent-regular"
+        />
+        <span>{bullet}</span>
+      </li>
+    ))}
   </ul>
 </div>
