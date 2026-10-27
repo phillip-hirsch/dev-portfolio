@@ -20,17 +20,17 @@ import SectionHeader from '../../molecules/SectionHeader/SectionHeader.astro'
           >
             <div class="flex flex-col gap-1">
               <time
-                class="text-gray-0 font-mono text-[2rem] leading-none font-normal lg:text-[2.5rem]"
+                class="font-mono text-[2rem] leading-none font-normal text-gray-0 lg:text-[2.5rem]"
                 datetime={entry.dateTime}
               >
                 {yearLabel}
               </time>
-              <span class="text-accent-regular font-mono text-[0.75rem] tracking-[0.2em] uppercase">
+              <span class="font-mono text-[0.75rem] tracking-[0.2em] text-accent-regular uppercase">
                 {monthLabel}
               </span>
             </div>
             <div class="flex flex-col gap-2">
-              <h3 class="font-brand text-gray-0 m-0 text-[1.5rem] leading-[1.2] font-semibold lg:text-[1.75rem]">
+              <h3 class="font-brand m-0 text-[1.5rem] leading-[1.2] font-semibold text-gray-0 lg:text-[1.75rem]">
                 {entry.degree}
               </h3>
               <p class="m-0 text-[1rem] text-gray-200">{entry.institution}</p>
