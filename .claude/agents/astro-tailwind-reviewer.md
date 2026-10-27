@@ -29,7 +29,7 @@ This project uses `@tailwindcss/vite` + Tailwind 4. Flag:
 - Use of Tailwind 3 config files (`tailwind.config.js`) — Tailwind 4 prefers `@theme` in CSS.
 - `@apply` overuse where utility classes would be clearer.
 - Custom colors hardcoded as hex inline — they should live in `src/styles/global.css` `@theme` (or the Catppuccin palette already defined there).
-- Class-order issues that `prettier-plugin-tailwindcss` should auto-fix but didn't (sign of a config problem).
+- Class-order issues that oxfmt's `sortTailwindcss` should auto-fix but didn't (sign of a config problem).
 - Arbitrary values (`w-[123px]`) where a theme token would do.
 
 ### Atomic design boundaries

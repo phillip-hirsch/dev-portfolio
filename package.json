@@ -11,10 +11,10 @@
     "sync": "astro sync",
     "astro:check": "astro check",
     "astro:check:write": "astro check . --write",
-    "lint": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\"",
-    "lint:fix": "eslint \"**/*.{js,mjs,cjs,jsx,ts,tsx,astro}\" --fix",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
@@ -31,15 +31,9 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.13.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^3.2.1",
-    "globals": "^17.13.0",
-    "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.2",
-    "prettier-plugin-tailwindcss": "^0.8.1",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1"
+    "@astrojs/compiler-rs": "^0.5.2",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
+    "typescript": "^6.0.3"
   }
 }

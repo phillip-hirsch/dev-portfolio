@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "semi": false,
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "astro": true,
+  "sortTailwindcss": {
+    "stylesheet": "./src/styles/global.css"
+  },
+  "ignorePatterns": [
+    ".astro",
+    "bun.lock",
+    "bun.lockb",
+    "dist",
+    "public/assets",
+    "public/favicon.ico",
+    ".agents",
+    ".claude",
+    ".cursor",
+    ".mcp.json"
+  ]
+}
