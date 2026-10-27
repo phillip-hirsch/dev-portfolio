@@ -6,11 +6,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bunx --bun prettier --write --log-level warn --ignore-unknown \"${file}\""
+            "command": "bunx --bun oxfmt --no-error-on-unmatched-pattern \"${file}\""
           },
           {
             "type": "command",
-            "command": "case \"${file}\" in *.astro|*.tsx|*.ts|*.jsx|*.js|*.mjs|*.cjs) bunx --bun eslint --fix \"${file}\" ;; esac"
+            "command": "case \"${file}\" in *.astro|*.tsx|*.ts|*.jsx|*.js|*.mjs|*.cjs) bunx --bun oxlint --fix --no-error-on-unmatched-pattern \"${file}\" ;; esac"
           }
         ]
       }
