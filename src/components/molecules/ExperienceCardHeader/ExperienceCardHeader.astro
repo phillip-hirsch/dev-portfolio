@@ -24,14 +24,14 @@ const {
 
 <header class="flex flex-col gap-[0.4rem]">
   <div class="flex flex-wrap items-baseline gap-[0.6rem]">
-    <h2 class="font-brand text-gray-0 m-0 text-[clamp(1.4rem,3vw,1.85rem)] leading-[1.2] font-semibold">
+    <h2 class="font-brand m-0 text-[clamp(1.4rem,3vw,1.85rem)] leading-[1.2] font-semibold text-gray-0">
       {title}
     </h2>
-    <p class="text-accent-regular m-0 self-center text-xs font-medium tracking-[0.06em] whitespace-nowrap uppercase">
+    <p class="m-0 self-center text-xs font-medium tracking-[0.06em] whitespace-nowrap text-accent-regular uppercase">
       {employmentType}
     </p>
   </div>
-  <h3 class="font-brand text-accent-regular m-0 text-[clamp(1rem,2vw,1.2rem)] font-medium">
+  <h3 class="font-brand m-0 text-[clamp(1rem,2vw,1.2rem)] font-medium text-accent-regular">
     {company}{' '}
     {via && (
       <span class="text-[0.9em] font-normal text-gray-400">via {via}</span>

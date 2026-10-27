@@ -11,8 +11,8 @@ Personal portfolio site for [philliphirsch.com](https://philliphirsch.com), buil
 - **Responsive layout** — mobile-first with adaptive grid
 - **Phosphor Icons** for a consistent icon set
 - **Auto-generated OG images** via `@vercel/og`
-- **ESLint** for linting
-- **Prettier** for formatting
+- **oxlint** for linting
+- **oxfmt** for formatting
 - **TypeScript** in strict mode
 
 ## Architecture
@@ -32,8 +32,8 @@ Static `.astro` components by default; there are currently no hydrated React isl
 | Styling    | Tailwind CSS 4                                                |
 | Icons      | Phosphor Icons                                                |
 | Fonts      | Space Grotesk, Space Mono (via Astro Fonts)                   |
-| Linting    | ESLint                                                        |
-| Formatting | Prettier                                                      |
+| Linting    | oxlint                                                        |
+| Formatting | oxfmt                                                         |
 | Hosting    | Vercel (hybrid — static pages + OG endpoint as serverless fn) |
 | Runtime    | Bun                                                           |
 
@@ -82,7 +82,7 @@ bun run format:check
 # Auto-fix lint issues
 bun run lint:fix
 
-# Rewrite files with Prettier
+# Rewrite files with oxfmt
 bun run format
 
 # Type-check Astro and TypeScript files
